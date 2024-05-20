@@ -1,0 +1,21 @@
+{
+    "owners":["1067376627610292245",""],
+    "token":"MTIzODYyMDQ1ODMyMDkyMDU3Ng.GhdrEc.CWWRJltZO42cTIcYbhSX9GVsWPRmNS6aDAQec4",
+    "prefix":"2",
+    "maincolor":"#35dfda",
+    "wrongcolor":"Red",
+    "channelreport":"1235998453910343762",
+    "channeljoin":"1235998453910343762",
+    "channelleft":"1235998453910343762",
+    "channellog":"1235998453910343762",
+    "mongoose":"mongodb+srv://amr123123:amr123123@cluster0.3g9m5dv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+    "emojis":{
+        "passwordver":"🔐",
+        "true":"✅",
+        "false":"🚫",
+        "report":"🏷️",
+        "transfer":"📝",
+        "daily":"💰"
+    }
+
+}

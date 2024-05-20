@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+      "outDir": "dist",
+      "rootDir": "src",
+      "alwaysStrict": false,
+      "skipLibCheck": true,
+      "removeComments": false,
+      "checkJs": true,
+      "module": "CommonJS",
+      "esModuleInterop": true,
+      "resolveJsonModule": true
+  },
+  "include": [
+      "src/**/*.ts"
+  ],
+  "exclude": [
+      "node_modules",
+      "node_modules/types"
+  ]
+}

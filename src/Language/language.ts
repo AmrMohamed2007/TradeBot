@@ -12,6 +12,9 @@ const Language = {
         permissionme:" `<permission>`ليس لدي هذا البرمشن  ",
         permission:"`<permission>` ليس لديك هذا البرمشن",
         private:{
+            transferterrauser:"ايدي مستلم",
+            transferterraamount:"المبلغ",
+            transferterrareason:"سبب التحويل",
             donereport:"تم ابلاغ",
             donedelete:"تم تمسح بنجاخ",
             errordaily:"ا",
@@ -34,6 +37,8 @@ const Language = {
             displayname:"الأسم الظاهري"
         },
         captcha:{
+            passwordtitle:"تحقق من رقم سري",
+            nopassword:"لازم تحدد باسورد عشان تحول ي اهطل",
             waiting:"waiting for <thing>",
             errorcaptchashape:"لقد اخترت كابتشا خاطئة",
             shapetype:"يرجي اختيار الشكل الصحيح اسم الشكل : [shape]",

@@ -1,6 +1,6 @@
 import {  Client, ComponentType } from "discord.js";
 
-async function CaptchaShape(client:Client,message:any,langdata:any,type:string,typeSecurity:boolean,fun:any) {
+async function CaptchaShape(client:Client,message:any,langdata:any,type:string,typeSecurity:boolean,fun:any,data:any) {
  
    
     var userid = ""
@@ -28,10 +28,10 @@ async function CaptchaShape(client:Client,message:any,langdata:any,type:string,t
       const Check = await client.captcha.VerifyShape(col.customId.split("_")[1],RightShape.emoji)
         if(Check) {
             if(typeSecurity == false) {
-               client.emit(fun,col,langdata)
+               client.emit(fun,col,langdata,data)
                 await message.delete()
             }else {
-                await client.captcha.CaptchaReact(client,col,langdata,fun);
+                await client.captcha.CaptchaReact(client,col,langdata,fun,data);
                 await message.delete()
             }
          

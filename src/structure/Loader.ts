@@ -21,6 +21,7 @@ async function LoadFunctions(client: Client) {
     // Load Tools Functions
     client.CreateEmbed = require("../Tools/Embeds").CreateEmbd
     client.waitembed = require("../Tools/Embeds").WaitingEmbed
+    client.types = require("../Tools/logtypes").TypesLog
     console.log(chalk.green("[BOT] All UTILS Functions Loaded"));
 
     // Load CaptchaFunctions
@@ -46,7 +47,16 @@ async function LoadFunctions(client: Client) {
         })
     })
 
-    console.log(chalk.green("[BOT] All Premium Functions Loaded"));
+       // Load Components Functions
+       fs.readdirSync(`${process.cwd()}/dist/Functions/Public/`).forEach((file) => {
+        const Functionm = require(`${process.cwd()}/dist/Functions/Public/${file}`)?.default;
+        const data = Object.entries(Functionm)
+        data.forEach((md) => {
+            client.public[md[0]] = md[1];
+        })
+    })
+
+    console.log(chalk.green("[BOT] All Components Functions Loaded"));
 
     // Load Log
     const {Log} = require("../Tools/Log")

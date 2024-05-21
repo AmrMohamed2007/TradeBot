@@ -36,8 +36,7 @@ client.functions = {}
 client.captcha = {}
 client.premium = {}
 client.shapes = AllShapes;
-
-
+client.public = {}
 // Export Client
 
 export default client;

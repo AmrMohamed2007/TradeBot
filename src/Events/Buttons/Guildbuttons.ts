@@ -7,10 +7,12 @@ const Event = {
     run: async (client: Client, interaction: ButtonInteraction) => {
         if (interaction.isButton() && interaction.customId.startsWith("leave_")) {
 
+            if(!client.config.owners.includes(interaction.user.id)) return;
             await Leave(client, interaction, 1);
 
         }
         if (interaction.isButton() && interaction.customId.startsWith("blacklist_")) {
+            if(!client.config.owners.includes(interaction.user.id)) return;
             const type = interaction.customId.split("_")[1]
             const id = interaction.customId.split("_")[2]
             client.functions.get.GetUser(type == "user" ? client.schema : client.schemas, { status: "one", key: type == "user" ? "userid" : "guildid", value: id,create:true}).then(async (res) => {

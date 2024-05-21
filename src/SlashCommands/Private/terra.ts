@@ -1,17 +1,30 @@
-import { Client, CommandInteraction, User, ApplicationCommandType } from "discord.js";
+import { Client, CommandInteraction, User, ApplicationCommandType, ApplicationCommandOptionType } from "discord.js";
 
 const terra = {
     name: "terra",
     description: "show your book of terra",
     type: ApplicationCommandType.ChatInput,
     options: [
-        { name: "user", description: "show book of terra for user", type: 6, required: false }
+        {
+            name: "balance",
+            description: "show your balance of terra",
+            type: ApplicationCommandOptionType.Subcommand,
+            options: [
+                { name: "user", description: "show book of terra for user", type: 6, required: false }
+            ],
+        },
+        {
+            name: "transfer",
+            description: "transfer terra to user",
+            type: ApplicationCommandOptionType.Subcommand,
+        }
     ],
-    run: async (client: Client, message: CommandInteraction, langdata: any) => {
+    run: async (client: Client, message: any, langdata: any) => {
 
-        const args = message.options.get("user") ?  message.options.get("user")?.user : message.user
+        const sub = message.options.getSubcommand()
+        const args = message.options.get("user") ? message.options.get("user")?.user : message.user
         async function ReturnData(user: User) {
-            
+
 
             await client.functions.get.GetUser(client.schema, { key: "userid", value: user.id, status: "one" }).then(async (res) => {
 
@@ -43,7 +56,7 @@ const terra = {
                     } else {
 
 
-                        await client.captcha.CaptchaReact(client, message, langdata,"terraShow")
+                        await client.captcha.CaptchaReact(client, message, langdata, "terraShow")
                     }
 
                 }
@@ -53,7 +66,7 @@ const terra = {
 
 
             }).catch(async (err) => {
-          
+
 
 
                 await message.reply({ content: `${langdata.captcha[err.message]}` })
@@ -62,14 +75,21 @@ const terra = {
 
         }
 
-        if (args) {
-           
-            
-            var user = args
-            if(user.bot) return;
-            await ReturnData(user)
+        if (sub == "balance") {
+            if (args) {
+
+
+                var user = args
+                if (user.bot) return;
+                await ReturnData(user)
+
+            }
+        }
+        if (sub == "transfer") {
+             client.emit("terraTransfer",message,langdata)
 
         }
+
     }
 }
 

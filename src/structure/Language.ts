@@ -12,7 +12,7 @@ async function GetLang(client: Client, guildid: string) {
         lang = res.lang ? res.lang : "en"
 
 
-
+        await res.save()
         client.langdata.set(guildid, lang)
         const LanguageData = require("../Language/language")?.default[lang];
 

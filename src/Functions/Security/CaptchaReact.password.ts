@@ -1,6 +1,6 @@
 import {  Client, ComponentType } from "discord.js";
 
-async function CaptchaReact(client:Client,message:any,langdata:any,fun:any) {
+async function CaptchaReact(client:Client,message:any,langdata:any,fun:any,typeSecurity:boolean) {
     var userid = ""
     if(message.author) {
         userid = message.author.id
@@ -13,6 +13,9 @@ async function CaptchaReact(client:Client,message:any,langdata:any,fun:any) {
         userid = message.interaction.user.id
     }
      client.functions.get.GetUser(client.schema,{status:"one",key:"userid",value:userid}).then(async (res) => {
+        
+        if(!res.password && typeSecurity == true) 
+        return await message.reply({content:`${langdata.captcha.nopassword}`,ephemeral:true});
 
         if(res.password) {
 

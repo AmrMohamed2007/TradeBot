@@ -21,6 +21,7 @@ async function LoadFunctions(client: Client) {
     // Load Tools Functions
     client.CreateEmbed = require("../Tools/Embeds").CreateEmbd
     client.waitembed = require("../Tools/Embeds").WaitingEmbed
+    client.WrongEmbed = require("../Tools/Embeds").WrongEmbed
     client.types = require("../Tools/logtypes").TypesLog
     console.log(chalk.green("[BOT] All UTILS Functions Loaded"));
 

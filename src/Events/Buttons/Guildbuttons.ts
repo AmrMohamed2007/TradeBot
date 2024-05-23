@@ -6,6 +6,7 @@ const Event = {
     once: false,
     run: async (client: Client, interaction: ButtonInteraction) => {
         if (interaction.isButton() && interaction.customId.startsWith("leave_")) {
+          
 
             if(!client.config.owners.includes(interaction.user.id)) return;
             await Leave(client, interaction, 1);

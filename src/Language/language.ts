@@ -12,6 +12,15 @@ const Language = {
         permissionme:" `<permission>`ليس لدي هذا البرمشن  ",
         permission:"`<permission>` ليس لديك هذا البرمشن",
         private:{
+            donetransfersend:`**[emoji] <@[userr]>,** Recieved **[amount] Of Terra(s)** from <@[usert]>`,
+            "donetransfer":"تمت العملية بنجاح",
+transfer:`[emoji] تحويل بنكي جديد\n
+Receiver: **[receiver]**\n
+Giver: **[giver]**\n
+Amount: **[amount]**\n
+Time: **[time]**\n
+Reason\n||\`\`\`[reason]\`\`\`||
+**Thx for using our services , we hope you happy with our services [emoji2]**`,
             transferterrauser:"ايدي مستلم",
             transferterraamount:"المبلغ",
             transferterrareason:"سبب التحويل",
@@ -34,9 +43,12 @@ const Language = {
             no:"لا",
             premium:"عضو مميز",
             blacklistedmsg:"لقد تم وضعك في القائمة السوداء لسوء تعامل مع خدمتنا",
+            scummermsg:"لقد تم وضعك في قائمة النصابين لسوء تعامل مع خدمتنا",
             displayname:"الأسم الظاهري"
         },
         captcha:{
+            usershouldhaveacc:"لازم الشخص ال تحولو يكون عندو حساب يبني",
+            errorcoinsenough:"لا يوجد لديك تيرا كافيه لهذا",
             passwordtitle:"تحقق من رقم سري",
             nopassword:"لازم تحدد باسورد عشان تحول ي اهطل",
             waiting:"waiting for <thing>",

@@ -17,6 +17,7 @@ async function ReturnModalTransferT(langdata: any) {
         .setCustomId(`transfertmodalamount`)
         .setRequired(true)
         .setStyle(TextInputStyle.Short)
+        .setPlaceholder("k = 1000 | h = 100 | m = 1000000 etc..")
         .setLabel(`${langdata.private.transferterraamount}`)
 
 
@@ -32,6 +33,7 @@ async function ReturnModalTransferT(langdata: any) {
         .setRequired(true)
         .setStyle(TextInputStyle.Short)
         .setLabel(`${langdata.captcha.passwordmodal}`)
+        
 
 
     Row.setComponents(password);

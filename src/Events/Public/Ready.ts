@@ -8,7 +8,7 @@ const ReadyEvent = {
         client.user.setPresence({
             status: "online",
             activities: [
-                { name: "0.0.1-beta", type: ActivityType.Playing },
+                { name: "/help (Beta)", type: ActivityType.Playing },
             ]
 
         })

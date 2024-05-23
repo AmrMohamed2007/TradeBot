@@ -9,8 +9,9 @@ const Event = {
     once: false,
     run: async (client: Client, interaction: any, langdata: any) => {
      
-        
+      
         await interaction.showModal(await client.premium.ReportModal(langdata))
+        
     }
 }
 

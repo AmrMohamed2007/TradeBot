@@ -5,16 +5,18 @@ import { Client } from "discord.js"
 const Event = {
     name: "terraTransfer",
     once: false,
-    run: async (client: Client, interaction: any,langdata:any) => {
-        await client.functions.get.GetUser(client.schema,{ status: "one", key: "userid", value: interaction.user.id }).then(async (res) => {
+    run: async (client: Client, interaction: any, langdata: any) => {
+        await client.functions.get.GetUser(client.schema, { status: "one", key: "userid", value: interaction.user.id }).then(async (res) => {
+            if (!res.password)
+                return await interaction.reply({ content: `${langdata.captcha.nopassword}`, ephemeral: true })
 
-        await interaction.showModal(await client.public.ReturnModalTransferT(langdata));
+            await interaction.showModal(await client.public.ReturnModalTransferT(langdata));
+
+        }).catch(async (err) => {
         
-    }).catch(async (err) => {
-        console.log(langdata);
-        
-        await interaction.reply({content:`${langdata.captcha.errornoacc}`,ephemeral:true})
-    })
+
+            await interaction.reply({ content: `${langdata.captcha.errornoacc}`, ephemeral: true })
+        })
 
 
     }

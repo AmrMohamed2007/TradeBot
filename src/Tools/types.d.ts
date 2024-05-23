@@ -39,6 +39,7 @@ declare module "discord.js" {
     channelreport: string
     types: typeslog
     public:any
+    WrongEmbed:function
   }
 
 }

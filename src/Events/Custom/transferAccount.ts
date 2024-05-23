@@ -1,6 +1,4 @@
-import { ButtonInteraction, CommandInteraction, Interaction, ModalSubmitInteraction } from "discord.js"
 
-import ms from "ms"
 import pretty from "pretty-ms"
 import { Client } from "discord.js"
 
@@ -9,6 +7,25 @@ const Event = {
     once: false,
     run: async (client: Client, interaction: any, langdata: any) => {
         await client.functions.get.GetUser(client.schema, { status: "one", key: "userid", value: interaction.user.id }).then(async (res) => {
+           
+            if(res && res.blacklisted.bool) {
+             
+                
+                const embed = await client.CreateEmbed({
+                    description: `${langdata.error}`,
+                    color: client.config.wrongcolor,
+                })
+                return interaction.reply({ embeds: [embed], ephemeral: true })
+            }else if(res && res.scummer.bool) {
+            
+                
+                const embed = await client.CreateEmbed({
+                    description: `${langdata.error}`,
+                    color: client.config.wrongcolor,
+                })
+                return interaction.reply({ embeds: [embed], ephemeral: true })
+            }else {
+           
             if (!res.premium || !res.premium.subscribed) {
                 const embed = await client.CreateEmbed({
                     description: `${langdata.premium.nopre}`,
@@ -20,7 +37,7 @@ const Event = {
                 await interaction.showModal(await client.premium.TransferModal(langdata));
             }
 
-
+        }
 
 
 

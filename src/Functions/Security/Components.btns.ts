@@ -4,7 +4,7 @@ async function ReturnBtnPassword(client:Client,langdata:any) {
     const Row = new ActionRowBuilder<ButtonBuilder>()
     const btn = new ButtonBuilder()
     .setCustomId(`passwordcheck`)
-    .setStyle(ButtonStyle.Primary)
+    .setStyle(ButtonStyle.Secondary)
     .setLabel(`${langdata.captcha.passwordbtn}`)
     .setEmoji(`${client.config.emojis.passwordver}`)
 

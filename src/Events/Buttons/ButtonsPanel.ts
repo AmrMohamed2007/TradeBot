@@ -19,7 +19,7 @@ const Event = {
                     await client.captcha.CaptchaShape(client,Msg,langdata,"edit",false,btntype)
 
                 }else {
-                    await client.captcha.CaptchaShape(client,Msg,langdata,"edit",false,btntype)
+                    await client.captcha.CaptchaShape(client,Msg,langdata,"edit",true,btntype)
 
                 }
                 

@@ -10,13 +10,13 @@ async function ComponentsPanel(client:Client,type:string,langdata:any,guildid:st
 
     const deleteAccount = new ButtonBuilder()
     .setCustomId(`acc_deleteAccount_${type}`)
-    .setStyle(ButtonStyle.Danger)
+    .setStyle(ButtonStyle.Secondary)
     .setLabel(`${langdata.premium.deletebtn}`)
     .setEmoji(`${client.config.emojis.false}`)
 
     const dailyAccount = new ButtonBuilder()
     .setCustomId(`acc_dailyAccount_${type}`)
-    .setStyle(ButtonStyle.Primary)
+    .setStyle(ButtonStyle.Secondary)
     .setLabel(`${langdata.premium.dailybtn}`)
     .setEmoji(`${client.config.emojis.daily}`)
     
@@ -28,7 +28,7 @@ async function ComponentsPanel(client:Client,type:string,langdata:any,guildid:st
 
     const ReportAccount = new ButtonBuilder()
     .setCustomId(`acc_reportAccount_${type}`)
-    .setStyle(ButtonStyle.Danger)
+    .setStyle(ButtonStyle.Secondary)
     .setLabel(`${langdata.premium.reportbtn}`)
     .setEmoji(`${client.config.emojis.report}`)
 

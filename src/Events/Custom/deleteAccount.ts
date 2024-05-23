@@ -10,13 +10,17 @@ const Event = {
     run: async (client: Client, interaction: any, langdata: any) => {
         const Msg = await interaction.reply({ embeds: [await client.waitembed({ color: client.config.wrongcolor, thing: "processing...", description: `${langdata.captcha.waiting}` })], ephemeral: true })
         await client.functions.get.GetUser(client.schema, { status: "one", key: "userid", value: interaction.user.id }).then(async (res) => {
-            if(res && res.blacklisted) {
+            if(res && res.blacklisted.bool) {
+             
+                
                 const embed = await client.CreateEmbed({
                     description: `${langdata.error}`,
                     color: client.config.wrongcolor,
                 })
                 Msg.edit({ embeds: [embed], ephemeral: true })
-            }else if(res && res.scummer) {
+            }else if(res && res.scummer.bool) {
+            
+                
                 const embed = await client.CreateEmbed({
                     description: `${langdata.error}`,
                     color: client.config.wrongcolor,

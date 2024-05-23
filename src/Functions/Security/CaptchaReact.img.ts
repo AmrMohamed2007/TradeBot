@@ -19,6 +19,7 @@ async function CaptchaShape(client:Client,message:any,langdata:any,type:string,t
     
     const RightShape = await client.captcha.GetShapeLang(client,guildid)
     const rows = await client.captcha.ReturnShapesC(client,guildid)
+    
     const Msg = type == "reply" ? await message.reply({content:`${langdata.captcha.shapetype.replace("[shape]",RightShape.name)}`,components:[...rows],ephemeral:true,embeds:[]}) : await message.edit({content:`${langdata.captcha.shapetype.replace("[shape]",RightShape.name)}`,ephemeral:true,components:[...rows],embeds:[]})
   
     
@@ -29,15 +30,15 @@ async function CaptchaShape(client:Client,message:any,langdata:any,type:string,t
         if(Check) {
             if(typeSecurity == false) {
                client.emit(fun,col,langdata,data)
-                await message.delete()
+               type == "reply" ? await Msg.delete() : await message.delete();
             }else {
                 await client.captcha.CaptchaReact(client,col,langdata,fun,data);
-                await message.delete()
+                type == "reply" ? await Msg.delete() : await message.delete();
             }
          
         }else {
            const embed =  await client.waitembed({color:client.config.wrongcolor,description:`${langdata.captcha.errorcaptchashape}`})
-            await message.edit({embeds:[embed],content:null,components:[]})
+            await message.edit({embeds:[embed],content:undefined,components:[]})
         }
     })
 

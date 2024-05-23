@@ -7,6 +7,8 @@ const Ping = {
     options: [
         { name: "user", description: "show bank data for user", type: 6, required: false }
     ],
+    cooldown:5000,
+    databaseActions:["blacklist","scummer"],
     run: async (client: Client, message: CommandInteraction,  langdata: any) => {
         const args =  message.options.get("user") ? message.options.get("user")?.user : message.user
 

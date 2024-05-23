@@ -1,21 +1,25 @@
 {
     "owners":["1067376627610292245",""],
     "token":"MTIzODYyMDQ1ODMyMDkyMDU3Ng.GhdrEc.CWWRJltZO42cTIcYbhSX9GVsWPRmNS6aDAQec4",
-    "prefix":"2",
-    "maincolor":"#35dfda",
+    "prefix":"#",
+    "maincolor":"#00FF75",
     "wrongcolor":"Red",
-    "channelreport":"1235998453910343762",
-    "channeljoin":"1235998453910343762",
-    "channelleft":"1235998453910343762",
-    "channellog":"1235998453910343762",
+    "channelreport":"1243167130380271707",
+    "channeljoin":"1243167031042375712",
+    "channelleft":"1243167081407582319",
+    "channellog":"1243167158071197717",
     "mongoose":"mongodb+srv://amr123123:amr123123@cluster0.3g9m5dv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
     "emojis":{
-        "passwordver":"🔐",
-        "true":"✅",
-        "false":"🚫",
-        "report":"🏷️",
-        "transfer":"📝",
-        "daily":"💰"
+        "passwordver":"<:Frame69:1240761657400229959>",
+        "true":"<:Frame50:1240761305313574992>",
+        "false":"<:Frame51:1240761306894700554>",
+        "report":"<:Frame65:1240761338314096701>",
+        "loading":"<:Frame73:1240761354525085819>",
+        "transfer":"<:Frame66:1240761341048918016>",
+        "logo":"<:Frame75:1240761358274789449>",
+        "daily":"<:Frame72:1240761352306294840>",
+        "giveaway":"<:Frame61:1240761330739449916>",
+        "atm":"<:Frame59:1240761326805192795>"
     }
 
 }

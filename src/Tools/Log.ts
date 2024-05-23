@@ -46,6 +46,46 @@ class Log {
         await channel.send({embeds:[embed],components:[data.row ? data.row : undefined]})
     }
     
+    async LogFatoraUser(data,langdata) {
+        const guild = this.client.guilds.cache.get(data.guildid)
+        const usert = guild.members.cache.get(data.usert);
+        const userr = guild.members.cache.get(data.userr)
+        const amount = data.amount;
+        const Time = Math.floor(Date.now() / 1000);
+    
+        
+        await usert?.send?.({content:`${langdata.private.transfer
+            .replace("[giver]",`${data.usert}`)
+            .replace("[receiver]",`${data.userr}`)
+            .replace("[amount]",`${amount}`)
+            .replace("[time]",`<t:${Time}:R>`)
+            .replace("[reason]",`${data.msg}`)
+            .replace("[emoji]",`${this.client.config.emojis.atm}`)
+            .replace("[emoji2]",`${this.client.config.emojis.giveaway}`)
+        }`}).catch((err) => {
+            err = 0
+        })
+        
+
+       await userr?.send?.({content:`${langdata.private.transfer
+            .replace("[receiver]",`${data.userr}`)
+            .replace("[giver]",`${data.usert}`)
+            .replace("[amount]",`${amount}`)
+            .replace("[time]",`<t:${Time}:R>`)
+            .replace("[reason]",`${data.msg}`)
+            .replace("[emoji]",`${this.client.config.emojis.atm}`)
+            .replace("[emoji2]",`${this.client.config.emojis.giveaway}`)
+        }`}).catch((err) => {
+            err = 0
+        })
+        
+        
+        
+
+
+
+
+    }
 
 }
 

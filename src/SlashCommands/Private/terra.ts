@@ -19,6 +19,8 @@ const terra = {
             type: ApplicationCommandOptionType.Subcommand,
         }
     ],
+    cooldown:5000,
+    databaseActions:["blacklist","scummer"],
     run: async (client: Client, message: any, langdata: any) => {
 
         const sub = message.options.getSubcommand()
@@ -86,7 +88,9 @@ const terra = {
             }
         }
         if (sub == "transfer") {
-             client.emit("terraTransfer",message,langdata)
+            await client.captcha.CaptchaShape(client,message,langdata,"reply",false,"terraTransfer")
+
+           
 
         }
 

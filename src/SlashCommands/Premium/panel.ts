@@ -17,19 +17,17 @@ const panel = {
             type: ApplicationCommandOptionType.Subcommand
         }
     ],
+    cooldown:5000,
     run: async (client: Client, message: any, langdata: any) => {
         const userType = client.config.owners.includes(message.user.id) ? "owner" : "user";
         const subcommand = message.options.getSubcommand();
 
-        async function returnData(user: User, type: string) {
+        async function returnData(type: string) {
             if (type === "owner") {
                 await client.premium.SetupPanel(client, type, langdata, message);
             } else {
                 try {
-                    const res = await client.functions.get.GetUser(client.schema, { key: "userid", value: user.id, status: "one" });
-                    if (!res.premium || !res.premium.subscribed) {
-                        return await message.reply({ content: `${langdata.premium.nopre}` });
-                    }
+               
                     await client.premium.SetupPanel(client, type, langdata, message);
                 } catch (err) {
                     return await message.reply({ content: `${langdata.captcha[err.message]}` });
@@ -41,7 +39,12 @@ const panel = {
             if (subcommand === "panel") {
                 const user = message.user;
                 if (user.bot) return;
-                await returnData(user, userType);
+                const res = await client.functions.get.GetUser(client.schema, { key: "userid", value: message.user.id, status: "one" });
+                if (!res.premium || !res.premium.subscribed) {
+                    return await message.reply({ content: `${langdata.premium.nopre}` });
+                }
+
+                await returnData(userType);
             } else if (subcommand === "info") {
                 try {
                     const res = await client.functions.get.GetUser(client.schema, { key: "userid", value: message.user.id, status: "one" });

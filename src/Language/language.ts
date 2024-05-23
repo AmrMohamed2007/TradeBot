@@ -61,6 +61,10 @@ Reason\n||\`\`\`[reason]\`\`\`||
             errornoacc:"قم بعمل حساب لتسجيل معلوماتك وعمل محفظة خاصه بك"
         },
         premium:{
+            errorhavepremium:"عندك برمويم",
+            titlebuy:"Let's Buy Premium",
+            month:"Month",
+            year:"Year",
             modalreporttitle:"مشكلة في البوت",
             labelreport:"قم بتوضيح العطل",
             donetransferacc:"تم نقل الحساب بنجاح",

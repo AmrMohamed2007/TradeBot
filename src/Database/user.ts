@@ -13,7 +13,7 @@ const UserSchema = new Schema<any>({
     premium: {
         subscribed: Boolean,
         createdAt: Number,
-        days: Number,
+        days: String,
         code: String
     },
     createdAt: { type: Number, default: Date.now() },

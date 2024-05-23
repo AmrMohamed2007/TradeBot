@@ -19,7 +19,7 @@ const terra = {
             type: ApplicationCommandOptionType.Subcommand,
         }
     ],
-    cooldown:5000,
+    cooldown:10000,
     databaseActions:["blacklist","scummer"],
     run: async (client: Client, message: any, langdata: any) => {
 
@@ -35,7 +35,7 @@ const terra = {
                     const embed = await client.CreateEmbed({
                         title: langdata.private.titleuser, fields: [
                             { value: `${user.id}`, name: `${langdata.private.userid}`, inline: true },
-                            { value: `${res.secured ? `\*\*\*\*\*` : res.coins}`, name: `${langdata.private.coins}`, inline: true },
+                            { value: `${res.secured ? `${client.config.emojis.passwordver.repeat(4)}` : res.coins}`, name: `${langdata.private.coins}`, inline: true },
                         ],
                         color: client.config.maincolor,
 
@@ -48,7 +48,7 @@ const terra = {
                         const embed = await client.CreateEmbed({
                             title: langdata.private.titleuser, fields: [
                                 { value: `${user.id}`, name: `${langdata.private.userid}`, inline: true },
-                                { value: `\*\*\*\*\*`, name: `${langdata.private.coins}`, inline: true },
+                                { value: `${client.config.emojis.passwordver.repeat(4)}`, name: `${langdata.private.coins}`, inline: true },
                             ],
                             color: client.config.maincolor,
 

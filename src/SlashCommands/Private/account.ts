@@ -1,5 +1,5 @@
 import { Client, Message, User ,ApplicationCommandType, CommandInteraction} from "discord.js";
-
+import ms from "ms"
 const Ping = {
     name: "account",
     description: "show your Bank info",
@@ -7,7 +7,7 @@ const Ping = {
     options: [
         { name: "user", description: "show bank data for user", type: 6, required: false }
     ],
-    cooldown:5000,
+    cooldown:10000,
     databaseActions:["blacklist","scummer"],
     run: async (client: Client, message: CommandInteraction,  langdata: any) => {
         const args =  message.options.get("user") ? message.options.get("user")?.user : message.user
@@ -21,7 +21,10 @@ const Ping = {
             
                 
           
-        
+            if ((Date.now() - res.premium.createdAt) >= ms(`${res.days}`)) {
+                res.premium = undefined;
+                await res.save()
+            }
             
             const embed = await client.CreateEmbed({
                 title: langdata.private.titleuser, fields: [

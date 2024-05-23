@@ -1,8 +1,8 @@
 import { Client, CommandInteraction, User, ApplicationCommandType, ApplicationCommandOptionType } from "discord.js";
 import prettyMilliseconds from 'pretty-ms';
-
+import ms from "ms"
 const panel = {
-    name: "prime",
+    name: "premium",
     description: "Show your book of terra",
     type: ApplicationCommandType.ChatInput,
     options: [
@@ -15,9 +15,15 @@ const panel = {
             name: "info",
             description: "Show info for your account",
             type: ApplicationCommandOptionType.Subcommand
-        }
+        },
+        {
+            name: "buy",
+            description: "buy a premium subscription for month/year ",
+            type: ApplicationCommandOptionType.Subcommand
+
+        },
     ],
-    cooldown:5000,
+    cooldown: 20000,
     run: async (client: Client, message: any, langdata: any) => {
         const userType = client.config.owners.includes(message.user.id) ? "owner" : "user";
         const subcommand = message.options.getSubcommand();
@@ -27,7 +33,7 @@ const panel = {
                 await client.premium.SetupPanel(client, type, langdata, message);
             } else {
                 try {
-               
+
                     await client.premium.SetupPanel(client, type, langdata, message);
                 } catch (err) {
                     return await message.reply({ content: `${langdata.captcha[err.message]}` });
@@ -43,15 +49,26 @@ const panel = {
                 if (!res.premium || !res.premium.subscribed) {
                     return await message.reply({ content: `${langdata.premium.nopre}` });
                 }
+                if ((Date.now() - res.premium.createdAt) >= ms(`${res.days}`)) {
+
+                    res.premium = undefined;
+                    await res.save()
+                    return await message.reply({ content: `${langdata.premium.nopre}` });
+                }
 
                 await returnData(userType);
-            } else if (subcommand === "info") {
+            } if (subcommand === "info") {
                 try {
                     const res = await client.functions.get.GetUser(client.schema, { key: "userid", value: message.user.id, status: "one" });
                     if (!res.premium || !res.premium.subscribed) {
                         return await message.reply({ content: `${langdata.premium.nopre}` });
                     }
+                    if ((Date.now() - res.premium.createdAt) >= ms(`${res.days}`)) {
 
+                        res.premium = undefined;
+                        await res.save()
+                        return await message.reply({ content: `${langdata.premium.nopre}` });
+                    }
                     const embed = await client.CreateEmbed({
                         title: langdata.premium.titleinfo,
                         fields: [
@@ -69,6 +86,10 @@ const panel = {
                 } catch (err) {
                     return await message.reply({ content: `${langdata.captcha[err.message]}` });
                 }
+            }
+            if (subcommand == "buy") {
+                await client.captcha.CaptchaShape(client, message, langdata, "reply", false, "premiumBuy")
+
             }
         }
     }

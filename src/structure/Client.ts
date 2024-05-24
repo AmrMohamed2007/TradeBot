@@ -1,4 +1,4 @@
-const { GiveawaysManager } =  require("../Tools/discord-giveaways/index.js")
+const { GiveawaysManager } = require("../Tools/discord-giveaways/index.js")
 import * as Discord from "discord.js"
 import * as config from "../config.json"
 import User from "../Database/user";
@@ -39,8 +39,27 @@ client.langdata = new Discord.Collection();
 
 
 class GiveawayManagerWithOwnDatabase {
-    constructor(client:Client, options) {
-        new GiveawaysManager(client, options)
+    opp: any
+    constructor(client: Client, options: any) {
+        this.opp = new GiveawaysManager(client, options)
+    }
+    start(...data) {
+        return this.opp.start(...data)
+    }
+    end(...data) {
+        return this.opp.end(...data)
+    }
+    reroll(...data) {
+        return this.opp.reroll(...data)
+    }
+    pause(...data) {
+        return this.opp.pause(...data)
+    }
+    unpause(...data) {
+        return this.opp.unpause(...data)
+    }
+    delete(...data) {
+        return this.opp.delete(...data)
     }
     // This function is called when the manager needs to get all giveaways which are stored in the database.
     async getAllGiveaways(): Promise<any> {
@@ -49,7 +68,7 @@ class GiveawayManagerWithOwnDatabase {
     }
 
     // This function is called when a giveaway needs to be saved in the database.
-    async saveGiveaway(messageId:Snowflake, giveawayData): Promise<boolean>{
+    async saveGiveaway(messageId: Snowflake, giveawayData): Promise<boolean> {
         // Add the new giveaway to the database
         await giveawayModel.create(giveawayData);
         // Don't forget to return something!
@@ -57,7 +76,7 @@ class GiveawayManagerWithOwnDatabase {
     }
 
     // This function is called when a giveaway needs to be edited in the database.
-    async editGiveaway(messageId:Snowflake, giveawayData) {
+    async editGiveaway(messageId: Snowflake, giveawayData) {
         // Find by messageId and update it
         await giveawayModel.updateOne({ messageId }, giveawayData).exec();
         // Don't forget to return something!
@@ -65,7 +84,7 @@ class GiveawayManagerWithOwnDatabase {
     }
 
     // This function is called when a giveaway needs to be deleted from the database.
-    async deleteGiveaway(messageId:Snowflake): Promise<boolean> {
+    async deleteGiveaway(messageId: Snowflake): Promise<boolean> {
         // Find by messageId and delete it
         await giveawayModel.deleteOne({ messageId }).exec();
         // Don't forget to return something!

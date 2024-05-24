@@ -20,7 +20,7 @@ declare module "discord.js" {
     slashCommands: Collection<string, ApplicationCommandData>
     events: Collection<string, any>
     aliases: Collection<string, string>
-    prefix: Collection<string, string>
+    prefix: string
     langdata: Collection<string, string>
     functions: any,
     schema: Model<any>

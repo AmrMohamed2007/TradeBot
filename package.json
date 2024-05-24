@@ -2,9 +2,9 @@
   "name": "traderbot",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "start": "tsc && node dist/index",
+    "start": "tsc && Xcopy src\\Tools\\discord-giveaways dist\\Tools\\discord-giveaways /E /H /C /I && node .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

@@ -5,10 +5,11 @@
         "alwaysStrict": false,
         "skipLibCheck": true,
         "removeComments": false,
-        "checkJs": true,
+        "checkJs": false,
         "module": "CommonJS",
         "esModuleInterop": true,
-        "resolveJsonModule": true
+        "resolveJsonModule": true,
+        "allowJs": true
     },
     "include": [
         "src/**/*.ts",

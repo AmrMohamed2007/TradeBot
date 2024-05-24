@@ -4,7 +4,7 @@ const UserSchema = new Schema<any>({
     userid: String,
     username: String,
     coins: { type: Number, default: 0 },
-    password: Number,
+    password: String,
     blacklisted: {
         bool: Boolean,
         reason: String,
@@ -13,7 +13,7 @@ const UserSchema = new Schema<any>({
     premium: {
         subscribed: Boolean,
         createdAt: Number,
-        days: String,
+        days: Number,
         code: String
     },
     createdAt: { type: Number, default: Date.now() },

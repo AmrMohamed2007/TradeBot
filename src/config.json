@@ -20,6 +20,16 @@
         "daily":"<:Frame72:1240761352306294840>",
         "giveaway":"<:Frame61:1240761330739449916>",
         "atm":"<:Frame59:1240761326805192795>"
-    }
+    },
+    "langs":[
+        {"label":"English","emoji":"🇺🇸","value":"en"},
+        {"label":"Arbic","emoji":"🇵🇸","value":"ar"},
+        {"label":"Turkish","emoji":"🇹🇷","value":"tr"},
+        {"label":"French","emoji":"🇫🇷","value":"fr"}
+    ],
+    "time":[
+        {"time":"1","price":500},
+        {"time":"12","price":2500}
+    ]
 
 }

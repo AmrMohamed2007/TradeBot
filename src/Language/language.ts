@@ -9,9 +9,25 @@ const Language = {
         owner: {
             message: "انت لست من مطورين البوت"
         },
+        language:{
+            placeholder:"قم بأخيتار اللغة",
+            done:"تم تحديد اللغة بنجاح"
+        },
+        errorr:{
+            passworderror:"Password what you enterd not correct or new password doesnt equal confirm password"
+        },
+        privatemode: {
+            enabled:"تم تفعيل خاصيه الحساب الخاص",
+            disabled:"تم تعطيل خاصيه الحساب الخاص"
+        },
         permissionme: " `<permission>`ليس لدي هذا البرمشن  ",
         permission: "`<permission>` ليس لديك هذا البرمشن",
         private: {
+            passworddoneset:"تم تحديد الباسورد بنجاح",
+            lastpasswordtext:"قم بكتابة اخر باسورد",
+            newpassword:"قم بكتابة الباسورد التي تريده",
+            cofirmpassword:"قم بكتابته مره اخري",
+            "modaltitlepasswordedit":"تحديد باسورد",
             donetransfersend: `**[emoji] <@[userr]>,** Recieved **[amount] Of Terra(s)** from <@[usert]>`,
             "donetransfer": "تمت العملية بنجاح",
             transfer: `[emoji] تحويل بنكي جديد\n

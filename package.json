@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "chalk": "^2.4.2",
+    "discord-giveaways": "^6.0.1",
     "discord.js": "^14.15.2",
     "fs": "^0.0.1-security",
     "mongoose": "^8.3.4",

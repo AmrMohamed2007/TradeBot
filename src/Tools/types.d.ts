@@ -22,14 +22,14 @@ declare module "discord.js" {
     aliases: Collection<string, string>
     prefix: Collection<string, string>
     langdata: Collection<string, string>
-    functions: array
-    schema: Model
+    functions: any,
+    schema: Model<any>
     SetLang: function
     GetLang: function
-    schemas: Model
+    schemas: Model<any>
     CreateEmbed: function
     captcha: any
-    shapes: array,
+    shapes: any,
     premium: any
     waitembed: function
     channellog: string
@@ -40,9 +40,13 @@ declare module "discord.js" {
     types: typeslog
     public:any
     WrongEmbed:function
+    schemaGiveaway:any
+    giveawaysManager:any,
+    giveawayPackge:any
   }
 
 }
+
 declare module "ms" {
   export function ms(value: string): number;
 

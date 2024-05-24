@@ -37,7 +37,8 @@ client.langdata = new Discord.Collection();
 
 
 
-import { GiveawaysManager } from "../Tools/discord-giveaways"
+
+import { GiveawaysManager } from "discord-giveaways"
 class GiveawayManagerWithOwnDatabase  extends GiveawaysManager {
     constructor(client:Client, options) {
         super(client, options)
@@ -50,18 +51,17 @@ class GiveawayManagerWithOwnDatabase  extends GiveawaysManager {
 
     // This function is called when a giveaway needs to be saved in the database.
     async saveGiveaway(messageId:Snowflake, giveawayData): Promise<boolean>{
-        // Add the new giveaway to the database
-        await giveawayModel.create(giveawayData);
-        // Don't forget to return something!
-        return true
+        return giveawayModel.create(giveawayData).then(()=>true)
     }
 
     // This function is called when a giveaway needs to be edited in the database.
     async editGiveaway(messageId:Snowflake, giveawayData) {
         // Find by messageId and update it
-        await giveawayModel.updateOne({ messageId }, giveawayData).exec();
-        // Don't forget to return something!
-        return true
+        await giveawayModel.updateOne({ messageId }, giveawayData).exec().then(() => {
+            return true
+        }).catch((err) => {
+            return false;
+        })
     }
 
     // This function is called when a giveaway needs to be deleted from the database.

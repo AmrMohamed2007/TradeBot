@@ -1,5 +1,6 @@
+const { GiveawaysManager } =  require("../Tools/discord-giveaways/index.js")
 import * as Discord from "discord.js"
-const config = require("../config.json")
+import * as config from "../config.json"
 import User from "../Database/user";
 import Server from "../Database/server";
 import AllShapes from "../security"
@@ -37,10 +38,9 @@ client.langdata = new Discord.Collection();
 
 
 
-import { GiveawaysManager } from "../Tools/discord-giveaways"
-class GiveawayManagerWithOwnDatabase  extends GiveawaysManager {
+class GiveawayManagerWithOwnDatabase {
     constructor(client:Client, options) {
-        super(client, options)
+        new GiveawaysManager(client, options)
     }
     // This function is called when the manager needs to get all giveaways which are stored in the database.
     async getAllGiveaways(): Promise<any> {

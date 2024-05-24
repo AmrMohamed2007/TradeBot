@@ -58,8 +58,9 @@ const Event = {
                         res.premium.subscribed = true;
                         res.premium.days =  res.premium.days + TypeTrail
                         await res.save();
-                        await col.reply({content:"Done !",ephemeral:true})
-                        await Msg.delete()
+                        col.reply({content:"Done !",ephemeral:true}).then(async () => {
+                            await Msg.delete()
+                         })
                     }else {
                         if(res.coins < price)
                         return await interaction.reply({content:`${langdata.captcha.errorcoinsenough}`,ephemeral:true})
@@ -69,16 +70,16 @@ const Event = {
                         res.premium.days = TypeTrail
                         res.premium.code = await client.public.generateRandomCode()
                         await res.save();
-                        await col.reply({content:"Done !",ephemeral:true})
-                        await Msg.delete()
+                         col.reply({content:"Done !",ephemeral:true}).then(async () => {
+                            await Msg.delete()
+                         })
+                       
                     }
                     
              
             })
 
-            collecter.on("end" , async () => {
-                await Msg.delete()
-            })
+        
 
 
         }).catch(async (err) => {

@@ -1,9 +1,13 @@
-import * as Discord  from "discord.js"
+import * as Discord from "discord.js"
 const config = require("../config.json")
 import User from "../Database/user";
 import Server from "../Database/server";
 import AllShapes from "../security"
-import {giveawayModel} from "../Database/giveaway"
+import { giveawayModel } from "../Database/giveaway"
+import type {
+    Client,
+    Snowflake
+} from 'discord.js';
 const client = new Discord.Client({
     intents: [
         Discord.GatewayIntentBits.Guilds,
@@ -33,50 +37,52 @@ client.langdata = new Discord.Collection();
 
 
 
-// const GiveawaysManager = require("../Tools/discord-giveaways/src/Manager");
-// class  GiveawayManagerWithOwnDatabase extends GiveawaysManager {
- 
-//     // This function is called when the manager needs to get all giveaways which are stored in the database.
-//     async getAllGiveaways() {
-//         // Get all giveaways from the database. We fetch all documents by passing an empty condition.
-//         return await giveawayModel.find().lean().exec();
-//     }
+import { GiveawaysManager } from "../Tools/discord-giveaways"
+class GiveawayManagerWithOwnDatabase  extends GiveawaysManager {
+    constructor(client:Client, options) {
+        super(client, options)
+    }
+    // This function is called when the manager needs to get all giveaways which are stored in the database.
+    async getAllGiveaways(): Promise<any> {
+        // Get all giveaways from the database. We fetch all documents by passing an empty condition.
+        return await giveawayModel.find().lean().exec();
+    }
 
-//     // This function is called when a giveaway needs to be saved in the database.
-//     async saveGiveaway(messageId, giveawayData) {
-//         // Add the new giveaway to the database
-//         await giveawayModel.create(giveawayData);
-//         // Don't forget to return something!
-       
-//     }
+    // This function is called when a giveaway needs to be saved in the database.
+    async saveGiveaway(messageId:Snowflake, giveawayData): Promise<boolean>{
+        // Add the new giveaway to the database
+        await giveawayModel.create(giveawayData);
+        // Don't forget to return something!
+        return true
+    }
 
-//     // This function is called when a giveaway needs to be edited in the database.
-//     async editGiveaway(messageId, giveawayData) {
-//         // Find by messageId and update it
-//         await giveawayModel.updateOne({ messageId }, giveawayData).exec();
-//         // Don't forget to return something!
-       
-//     }
+    // This function is called when a giveaway needs to be edited in the database.
+    async editGiveaway(messageId:Snowflake, giveawayData) {
+        // Find by messageId and update it
+        await giveawayModel.updateOne({ messageId }, giveawayData).exec();
+        // Don't forget to return something!
+        return true
+    }
 
-//     // This function is called when a giveaway needs to be deleted from the database.
-//     async deleteGiveaway(messageId) {
-//         // Find by messageId and delete it
-//         await giveawayModel.deleteOne({ messageId }).exec();
-//         // Don't forget to return something!
-//         return true;
-//     }
-// };
-// // Create a new instance of your new class
-// const manager = new GiveawayManagerWithOwnDatabase(client, {
-//     default: {
-//         botsCanWin: false,
-//         embedColor: '#FF0000',
-//         embedColorEnd: '#000000',
-//         reaction: '🎉'
-//     }
-// });
-// We now have a giveawaysManager property to access the manager everywhere!
-// client.giveawaysManager = manager;
+    // This function is called when a giveaway needs to be deleted from the database.
+    async deleteGiveaway(messageId:Snowflake): Promise<boolean> {
+        // Find by messageId and delete it
+        await giveawayModel.deleteOne({ messageId }).exec();
+        // Don't forget to return something!
+        return true;
+    }
+};
+// Create a new instance of your new class
+const manager = new GiveawayManagerWithOwnDatabase(client, {
+    default: {
+        botsCanWin: false,
+        embedColor: '#FF0000',
+        embedColorEnd: '#000000',
+        reaction: '🎉'
+    }
+});
+
+client.giveawaysManager = manager;
 
 // Some Functions
 

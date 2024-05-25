@@ -14,6 +14,10 @@ const Language = {
             done:"**تم تحديد اللغة بنجاح**"
         },
         giveaway:{
+            lengtherror:"اقصي عدد للمسابقات هو 15",
+            timeerror:"**خطأ في الوقت يجب ان يحتوي علي s,m,h,d واقصي مده هي 14 يوم**",
+            counterror:"**عدد المسابقات يجب ان يكون 5 او اقل**",
+            donemaked:"**تم عمل المسابقة/ات بنجاح**",
             rerollmsg:"**[emoji] لقد تم إعادة اللف  بنجاح**",
             unpausemsg:"**[emoji] لقد تم إالفاء الإيقاف المؤقت للمسابقة بنجاح**",
             pausemsg:"**[emoji] لقد تم إيقاف المسابقة مؤقتًا بنجاح**",
@@ -32,6 +36,7 @@ const Language = {
             noWinner:"**تم الغاء الجيف اواي نظرا لعدم وجود مشاركين**"
         },
         errorr:{
+            deleteno:"لا يمكنني ايجاد ماتريد مسحه",
             passworderror:"Password what you enterd not correct or new password doesnt equal confirm password"
         },
         privatemode: {
@@ -121,7 +126,8 @@ Reason\n||\`\`\`[reason]\`\`\`||
 
         },
         error: "لقد حدث خطأ ما",
-        setupdone: "تم التسطيب بنجاح"
+        setupdone: "تم التسطيب بنجاح",
+        donedeleted:"**تم الإزالة بنجاح [emoji]**"
     },
     en: {
         ping: {

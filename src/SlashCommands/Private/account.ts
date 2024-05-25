@@ -31,7 +31,7 @@ const Ping = {
                     { value: `${user.id}`, name: `${langdata.private.userid}`, inline: false },
                     { value: user.username, name: `${langdata.private.username}`, inline: false },
                     { value: user.displayName, name: `${langdata.private.displayname}`, inline: false },
-                    { value: res.blacklisted ? langdata.private.yes : langdata.private.no, name: `${langdata.private.blacklisted}`, inline: false },
+                    { value: res.blacklisted && res.blacklisted.bool ? langdata.private.yes : langdata.private.no, name: `${langdata.private.blacklisted}`, inline: false },
                     { value: res.premium && res.premium.subscribed ? langdata.private.yes : langdata.private.no, name: `${langdata.private.premium}`, inline: false },
                     { value: `${new Date(res.createdAt).toDateString()}`, name: `${langdata.private.createdAt}`, inline: false },
                 ],

@@ -1,7 +1,8 @@
-import { PermissionsBitField } from "discord.js"
-import * as ms from "ms"
+import { CommandInteraction, GuildMember, GuildMemberFlags, Interaction, PermissionsBitField } from "discord.js"
+import ms from "ms"
 import { WrongEmbed } from "../../Tools/Embeds";
 import { Client } from "discord.js"
+import prettyMilliseconds from "pretty-ms";
 const Event = {
     name: "interactionCreate",
     once: false,
@@ -14,30 +15,30 @@ const Event = {
 
         var { cooldown, GetLang } = client as any;
         var LangData = await GetLang(client, interaction.guild.id)
+        var MemberClient = interaction.guild.members.cache.get(client.user.id) as any
 
 
         async function RunSlashHandle(client: Client) {
 
             var { user, reply } = interaction
-       
 
-            var MemberClient = interaction.guild.members.cache.get(client.user.id);
+
             if (slashCommand.cooldown) {
                 if (cooldown.has(`${slashCommand.name}${user.id}`))
-                    return reply({ content: `${LangData.cooldown.message.replace("<duration>", ms(cooldown.get(`${slashCommand.name}${user.id}`) - Date.now(), { long: true }))}` })
+                    return await interaction.reply({ content: `${LangData.cooldown.message.replace("<duration>", prettyMilliseconds(cooldown.get(`${slashCommand.name}${user.id}`) - Date.now()))}`, ephemeral: true })
 
                 if (slashCommand.owner && !client.config.owners.includes(user.id))
-                    return reply({ content: `${LangData.owner.message}` });
+                    return await interaction.reply({ content: `${LangData.owner.message}`, ephemeral: true });
 
                 if (slashCommand.ownership && interaction.user.id !== interaction.guild.ownerId)
-                    return reply({ content: `${LangData.ownership.message}` });
+                    return await interaction.reply({ content: `${LangData.ownership.message}`, ephemeral: true });
 
                 if (slashCommand.botPerms || slashCommand.userPerms) {
-                    if (!MemberClient.permission.has(PermissionsBitField.resolve(slashCommand.botPerms || [])))
-                        return reply({ embeds: [await WrongEmbed({ title: "Missing Permission", description: LangData.error.permissionme, color: client.config.maincolor })] });
+                    if (!MemberClient.permissions.has(PermissionsBitField.resolve(slashCommand.botPerms || [])))
+                        return await interaction.reply({ embeds: [await WrongEmbed({ title: "Missing Permission", description: LangData.error.permissionme, color: client.config.maincolor })], ephemeral: true });
 
-                    if (!interaction.member.permission.has(PermissionsBitField.resolve(slashCommand.userPerms || [])))
-                        return reply({ embeds: [await WrongEmbed({ title: "Missing Permission", description: LangData.error.permission, color: client.config.maincolor })] });
+                    if (!interaction.member.permissions.has(PermissionsBitField.resolve(slashCommand.userPerms || [])))
+                        return await interaction.reply({ embeds: [await WrongEmbed({ title: "Missing Permission", description: LangData.error.permission, color: client.config.maincolor })], ephemeral: true });
 
 
 
@@ -52,20 +53,20 @@ const Event = {
             else {
 
                 if (slashCommand.owner && !client.config.owners.includes(user.id))
-                    return reply({ content: `${LangData.owner.message}` });
+                    return await interaction.reply({ content: `${LangData.owner.message}`, ephemeral: true });
 
 
                 if (slashCommand.ownership && interaction.user.id !== interaction.guild.ownerId)
-                    return reply({ content: `${LangData.ownership.message}` });
+                    return await interaction.reply({ content: `${LangData.ownership.message}`, ephemeral: true });
 
 
 
                 if (slashCommand.botPerms || slashCommand.userPerms) {
-                    if (!MemberClient.permission.has(PermissionsBitField.resolve(slashCommand.botPerms || [])))
-                        return reply({ embeds: [await WrongEmbed({ title: "Missing Permission", description: LangData.error.permissionme, color: client.config.maincolor })] });
+                    if (!MemberClient.permissions.has(PermissionsBitField.resolve(slashCommand.botPerms || [])))
+                        return await interaction.reply({ embeds: [await WrongEmbed({ title: "Missing Permission", description: LangData.error.permissionme, color: client.config.maincolor })], ephemeral: true });
 
-                    if (!interaction.member.permission.has(PermissionsBitField.resolve(slashCommand.userPerms || [])))
-                        return reply({ embeds: [await WrongEmbed({ title: "Missing Permission", description: LangData.error.permission, color: client.config.maincolor })] });
+                    if (!interaction.member.permissions.has(PermissionsBitField.resolve(slashCommand.userPerms || [])))
+                        return await interaction.reply({ embeds: [await WrongEmbed({ title: "Missing Permission", description: LangData.error.permission, color: client.config.maincolor })], ephemeral: true });
 
 
 
@@ -78,61 +79,61 @@ const Event = {
 
 
         }
-        
-        if(slashCommand.databaseActions) {
-            
-            await client.functions.get.GetUser(client.schema,{status:"one",key:"userid",value:`${interaction.user.id}`}).then(async (res) => {
-             
-              
-               
 
-                if(slashCommand.databaseActions.includes("blacklist") && res.blacklisted.bool) {
-                if (cooldown.has(`${slashCommand.name}${interaction.user.id}`))
-                    return interaction.reply({ content: `${LangData.cooldown.message.replace("<duration>", ms(cooldown.get(`${slashCommand.name}${interaction.user.id}`) - Date.now(), { long: true }))}` })
+        if (slashCommand.databaseActions) {
 
-                cooldown.set(`${slashCommand.name}${interaction.user.id}`, Date.now() + slashCommand.cooldown)
-                setTimeout(() => {
-                    cooldown.delete(`${slashCommand.name}${interaction.user.id}`)
-                }, slashCommand.cooldown);
-              
-                return await interaction.reply({content:`${LangData.private.blacklistedmsg}`,ephemeral:true})
+            await client.functions.get.GetUser(client.schema, { status: "one", key: "userid", value: `${interaction.user.id}` }).then(async (res) => {
 
-            }
-             else if(slashCommand.databaseActions.includes("scummer") && res.scummer.bool ) {
-                if (cooldown.has(`${slashCommand.name}${interaction.user.id}`))
-                return interaction.reply({ content: `${LangData.cooldown.message.replace("<duration>", ms(cooldown.get(`${slashCommand.name}${interaction.user.id}`) - Date.now(), { long: true }))}` })
 
-            cooldown.set(`${slashCommand.name}${interaction.user.id}`, Date.now() + slashCommand.cooldown)
-            setTimeout(() => {
-                cooldown.delete(`${slashCommand.name}${interaction.user.id}`)
-            }, slashCommand.cooldown);
-          
-                return await interaction.reply({content:`${LangData.private.scummermsg}`,ephemeral:true})
-            }
-           else  if(slashCommand.databaseActions.includes("premium") &&   !res.premium.subscribed) {
-  
-            
-                if (cooldown.has(`${slashCommand.name}${interaction.user.id}`))
-                return interaction.reply({ content: `${LangData.cooldown.message.replace("<duration>", ms(cooldown.get(`${slashCommand.name}${interaction.user.id}`) - Date.now(), { long: true }))}` })
 
-            cooldown.set(`${slashCommand.name}${interaction.user.id}`, Date.now() + slashCommand.cooldown)
-            setTimeout(() => {
-                cooldown.delete(`${slashCommand.name}${interaction.user.id}`)
-            }, slashCommand.cooldown);
-          
-                return await interaction.reply({content:`${LangData.premium.nopre}`,ephemeral:true})
-            }
-            
-            else {
-                RunSlashHandle(client)
-            }
+
+                if (slashCommand.databaseActions.includes("blacklist") && res.blacklisted.bool) {
+                    if (cooldown.has(`${slashCommand.name}${interaction.user.id}`))
+                        return await interaction.reply({ content: `${LangData.cooldown.message.replace("<duration>", prettyMilliseconds(cooldown.get(`${slashCommand.name}${interaction.user.id}`) - Date.now()))}`, ephemeral: true })
+
+                    cooldown.set(`${slashCommand.name}${interaction.user.id}`, Date.now() + slashCommand.cooldown)
+                    setTimeout(() => {
+                        cooldown.delete(`${slashCommand.name}${interaction.user.id}`)
+                    }, slashCommand.cooldown);
+
+                    return await interaction.reply({ content: `${LangData.private.blacklistedmsg}`, ephemeral: true })
+
+                }
+                else if (slashCommand.databaseActions.includes("scummer") && res.scummer.bool) {
+                    if (cooldown.has(`${slashCommand.name}${interaction.user.id}`))
+                        return await interaction.reply({ content: `${LangData.cooldown.message.replace("<duration>", prettyMilliseconds(cooldown.get(`${slashCommand.name}${interaction.user.id}`) - Date.now()))}`, ephemeral: true })
+
+                    cooldown.set(`${slashCommand.name}${interaction.user.id}`, Date.now() + slashCommand.cooldown)
+                    setTimeout(() => {
+                        cooldown.delete(`${slashCommand.name}${interaction.user.id}`)
+                    }, slashCommand.cooldown);
+
+                    return await interaction.reply({ content: `${LangData.private.scummermsg}`, ephemeral: true })
+                }
+                else if (slashCommand.databaseActions.includes("premium") && !res.premium.subscribed) {
+
+
+                    if (cooldown.has(`${slashCommand.name}${interaction.user.id}`))
+                        return await interaction.reply({ content: `${LangData.cooldown.message.replace("<duration>", prettyMilliseconds(cooldown.get(`${slashCommand.name}${interaction.user.id}`) - Date.now()))}`, ephemeral: true })
+
+                    cooldown.set(`${slashCommand.name}${interaction.user.id}`, Date.now() + slashCommand.cooldown)
+                    setTimeout(() => {
+                        cooldown.delete(`${slashCommand.name}${interaction.user.id}`)
+                    }, slashCommand.cooldown);
+
+                    return await interaction.reply({ content: `${LangData.premium.nopre}`, ephemeral: true })
+                }
+
+                else {
+                    RunSlashHandle(client)
+                }
             }).catch(async (err) => {
-                return await interaction.reply({content:`${LangData.captcha.errornoacc}`,ephemeral:true})
+                return await interaction.reply({ content: `${LangData.captcha.errornoacc}`, ephemeral: true })
             })
-        }else {
+        } else {
             return await RunSlashHandle(client);
         }
-   
+
 
 
 

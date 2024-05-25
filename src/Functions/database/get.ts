@@ -14,6 +14,7 @@ async function GetUser(User:Model<any>,data:any) {
                 reject({type:404,message:"errornoacc"})
             }else {
                 const acc = await CreateUser(User,{key:data.key,value:data.value})
+              
                 resolve(acc)
             }
    

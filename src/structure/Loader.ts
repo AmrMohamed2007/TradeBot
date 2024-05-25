@@ -1,6 +1,7 @@
 import { Client } from "discord.js"
 import * as fs from "fs"
 import chalk from "chalk"
+
 async function LoadFunctions(client: Client) {
     // Load Database Functions
     fs.readdirSync(`${process.cwd()}/dist/Functions/database/`).filter((m) => m.endsWith(".ts") || m.endsWith(".js")).forEach(async (file) => {
@@ -69,6 +70,8 @@ async function LoadFunctions(client: Client) {
     await client.Log.setLog("channelreport")
 
     console.log(chalk.green("[BOT] All Log Functions Loaded"));
-
+   
+  
+  client.giveawaysManager = await client.functions.manger(client)
 }
 export { LoadFunctions };

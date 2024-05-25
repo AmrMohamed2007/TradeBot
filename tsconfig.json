@@ -1,20 +1,25 @@
 {
-  "compilerOptions": {
-      "outDir": "dist",
-      "rootDir": "src",
-      "alwaysStrict": false,
-      "skipLibCheck": true,
-      "removeComments": false,
-      "checkJs": true,
-      "module": "CommonJS",
-      "esModuleInterop": true,
-      "resolveJsonModule": true
-  },
-  "include": [
-      "src/**/*.ts"
-  ],
-  "exclude": [
-      "node_modules",
-      "node_modules/types"
-  ]
+    "compilerOptions": {
+        "outDir": "dist",
+        "rootDir": "src",
+        "alwaysStrict": false,
+        "skipLibCheck": true,
+        "removeComments": true,
+        "checkJs": false,
+        "target": "ES2015",
+        "module": "CommonJS",
+        "esModuleInterop": true,
+        "allowJs": true,
+        "moduleResolution": "node",
+        "resolveJsonModule" :true
+    },
+    "include": [
+        "src/**/*.ts",
+        "src/**/*.json"
+    ],
+    "exclude": [
+        "node_modules",
+        "node_modules/types"
+    ]
+ 
 }

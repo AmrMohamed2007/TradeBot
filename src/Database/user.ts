@@ -4,7 +4,7 @@ const UserSchema = new Schema<any>({
     userid: String,
     username: String,
     coins: { type: Number, default: 0 },
-    password: Number,
+    password: String,
     blacklisted: {
         bool: Boolean,
         reason: String,

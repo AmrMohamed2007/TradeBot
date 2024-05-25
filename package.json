@@ -2,9 +2,10 @@
   "name": "traderbot",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "start": "tsc && node dist/index",
+    "first": "tsc && Xcopy src\\Tools\\discord-giveaways dist\\Tools\\discord-giveaways /E /H /C /I && node .",
+    "start": "tsc && node .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -12,7 +13,9 @@
   "license": "ISC",
   "dependencies": {
     "chalk": "^2.4.2",
+    "discord-giveaways": "^6.0.1",
     "discord.js": "^14.15.2",
+    "emoji-regex": "^10.3.0",
     "fs": "^0.0.1-security",
     "mongoose": "^8.3.4",
     "ms": "^2.1.3",

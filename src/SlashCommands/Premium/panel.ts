@@ -88,6 +88,14 @@ const panel = {
                 }
             }
             if (subcommand == "buy") {
+                const res = await client.functions.get.GetUser(client.schema, { key: "userid", value: message.user.id, status: "one" });
+
+                if (res.premium.subscribed && (Date.now() - res.premium.createdAt) >= ms(`${res.days}`)) {
+
+                    res.premium = undefined;
+                    await res.save()
+                 
+                }
                 await client.captcha.CaptchaShape(client, message, langdata, "reply", false, "premiumBuy")
 
             }

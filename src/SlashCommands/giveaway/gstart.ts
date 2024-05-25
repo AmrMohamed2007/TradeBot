@@ -1,4 +1,4 @@
-import { ApplicationCommandType ,Client} from 'discord.js'
+import { ApplicationCommandType, Client } from 'discord.js'
 
 import ms from "ms"
 const gstart = {
@@ -26,55 +26,81 @@ const gstart = {
       type: 3,
     },
   ],
+  cooldown: 1000,
+  botPerms: ["SendMessages", "AddReactions"],
+  userPerms: ["ManageGuild"],
   run: async (client: Client, interaction: any, langdata: any) => {
-   
+
 
     const duration = interaction.options.getString(`duration`);
     const winnerCount = interaction.options.getNumber(`winners`);
     const prize = interaction.options.getString(`prize`);
 
-    client.giveawaysManager
-      .start(interaction.channel, {
-        duration: ms(duration),
-        winnerCount,
-        prize,
-        messages: {
-          giveaway: '🎉🎉 **GIVEAWAY** 🎉🎉',
-          giveawayEnded: '🎉🎉 **GIVEAWAY ENDED** 🎉🎉',
-          title: '{this.prize}',
-          drawing: 'Drawing: {timestamp}',
-          dropMessage: 'Be the first to react with 🎉 !',
-          inviteToParticipate: 'React with 🎉 to participate!',
-          winMessage: 'Congratulations, {winners}! You won **{this.prize}**!\n{this.messageURL}',
-          embedFooter: '{this.winnerCount} winner(s)',
-          noWinner: 'Giveaway cancelled, no valid participations.',
-          hostedBy: 'Hosted by: {this.hostedBy}',
-          winners: 'Winner(s):',
-          endedAt: 'Ended at'
+
+    await client.functions.get.GetUser(client.schemas, { status: "one", key: "guildid", value: interaction.guild.id, create: true }).then(async (Database) => {
+
+
+      await Database?.save();
+
+
+      client.giveawaysManager.options = {
+        default: {
+          botsCanWin: false,
+          embedColor: Database.color_start,
+          embedColorEnd: Database.color_end,
+          reaction: Database.reaction
+        }
+
+
       }
-      })
-      .then((data) => {
-        // {...} (messageId, end date and more)
-        interaction
-          .reply({
-            content: `Giveaway succesful started ${data.messageId}`,
-            ephemeral: true,
-          })
-          .catch((err) => {
-            err = 0;
-          });
-      })
-      .catch((err) => {
-        interaction
-          .reply({
-            content: `**:x:
- | An error has occurred, please check and try again.\n\`${err}\`**`,
-            ephemeral: true,
-          })
-          .catch((err) => {
-            err = 0;
-          });
-      });
+
+
+
+
+      await client.giveawaysManager
+        .start(interaction.channel, {
+          duration: ms(duration),
+          winnerCount,
+          prize,
+          image: Database.image,
+          thumbnail: Database.image,
+          messages: {
+            giveaway: `${langdata.giveaway.giveawaycontent.replace("[emoji]", Database.reaction).replace("[emoji]", Database.reaction)}`,
+            giveawayEnded: `${langdata.giveaway.giveawayEnded.replace("[emoji]", Database.reaction).replace("[emoji]", Database.reaction)}`,
+            title: '{this.prize}',
+            drawing: `${langdata.giveaway.drawing.replace("[emoji]", Database.reaction)}`,
+            dropMessage: `${langdata.giveaway.dropMessage.replace("[emoji]", Database.reaction)}`,
+            inviteToParticipate: `${langdata.giveaway.inviteToParticipate.replace("[emoji]", Database.reaction)}`,
+            winMessage: `${langdata.giveaway.winMessage.replace("[emoji]", Database.reaction)}`,
+            embedFooter: `{this.winnerCount} ${langdata.giveaway.winners}`,
+            noWinner: `${langdata.giveaway.noWinner}`,
+            hostedBy: `${langdata.giveaway.hostedBy}`,
+            winners: `${langdata.giveaway.winners}`,
+            endedAt: `${langdata.giveaway.endedAt}`
+          }
+        })
+        .then((data) => {
+          // {...} (messageId, end date and more)
+          interaction
+            .reply({
+              content: `Giveaway succesful started ${data.messageId}`,
+              ephemeral: true,
+            })
+            .catch((err) => {
+              err = 0;
+            });
+        })
+        .catch((err) => {
+          interaction
+            .reply({
+              content: `${langdata.giveaway.error.replace("[emoji]", client.config.emojis.false)}\n${err.message}`,
+              ephemeral: true,
+            })
+            .catch((err) => {
+              err = 0;
+            });
+        });
+    })
   },
 };
 

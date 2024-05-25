@@ -1,5 +1,4 @@
 import { Schema, model } from "mongoose"
-import client from "../structure/Client"
 const ServerSchema = new Schema<any>({
     guildid: String,
     lang: { type: String, default: "en" },
@@ -7,28 +6,24 @@ const ServerSchema = new Schema<any>({
         bool: Boolean,
         reason: String
     },
-    emoji: String,
-
+    reaction: {
+        type: String,
+        default: "<:6556:1243622173386608801>"
+    }, // PNG GIVEAWAY
     image: String,
-    winMessage: String,
+    color_start: {
+        type: String,
+        default: "#00FF75" // Main Color
+    },
+    color_end: {
+        type: String,
+        default: "Red" // WRONG Color
+    },
+    thumbnail: String
 
-    colorStart: String,
-    colorEnd: String,
 
-    embedTitle: String,
-    embedDescription: String,
-    footer: { type: Boolean, default: true },
-    author: { type: Boolean, default: true },
-    thumbnail: { type: Boolean, default: false },
 
-    endEmbedTitle: String,
-    endEmbedDescription: String,
 
-    pauseEmbedTitle: String,
-    pauseEmbedDescription: String,
-
-    unpauseEmbedTitle: String,
-    unpauseEmbedDescription: String,
 
 
 })

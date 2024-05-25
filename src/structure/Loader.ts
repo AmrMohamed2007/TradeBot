@@ -72,6 +72,6 @@ async function LoadFunctions(client: Client) {
     console.log(chalk.green("[BOT] All Log Functions Loaded"));
    
   
-  
+  client.giveawaysManager = await client.functions.manger(client)
 }
 export { LoadFunctions };

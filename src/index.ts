@@ -1,3 +1,3 @@
-import RunProject from "./structure/Runner";
+import  {Run} from "./structure/Runner";
 // Run The System
-RunProject()
+Run()

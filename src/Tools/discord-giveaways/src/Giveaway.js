@@ -316,15 +316,6 @@ class Giveaway extends EventEmitter {
             embedColor: this.options.embedColor,
             embedColorEnd: this.options.embedColorEnd,
             botsCanWin: this.options.botsCanWin,
-            exemptPermissions: this.options.exemptPermissions,
-            exemptMembers:
-                !this.options.exemptMembers || typeof this.options.exemptMembers === 'string'
-                    ? this.options.exemptMembers || undefined
-                    : serialize(this.options.exemptMembers),
-            bonusEntries:
-                !this.options.bonusEntries || typeof this.options.bonusEntries === 'string'
-                    ? this.options.bonusEntries || undefined
-                    : serialize(this.options.bonusEntries),
             reaction: this.options.reaction,
             winnerIds: this.winnerIds.length ? this.winnerIds : undefined,
             extraData: this.extraData,
@@ -487,10 +478,6 @@ class Giveaway extends EventEmitter {
         this.message ??= await this.fetchMessage().catch(() => {});
         const member = await this.message?.guild.members.fetch(user.id).catch(() => {});
         if (!member) return false;
-        const exemptMember = await this.exemptMembers(member);
-        if (exemptMember) return false;
-        const hasPermission = this.exemptPermissions.some((permission) => member.permissions.has(permission));
-        if (hasPermission) return false;
         return true;
     }
 
@@ -499,33 +486,7 @@ class Giveaway extends EventEmitter {
      * @param {Discord.User} user The user to check.
      * @returns {Promise<number>} The highest bonus entries the user should get.
      */
-    async checkBonusEntries(user) {
-        this.message ??= await this.fetchMessage().catch(() => {});
-        const member = await this.message?.guild.members.fetch(user.id).catch(() => {});
-        if (!member) return 0;
-        const entries = [0];
-        const cumulativeEntries = [];
-
-        if (this.bonusEntries.length) {
-            for (const obj of this.bonusEntries) {
-                if (typeof obj.bonus === 'function') {
-                    try {
-                        const result = await obj.bonus.apply(this, [member, this]);
-                        if (Number.isInteger(result) && result > 0) {
-                            if (obj.cumulative) cumulativeEntries.push(result);
-                            else entries.push(result);
-                        }
-                    } catch (err) {
-                        console.error(`Giveaway message Id: ${this.messageId}\n${serialize(obj.bonus)}\n${err}`);
-                    }
-                }
-            }
-        }
-
-        if (cumulativeEntries.length) entries.push(cumulativeEntries.reduce((a, b) => a + b));
-        return Math.max(...entries);
-    }
-
+  
     /**
      * Gets the giveaway winner(s).
      * @param {number} [winnerCount=this.winnerCount] The number of winners to pick.

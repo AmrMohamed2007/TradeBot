@@ -1,14 +1,11 @@
-const { GiveawaysManager } = require("../Tools/discord-giveaways/index.js")
+
 import * as Discord from "discord.js"
 import * as config from "../config.json"
 import User from "../Database/user";
 import Server from "../Database/server";
 import AllShapes from "../security"
 import { giveawayModel } from "../Database/giveaway"
-import type {
-    Client,
-    Snowflake
-} from 'discord.js';
+import { GiveawayStartup } from "./Giveaway";
 const client = new Discord.Client({
     intents: [
         Discord.GatewayIntentBits.Guilds,
@@ -37,73 +34,20 @@ client.cooldown = new Discord.Collection();
 client.langdata = new Discord.Collection();
 
 
+process.on("uncaughtException" , err => {
+    console.log(err);
+    
+})
+process.on("uncaughtExceptionMonitor" , err => {
+    console.log(err);
+    
+})
+process.on("unhandledRejection", async err => {
+    console.log(err,"e");
+    
+})
 
-class GiveawayManagerWithOwnDatabase {
-    opp: any
-    constructor(client: Client, options: any) {
-        this.opp = new GiveawaysManager(client, options)
-    }
-    start(...data) {
-        return this.opp.start(...data)
-    }
-    end(...data) {
-        return this.opp.end(...data)
-    }
-    reroll(...data) {
-        return this.opp.reroll(...data)
-    }
-    pause(...data) {
-        return this.opp.pause(...data)
-    }
-    unpause(...data) {
-        return this.opp.unpause(...data)
-    }
-    delete(...data) {
-        return this.opp.delete(...data)
-    }
-    // This function is called when the manager needs to get all giveaways which are stored in the database.
-    async getAllGiveaways(): Promise<any> {
-        // Get all giveaways from the database. We fetch all documents by passing an empty condition.
-        return await giveawayModel.find().lean().exec();
-    }
 
-    // This function is called when a giveaway needs to be saved in the database.
-    async saveGiveaway(messageId: Snowflake, giveawayData): Promise<boolean> {
-        // Add the new giveaway to the database
-        await giveawayModel.create(giveawayData);
-        // Don't forget to return something!
-        return true
-    }
-
-    // This function is called when a giveaway needs to be edited in the database.
-    async editGiveaway(messageId: Snowflake, giveawayData) {
-        // Find by messageId and update it
-        await giveawayModel.updateOne({ messageId }, giveawayData).exec().then(() => {
-            return true
-        }).catch((err) => {
-            return false;
-        })
-    }
-
-    // This function is called when a giveaway needs to be deleted from the database.
-    async deleteGiveaway(messageId: Snowflake): Promise<boolean> {
-        // Find by messageId and delete it
-        await giveawayModel.deleteOne({ messageId }).exec();
-        // Don't forget to return something!
-        return true;
-    }
-};
-// Create a new instance of your new class
-const manager = new GiveawayManagerWithOwnDatabase(client, {
-    default: {
-        botsCanWin: false,
-        embedColor: '#FF0000',
-        embedColorEnd: '#000000',
-        reaction: '🎉'
-    }
-});
-
-client.giveawaysManager = manager;
 
 // Some Functions
 
@@ -112,6 +56,8 @@ client.captcha = {};
 client.premium = {};
 client.shapes = AllShapes;
 client.public = {};
+client.functions.manger = GiveawayStartup;
+
 // Export Client
 
 export default client;

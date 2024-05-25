@@ -9,4 +9,4 @@ async function Run() {
     await ConnectMongoose(client.config.mongoose)
 }
 
-export default Run;
+export  {Run};

@@ -4,12 +4,14 @@
         "rootDir": "src",
         "alwaysStrict": false,
         "skipLibCheck": true,
-        "removeComments": false,
+        "removeComments": true,
         "checkJs": false,
+        "target": "ES2015",
         "module": "CommonJS",
         "esModuleInterop": true,
-        "resolveJsonModule": true,
-        "allowJs": true
+        "allowJs": true,
+        "moduleResolution": "node",
+        "resolveJsonModule" :true
     },
     "include": [
         "src/**/*.ts",

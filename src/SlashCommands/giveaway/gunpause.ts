@@ -8,6 +8,7 @@ const gunpause = {
   options: [
     { name: "message_id", "description": "Enter MessageId of giveaway", type: ApplicationCommandOptionType.String, required: true }
   ],
+  userPerms:["ManageGuild"],
   run: async (client: Client, interaction: any, langdata: any) => {
 
     const messageId = interaction.options.getString('message_id');
@@ -15,13 +16,14 @@ const gunpause = {
     client.giveawaysManager
       .unpause(messageId)
       .then(() => {
-        interaction.reply('** Success! Giveaway Unpaused!**');
+        interaction.reply(`${langdata.giveaway.unpausemsg.replace("[emoji]", client.config.emojis.true)}`);
       })
       .catch((err) => {
-        interaction.reply({
-          content: `**:x:
- | An error has occurred, please check and try again.\n\`${err}\`**`, ephemeral: true
-        });
+        interaction
+          .reply({
+            content: `${langdata.giveaway.error.replace("[emoji]", client.config.emojis.false)}\n${err.message}`,
+            ephemeral: true,
+          })
       });
 
   }

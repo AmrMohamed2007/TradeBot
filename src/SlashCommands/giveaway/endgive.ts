@@ -18,19 +18,19 @@ const gend = {
       required: true,
     },
   ],
-  run: async (client: Client, interaction: any, langdata: any) => {  
+  userPerms:["ManageGuild"],
+  run: async (client: Client, interaction: any, langdata: any) => {
 
     const messageId = interaction.options.getString("message_id");
     client.giveawaysManager
       .end(messageId)
       .then(() => {
-        interaction.reply("** Success! Giveaway Ended!**");
+        interaction.reply(`${langdata.giveaway.endmsg.replace("[emoji]", client.config.emojis.true)}`);
       })
       .catch((err) => {
         interaction
           .reply({
-            content: `**:x: 
- | An error has occurred, please check and try again.\n\`${err}\`**`,
+            content: `${langdata.giveaway.error.replace("[emoji]", client.config.emojis.false)}\n${err.message}`,
             ephemeral: true,
           })
           .catch((err) => {

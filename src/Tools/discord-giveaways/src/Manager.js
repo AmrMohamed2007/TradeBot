@@ -107,8 +107,10 @@ class GiveawaysManager extends EventEmitter {
                           ) +
                           (giveaway.hostedBy ? '\n' + giveaway.messages.hostedBy : '')
             )
+            
             .setThumbnail(giveaway.thumbnail)
             .setImage(giveaway.image);
+                           
         if (giveaway.endAt !== Infinity) embed.setTimestamp(giveaway.endAt);
         return giveaway.fillInEmbed(embed);
     }

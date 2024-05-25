@@ -1,17 +1,35 @@
 const Language = {
     ar: {
         ping: {
-            message: "البينج هو : [ping] MS"
+            message: "**[ping] MS**"
         },
         cooldown: {
             message: "<duration> انت علي كول داون"
         },
         owner: {
-            message: "انت لست من مطورين البوت"
+            message:"**هذا الأمر خاص بمطورين فقط لا يمكنك استخدامه**"
         },
         language:{
             placeholder:"قم بأخيتار اللغة",
-            done:"تم تحديد اللغة بنجاح"
+            done:"**تم تحديد اللغة بنجاح**"
+        },
+        giveaway:{
+            rerollmsg:"**[emoji] لقد تم إعادة اللف  بنجاح**",
+            unpausemsg:"**[emoji] لقد تم إالفاء الإيقاف المؤقت للمسابقة بنجاح**",
+            pausemsg:"**[emoji] لقد تم إيقاف المسابقة مؤقتًا بنجاح**",
+            deletemg:"**[emoji] لقد تم مسح المسابقة بنجاح**",
+            endmsg:"**[emoji] لقد تم انهاء المسابقة بنجاح**",
+            error:"**[emoji] لقد حدث خطأ ما   **",
+            giveawaycontent:"[emoji] **مسابقة جديدة** [emoji]",
+            giveawayEnded:"[emoji] **مسابقة جديدة** [emoji]",
+            drawing:"الوقت المتبقي : {timestamp}",
+            dropMessage:"كن اول شخص يشارك [emoji] !",
+            inviteToParticipate:"قم بالمشاركة من خلال الضغط علي [emoji] بالأسفل",
+            winMessage:"**مبارك للفائزين** ( {winners} ) لقد ربحت/و **{this.prize}** [emoji]",
+            winners:"فائز/ين",
+            endedAt:"ينتهي في",
+            hostedBy:"صُنع من : {this.hostedBy}",
+            noWinner:"**تم الغاء الجيف اواي نظرا لعدم وجود مشاركين**"
         },
         errorr:{
             passworderror:"Password what you enterd not correct or new password doesnt equal confirm password"
@@ -22,6 +40,7 @@ const Language = {
         },
         permissionme: " `<permission>`ليس لدي هذا البرمشن  ",
         permission: "`<permission>` ليس لديك هذا البرمشن",
+      
         private: {
             passworddoneset:"تم تحديد الباسورد بنجاح",
             lastpasswordtext:"قم بكتابة اخر باسورد",

@@ -2,62 +2,21 @@ import { ApplicationCommandOptionType, ApplicationCommandType, Client, CommandIn
 import emojiRegex from 'emoji-regex';
 
 const LanguageCommaned = {
-    name: "set",
-    description: "Setup the bot with this command",
+    name: "delete",
+    description: "delete giveaway image or thumbnail",
     type: ApplicationCommandType.ChatInput,
     options: [
         {
-            name: "language",
-            description: "Setup guild's language",
+            name: "image",
+            description: "delete image giveaway",
             type: ApplicationCommandOptionType.Subcommand,
             options: []
         },
         {
-            name: "giveaway",
-            description: "Setup guild's giveaway settings",
+            name: "thumbnail",
+            description: "delete thumbnail giveaway",
             type: ApplicationCommandOptionType.Subcommand,
-            options: [
-                {
-                    name: "color_start",
-                    description: "embed color while making giveaway",
-                    type: ApplicationCommandOptionType.String,
-                    required: false
-
-                },
-
-                {
-                    name: "color_end",
-                    description: "embed color while ending giveaway",
-                    type: ApplicationCommandOptionType.String,
-                    required: false
-
-                },
-
-
-                {
-                    name: "image",
-                    description: "embed image while starting giveaway",
-                    type: ApplicationCommandOptionType.Attachment,
-                    required: false
-
-                },
-
-                {
-                    name: "thumbnail",
-                    description: "giveaway thumbnail while starting giveaway",
-                    type: ApplicationCommandOptionType.Attachment,
-                    required: false
-
-                },
-
-                {
-                    name: "reaction",
-                    description: "giveaway reaction while starting giveaway",
-                    type: ApplicationCommandOptionType.String,
-                    required: false
-
-                },
-            ]
+            options: []
         },
 
 

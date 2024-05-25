@@ -25,8 +25,14 @@ const gstart = {
       required: true,
       type: 3,
     },
+    {
+      name: `count`,
+      description: `count of giveaways`,
+      required: false,
+      type: 10,
+    },
   ],
-  cooldown: 1000,
+  cooldown: 3000,
   botPerms: ["SendMessages", "AddReactions"],
   userPerms: ["ManageGuild"],
   run: async (client: Client, interaction: any, langdata: any) => {
@@ -35,7 +41,30 @@ const gstart = {
     const duration = interaction.options.getString(`duration`);
     const winnerCount = interaction.options.getNumber(`winners`);
     const prize = interaction.options.getString(`prize`);
+    const count = interaction.options.getNumber(`count`) || 1;
 
+    if(count > 5)
+      return interaction.reply({content:`${langdata.giveaway.counterror}`,ephemeral:true});
+
+    if(!ms(duration))
+      return interaction.reply({content:`${langdata.giveaway.counterror}`,ephemeral:true});
+
+    if(ms(duration) > ms("14d"))
+      return interaction.reply({content:`${langdata.giveaway.counterror}`,ephemeral:true});
+
+
+    const ss = client.giveawaysManager.giveaways.filter((g) => g.guildId === interaction.guild.id);
+ 
+  const onServer = ss.filter((g) => !g.ended);
+
+  
+    if(onServer.length > 15 || (onServer.length + count) > 15 )
+      return interaction.reply({content:`${langdata.giveaway.lengtherror}`,ephemeral:true});
+
+
+
+
+    const Msg = await interaction.reply({content:`${langdata.captcha.waiting.replace("<thing>","Making it")}`,ephemeral:true})
 
     await client.functions.get.GetUser(client.schemas, { status: "one", key: "guildid", value: interaction.guild.id, create: true }).then(async (Database) => {
 
@@ -54,10 +83,13 @@ const gstart = {
 
       }
 
+      await Msg.edit({content:`${langdata.giveaway.donemaked}`,ephemeral:true})
 
+      for (let i = 0; i < count; i++) {
+      
 
-
-      await client.giveawaysManager
+     
+       await client.giveawaysManager
         .start(interaction.channel, {
           duration: ms(duration),
           winnerCount,
@@ -80,26 +112,14 @@ const gstart = {
           }
         })
         .then((data) => {
-          // {...} (messageId, end date and more)
-          interaction
-            .reply({
-              content: `Giveaway succesful started ${data.messageId}`,
-              ephemeral: true,
-            })
-            .catch((err) => {
-              err = 0;
-            });
+      
+       
         })
         .catch((err) => {
-          interaction
-            .reply({
-              content: `${langdata.giveaway.error.replace("[emoji]", client.config.emojis.false)}\n${err.message}`,
-              ephemeral: true,
-            })
-            .catch((err) => {
-              err = 0;
-            });
+          err = 0
         });
+      }
+
     })
   },
 };

@@ -47,7 +47,7 @@ const panel = {
                 if (user.bot) return;
                 const res = await client.functions.get.GetUser(client.schema, { key: "userid", value: message.user.id, status: "one" });
                 if (!res.premium || !res.premium.subscribed) {
-                    return await message.reply({ content: `${langdata.premium.nopre}` });
+                    return await message.reply({ content: `${langdata.premium.nopre}`,ephemeral:true });
                 }
                 if ((Date.now() - res.premium.createdAt) >= ms(`${res.days}`)) {
 
@@ -79,11 +79,13 @@ const panel = {
                         ],
                         color: client.config.maincolor,
                         author: { name: message.guild.name, iconURL: message.guild.iconURL() },
-                        footer: { text: message.guild.name, iconURL: message.guild.iconURL() }
+                        footer: { name: message.guild.name, iconURL: message.guild.iconURL() }
                     });
 
                     await message.reply({ embeds: [embed] });
                 } catch (err) {
+                    console.log(err);
+                    
                     return await message.reply({ content: `${langdata.captcha[err.message]}` });
                 }
             }

@@ -78,6 +78,29 @@ class Log {
         }`}).catch((err) => {
             err = 0
         })
+
+    }
+
+    async LogPremiumUser(data,langdata) {
+        const guild = this.client.guilds.cache.get(data.guildid)
+        const user = guild.members.cache.get(data.user);
+        const code = data.code;
+        const days = data.days;
+        const Time = Math.floor(Date.now() / 1000);
+    
+        
+        await user?.send?.({content:`${langdata.private.premiumbuy
+            .replace("[buyer]",`${user}`)
+            .replace("[days]",`${days}`)
+            .replace("[time]",`<t:${Time}:R>`)
+            .replace("[code]",`${code}`)
+            .replace("[emoji]",`${this.client.config.emojis.premium}`)
+            .replace("[emoji2]",`${this.client.config.emojis.giveaway}`)
+        }`}).catch((err) => {
+            err = 0
+        })
+        
+
         
         
         

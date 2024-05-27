@@ -62,10 +62,18 @@ const Language = {
             enabled:"تم تفعيل خاصيه الحساب الخاص",
             disabled:"تم تعطيل خاصيه الحساب الخاص"
         },
-        permissionme: " `<permission>`ليس لدي هذا البرمشن  ",
-        permission: "`<permission>` ليس لديك هذا البرمشن",
+        permissionme: "I Don't have `<permission>` ",
+        permission: "You Don't have `<permission>` ",
       
         private: {
+            premiumBuy:`[emoji] لقد تم شراء اشتراك بنجاح\n
+Premium User : **[buyer]**\n
+Days : **[days]**\n
+Code : **[code]**\n
+Time: **[time]**\n
+Reason\n||\`\`\`[reason]\`\`\`||
+**Thx for using our services and buy our premium commands , we hope you happy with our services [emoji2]**`,
+         
             passworddoneset:"تم تحديد الباسورد بنجاح",
             lastpasswordtext:"قم بكتابة اخر باسورد",
             newpassword:"قم بكتابة الباسورد التي تريده",

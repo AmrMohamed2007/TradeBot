@@ -24,6 +24,7 @@ const panel = {
         },
     ],
     cooldown: 20000,
+    botPerms:["AddReactions","SendMessages"],
     run: async (client: Client, message: any, langdata: any) => {
         const userType = client.config.owners.includes(message.user.id) ? "owner" : "user";
         const subcommand = message.options.getSubcommand();
@@ -47,13 +48,13 @@ const panel = {
                 if (user.bot) return;
                 const res = await client.functions.get.GetUser(client.schema, { key: "userid", value: message.user.id, status: "one" });
                 if (!res.premium || !res.premium.subscribed) {
-                    return await message.reply({ content: `${langdata.premium.nopre}`,ephemeral:true });
+                    return await message.reply({ content: `${client.config.emojis.false} ${langdata.premium.nopre}`,ephemeral:true });
                 }
                 if ((Date.now() - res.premium.createdAt) >= ms(`${res.days}`)) {
 
                     res.premium = undefined;
                     await res.save()
-                    return await message.reply({ content: `${langdata.premium.nopre}` });
+                    return await message.reply({ content: `${client.config.emojis.false} ${langdata.premium.nopre}` });
                 }
 
                 await returnData(userType);
@@ -61,21 +62,22 @@ const panel = {
                 try {
                     const res = await client.functions.get.GetUser(client.schema, { key: "userid", value: message.user.id, status: "one" });
                     if (!res.premium || !res.premium.subscribed) {
-                        return await message.reply({ content: `${langdata.premium.nopre}` });
+                        return await message.reply({ content: `${client.config.emojis.false} ${langdata.premium.nopre}` });
                     }
                     if ((Date.now() - res.premium.createdAt) >= ms(`${res.days}`)) {
 
                         res.premium = undefined;
                         await res.save()
-                        return await message.reply({ content: `${langdata.premium.nopre}` });
+                        return await message.reply({ content: `${client.config.emojis.false} ${langdata.premium.nopre}` });
                     }
                     const embed = await client.CreateEmbed({
                         title: langdata.premium.titleinfo,
                         fields: [
                             { name: langdata.private.userid, value: `${message.user.id}`, inline: false },
                             { name: langdata.premium.createdAt, value: `${new Date(res.premium.createdAt).toDateString()}`, inline: false },
-                            { name: langdata.premium.endsAt, value: `${new Date(Date.now() + res.premium.days).toDateString()}`, inline: false },
-                            { name: langdata.premium.days, value: `${prettyMilliseconds((res.createdAt + res.premium.days) - Date.now())}`, inline: false }
+                            { name: langdata.premium.endsAt, value: `${new Date(Date.now() + ms(`${res.premium.days}d`)).toDateString()}`, inline: false },
+                            { name: langdata.premium.days, value: `${prettyMilliseconds((res.createdAt + ms(`${res.premium.days}d`)) - Date.now())}`, inline: false }
+                       
                         ],
                         color: client.config.maincolor,
                         author: { name: message.guild.name, iconURL: message.guild.iconURL() },
@@ -86,7 +88,7 @@ const panel = {
                 } catch (err) {
                     console.log(err);
                     
-                    return await message.reply({ content: `${langdata.captcha[err.message]}` });
+                    return await message.reply({ content: `${client.config.emojis.false} ${langdata.captcha[err.message]}` });
                 }
             }
             if (subcommand == "buy") {

@@ -13,6 +13,7 @@ const LanguageCommaned = {
         }
     ],
     cooldown:20000,
+    botPerms:["AddReactions","SendMessages"],
     run:async (client:Client,interaction:any,langdata:any) => {
         const subcommand = interaction.options.getSubcommand()
 

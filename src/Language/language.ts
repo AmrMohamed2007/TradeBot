@@ -6,6 +6,10 @@ const Language = {
         cooldown: {
             message: "**You should wait <duration> to use this command**"
         },
+        help:{
+            title:"Help List",
+            description:"**Let's explore the bot commands togther !**"
+        },
         owner: {
             message: "**This Command For Bot CREW Only**"
         },
@@ -129,14 +133,14 @@ const Language = {
             "donetransferacc": "Account transferred successfully",
             "haveacctransfer": "The person must not have an account to transfer to.",
             "modaltransfertitle": "Transfer Data",
-            "labeltransfer": "Enter the recipient's ID",
+            "labeltransfer": "Enter the User's ID",
             "nopre": "You don't have a premium subscription to do that.",
             "createbtn": "Open Account",
             "deletebtn": "Close Account",
             "dailybtn": "Daily Salary",
             "transferbtn": "Transfer My Data",
             "reportbtn": "Report",
-            "descpanel": "A solid panel from the top",
+            "descpanel": "You can open and close your account, and receive the daily salary in a secure manner. If you have a monthly premium subscription, you can transfer your information to another account.",
             "titlepanel": "Control",
             "createdAt": "Subscribed At",
             "endsAt": "Ends At",
@@ -282,14 +286,14 @@ const Language = {
             "dailybtn": "راتب يومي",
             "transferbtn": "نقل بياناتي",
             "reportbtn": "الإبلاغ",
-            "descpanel": "لوحة قوية من الأعلى",
+            "descpanel": "يمكنك فتح حسابك وإغلاقه واستلام راتبك اليومي بطريقة محمية. وإذا كان لديك اشتراك بريميوم شهري، يمكنك نقل معلوماتك إلى حساب آخر.",
             "titlepanel": "التحكم",
             "createdAt": "تم الاشتراك في",
             "endsAt": "ينتهي في",
             "days": "الوقت المتبقي",
             "titleinfo": "معلومات الاشتراك"
         },
-        "done": "**نجاح [emoji]**",
+        "done": "**تم بنجاح [emoji]**",
         "error": "**حدث خطأ. يرجى المحاولة مرة أخرى لاحقًا.**",
         "setupdone": "**تم العملية بنجاح**",
         "donedeleted": "**تم الحذف بنجاح [emoji]**"
@@ -428,7 +432,7 @@ const Language = {
             "dailybtn": "Salaire quotidien",
             "transferbtn": "Transférer mes données",
             "reportbtn": "Rapport",
-            "descpanel": "Un panneau solide depuis le haut",
+            "descpanel": "Vous pouvez ouvrir et fermer votre compte, et recevoir votre salaire quotidien de manière sécurisée. Si vous avez un abonnement premium mensuel, vous pouvez transférer vos informations vers un autre compte.",
             "titlepanel": "Contrôle",
             "createdAt": "Abonné à",
             "endsAt": "Se termine à",
@@ -574,7 +578,7 @@ const Language = {
             "dailybtn": "Günlük Maaş",
             "transferbtn": "Verilerimi Aktar",
             "reportbtn": "Rapor",
-            "descpanel": "Üstten sağlam bir panel",
+            "descpanel": "Hesabınızı açabilir ve kapatabilir, günlük maaşınızı güvenli bir şekilde alabilirsiniz. Aylık bir premium aboneliğiniz varsa, bilgilerinizi başka bir hesaba aktarabilirsiniz.",
             "titlepanel": "Kontrol",
             "createdAt": "Şurada Abone Oldu",
             "endsAt": "Şurada Biter",

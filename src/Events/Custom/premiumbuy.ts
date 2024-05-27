@@ -52,15 +52,21 @@ const Event = {
                    const fullprice = price - (Math.floor((price * 25) / 100))
                     if(res.premium.subscribed) {
                         if(res.coins < fullprice)
-                        return await col.reply({content:`${langdata.captcha.errorcoinsenough}`,ephemeral:true})
+                        return await col.reply({content:`${client.config.emojis.false} ${langdata.captcha.errorcoinsenough}`,ephemeral:true})
     
                         res.coins = res.coins - fullprice
                         res.premium.subscribed = true;
                         res.premium.days =  res.premium.days + TypeTrail
                         await res.save();
-                        col.reply({content:"Done !",ephemeral:true}).then(async () => {
+                       await col.reply({content:`${client.config.emojis.true} ${langdata.done}`,ephemeral:true}).then(async () => {
                             await Msg.delete()
                          })
+                         await client.Log.LogPremiumUser({
+                            user:res.userid,
+                            code:res.premium.code,
+                            days:TypeTrail,
+
+                         },langdata,client)
                     }else {
                         if(res.coins < price)
                         return await interaction.reply({content:`${client.config.emojis.false} ${langdata.captcha.errorcoinsenough}`,ephemeral:true})
@@ -70,9 +76,15 @@ const Event = {
                         res.premium.days = TypeTrail
                         res.premium.code = await client.public.generateRandomCode()
                         await res.save();
-                         col.reply({content:"Done !",ephemeral:true}).then(async () => {
+                        await col.reply({content:`${langdata.done}`,ephemeral:true}).then(async () => {
                             await Msg.delete()
                          })
+                         await client.Log.LogPremiumUser({
+                            user:res.userid,
+                            code:res.premium.code,
+                            days:TypeTrail,
+                            
+                         },langdata,client)
                        
                     }
                     

@@ -10,6 +10,7 @@
     "channellog":"1243167158071197717",
     "channelpremium":"1244650389341732885",
     "channelscammers":"1244177103398895636",
+    "serverURL":"https://discord.gg/tradebot",
     "mongoose":"mongodb+srv://amr123123:amr123123@cluster0.3g9m5dv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
     "emojis":{
         "passwordver":"<:Frame69:1240761657400229959>",

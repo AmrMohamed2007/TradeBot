@@ -58,7 +58,7 @@ const Event = {
                         res.premium.subscribed = true;
                         res.premium.days =  res.premium.days + TypeTrail
                         await res.save();
-                       await col.reply({content:`${client.config.emojis.true} ${langdata.done}`,ephemeral:true}).then(async () => {
+                       await col.reply({content:`${langdata.done.replace("[emoji]",client.config.emojis.true)}`,ephemeral:true}).then(async () => {
                             await Msg.delete()
                          })
                          await client.Log.LogPremiumUser({
@@ -76,7 +76,7 @@ const Event = {
                         res.premium.days = TypeTrail
                         res.premium.code = await client.public.generateRandomCode()
                         await res.save();
-                        await col.reply({content:`${langdata.done}`,ephemeral:true}).then(async () => {
+                        await col.reply({content:`${langdata.done.replace("[emoji]",client.config.emojis.true)}`,ephemeral:true}).then(async () => {
                             await Msg.delete()
                          })
                          await client.Log.LogPremiumUser({

@@ -92,6 +92,9 @@ const panel = {
                 }
             }
             if (subcommand == "buy") {
+                try {
+                    
+             
                 const res = await client.functions.get.GetUser(client.schema, { key: "userid", value: message.user.id, status: "one" });
 
                 if (res.premium.subscribed && (Date.now() - res.premium.createdAt) >= ms(`${res.days}`)) {
@@ -101,7 +104,9 @@ const panel = {
                  
                 }
                 await client.captcha.CaptchaShape(client, message, langdata, "reply", false, "premiumBuy")
-
+            } catch (error) {
+                    await message.reply({content:`${client.config.emojis.false} ${langdata.captcha.errornoacc}`})
+            }
             }
         }
     }

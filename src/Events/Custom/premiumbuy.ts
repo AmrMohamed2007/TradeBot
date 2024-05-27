@@ -66,7 +66,7 @@ const Event = {
                             code:res.premium.code,
                             days:TypeTrail,
 
-                         },langdata)
+                         },langdata,client)
                     }else {
                         if(res.coins < price)
                         return await interaction.reply({content:`${client.config.emojis.false} ${langdata.captcha.errorcoinsenough}`,ephemeral:true})
@@ -84,7 +84,7 @@ const Event = {
                             code:res.premium.code,
                             days:TypeTrail,
                             
-                         },langdata)
+                         },langdata,client)
                        
                     }
                     

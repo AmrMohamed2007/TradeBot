@@ -81,13 +81,13 @@ class Log {
 
     }
 
-    async LogPremiumUser(data,langdata) {
+    async LogPremiumUser(data,langdata,client:Client) {
         const guild = this.client.guilds.cache.get(data.guildid)
         const user = guild.members.cache.get(data.user);
         const code = data.code;
-        const days = data.days;
+        const days = data.days; 
         const Time = Math.floor(Date.now() / 1000);
-    
+      
         
         await user?.send?.({content:`${langdata.private.premiumbuy
             .replace("[buyer]",`${user}`)
@@ -99,6 +99,15 @@ class Log {
         }`}).catch((err) => {
             err = 0
         })
+        const ch = await client.channels.cache.get(client.config.channelpremium) as TextChannel;
+        if(!ch) return;
+        ch.send({embeds:[await client.CreateEmbed({
+            title:"New Premium Subscription",
+            description:`Code : **${code}**\n
+User: ${user}\n
+Days: ${days} Day\n
+Time: <t:${Time}:R>`
+        })]})
         
 
         

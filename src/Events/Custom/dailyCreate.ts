@@ -10,7 +10,7 @@ const Event = {
     run: async (client: Client, interaction: any, langdata: any) => {
         const Msg = await interaction.reply({ embeds: [await client.waitembed({ color: client.config.wrongcolor, thing: "processing...", description: `${client.config.emojis.loading} ${langdata.captcha.waiting}` })], ephemeral: true })
         await client.functions.get.GetUser(client.schema, { status: "one", key: "userid", value: interaction.user.id }).then(async (res) => {
-            const NumberOfCoins = !res.premium.bool ? Math.floor(Math.random() * 10 + 1) : Math.floor(Math.random() * 10 + 1)  * 1.5
+            const NumberOfCoins = !res.premium.bool ? Math.floor(Math.random() * 10 + 1) : Math.floor(Math.floor(Math.random() * 10 + 1)  * 1.5) 
             if (res && res.blacklisted.bool) {
 
 

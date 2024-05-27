@@ -6,6 +6,10 @@ const Language = {
         cooldown: {
             message: "**You should wait <duration> to use this command**"
         },
+        help:{
+            title:"Help List",
+            description:"**Let's explore the bot commands togther !**"
+        },
         owner: {
             message: "**This Command For Bot CREW Only**"
         },

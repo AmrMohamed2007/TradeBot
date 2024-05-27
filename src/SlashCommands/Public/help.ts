@@ -1,4 +1,4 @@
-import { ActionRowBuilder,ButtonBuilder, ApplicationCommandType ,CommandInteraction, StringSelectMenuBuilder} from "discord.js"
+import { ActionRowBuilder,ButtonBuilder, ButtonStyle,ApplicationCommandType ,CommandInteraction, StringSelectMenuBuilder} from "discord.js"
 const Ping = {
     name:"help",
     description:"Comamnd for show all commands",
@@ -19,6 +19,14 @@ const Ping = {
         const row = new ActionRowBuilder<ButtonBuilder>()
         const rowSelect = new ActionRowBuilder<StringSelectMenuBuilder>()
         const rowSupport = new ActionRowBuilder<ButtonBuilder>()
+        const btn1 = new ButtonBuilder()
+        .setLabel("Support")
+        .setStyle(ButtonStyle.Link)
+        .setURL(client.config.supportURL)
+        rowSupport.setComponents(btn1);
+
+
+        
 
     }
 }

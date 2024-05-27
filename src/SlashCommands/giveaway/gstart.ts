@@ -95,7 +95,7 @@ const gstart = {
           winnerCount,
           prize,
           image: Database.image,
-          thumbnail: Database.image,
+          thumbnail: Database.thumbnail,
           messages: {
             giveaway: `${langdata.giveaway.giveawaycontent.replace("[emoji]", Database.reaction).replace("[emoji]", Database.reaction)}`,
             giveawayEnded: `${langdata.giveaway.giveawayEnded.replace("[emoji]", Database.reaction).replace("[emoji]", Database.reaction)}`,

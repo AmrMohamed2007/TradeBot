@@ -32,12 +32,14 @@ const Event = {
                 if (slashCommand.ownership && interaction.user.id !== interaction.guild.ownerId)
                     return await interaction.reply({ content: `${LangData.ownership.message}`, ephemeral: true });
 
+            
+                
                 if (slashCommand.botPerms || slashCommand.userPerms) {
                     if (!MemberClient.permissions.has(PermissionsBitField.resolve(slashCommand.botPerms || [])))
-                        return await interaction.reply({ embeds: [await WrongEmbed({ title: "Missing Permission", description: LangData.permissionme, color: client.config.maincolor })], ephemeral: true });
+                        return await interaction.reply({ embeds: [await WrongEmbed({ title: "Missing Permission", description: LangData.permissionme, color: client.config.maincolor,permission:`${slashCommand.botPerms}` })], ephemeral: true });
 
                     if (!interaction.member.permissions.has(PermissionsBitField.resolve(slashCommand.userPerms || [])))
-                        return await interaction.reply({ embeds: [await WrongEmbed({ title: "Missing Permission", description: LangData.permission, color: client.config.maincolor })], ephemeral: true });
+                        return await interaction.reply({ embeds: [await WrongEmbed({ title: "Missing Permission", description: LangData.permission, color: client.config.maincolor,permission:`${slashCommand.userPerms}` })], ephemeral: true });
 
 
 
@@ -62,10 +64,10 @@ const Event = {
 
                 if (slashCommand.botPerms || slashCommand.userPerms) {
                     if (!MemberClient.permissions.has(PermissionsBitField.resolve(slashCommand.botPerms || [])))
-                        return await interaction.reply({ embeds: [await WrongEmbed({ title: "Missing Permission", description: LangData.permissionme, color: client.config.maincolor })], ephemeral: true });
+                        return await interaction.reply({ embeds: [await WrongEmbed({ title: "Missing Permission", description: LangData.permissionme, color: client.config.maincolor,permission:`${slashCommand.botPerms}` })], ephemeral: true });
 
                     if (!interaction.member.permissions.has(PermissionsBitField.resolve(slashCommand.userPerms || [])))
-                        return await interaction.reply({ embeds: [await WrongEmbed({ title: "Missing Permission", description: LangData.permission, color: client.config.maincolor })], ephemeral: true });
+                        return await interaction.reply({ embeds: [await WrongEmbed({ title: "Missing Permission", description: LangData.permission, color: client.config.maincolor,permission:`${slashCommand.userPerms}` })], ephemeral: true });
 
 
 
@@ -127,7 +129,7 @@ const Event = {
                     RunSlashHandle(client)
                 }
             }).catch(async (err) => {
-                return await interaction.reply({ content: `${LangData.captcha.errornoacc}`, ephemeral: true })
+                return await interaction.reply({ content: `${client.config.emojis.false} ${LangData.captcha.errornoacc}`, ephemeral: true })
             })
         } else {
             return await RunSlashHandle(client);

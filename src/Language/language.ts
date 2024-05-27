@@ -470,10 +470,10 @@ const Language = {
         "scammer": {
             "doneSearch": "Başarıyla Arandı",
             "doneAdded": "**Başarıyla Dolandırıcı Eklendi**",
-            "doneDeleted": "**Dolandırıcı başarıyla yasaklandı. **",
+            "doneDeleted": "**Dolandırıcı başarıyla Engellendi. **",
             "labeladd": "Dolandırıcıyı Bildir",
             "findScummer": "Dolandırıcıyı Bul",
-            "deleteScummer": "Dolandırıcı Yasakla",
+            "deleteScummer": "Dolandırıcı Engelle",
             "title": "Dolandırıcılar Paneli",
             "desc": "**Para birimimizi her türlü dolandırıcılık girişiminden koruyoruz. Bildirildiğinde, delilleri dikkatlice inceliyoruz ve sahibine adalete geri dönüyoruz, dolandırıcıyı ise kara listeye alıyoruz.**"
         },
@@ -590,6 +590,7 @@ const Language = {
         "setupdone": "**İşlem başarıyla tamamlandı**",
         "donedeleted": "**Başarıyla silindi [emoji]**"
     }
+
     
     
     

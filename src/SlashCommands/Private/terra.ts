@@ -71,7 +71,7 @@ const terra = {
 
 
 
-                await message.reply({ content: `${langdata.captcha[err.message]}` })
+                await message.reply({ content: `${client.config.emojis.false} ${langdata.captcha[err.message]}` })
             })
 
 

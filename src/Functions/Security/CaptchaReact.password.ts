@@ -44,7 +44,7 @@ async function CaptchaReact(client:Client,message:any,langdata:any,fun:any,typeS
 }).catch((err) => {
     console.log(err);
     
-    message.reply({content:`${langdata.captcha[err.message]}`})
+    message.reply({content:`${client.config.emojis.false} ${langdata.captcha[err.message]}`})
  })
 
     

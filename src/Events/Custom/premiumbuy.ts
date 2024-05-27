@@ -63,7 +63,7 @@ const Event = {
                          })
                     }else {
                         if(res.coins < price)
-                        return await interaction.reply({content:`${langdata.captcha.errorcoinsenough}`,ephemeral:true})
+                        return await interaction.reply({content:`${client.config.emojis.false} ${langdata.captcha.errorcoinsenough}`,ephemeral:true})
                         res.coins = res.coins - price
                         res.premium.subscribed = true;
                         res.premium.createdAt = Date.now()

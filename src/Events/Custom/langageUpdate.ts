@@ -31,7 +31,7 @@ const Event = {
                             res.lang = lang;
                             await res.save()
                             const s = await client.SetLang(client,interaction.guild.id,lang)
-                            await Msg.edit({content:`${s.language.done}`,components:[]})
+                            await Msg.edit({content:`${client.config.emojis.true} ${s.language.done}`,components:[]})
                         }
                         
                     }

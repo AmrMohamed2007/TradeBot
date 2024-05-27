@@ -37,7 +37,7 @@ async function CaptchaShape(client:Client,message:any,langdata:any,type:string,t
             }
          
         }else {
-           const embed =  await client.waitembed({color:client.config.wrongcolor,description:`${langdata.captcha.errorcaptchashape}`})
+           const embed =  await client.waitembed({color:client.config.wrongcolor,description:`${client.config.emojis.false} ${langdata.captcha.errorcaptchashape}`})
             await message.edit({embeds:[embed],content:undefined,components:[]})
         }
     })

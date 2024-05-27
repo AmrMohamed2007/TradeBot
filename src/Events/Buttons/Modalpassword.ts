@@ -16,7 +16,7 @@ const Event = {
                     client.emit(`${Fun}`,interaction,langdata)
                  
                 } else {
-                    interaction.reply({ content: `${langdata.captcha.errorpassword}`, ephemeral: true })
+                    interaction.reply({ content: `${client.config.emojis.false} ${langdata.captcha.errorpassword}`, ephemeral: true })
                 }
             })
         }

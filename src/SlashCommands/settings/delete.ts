@@ -44,7 +44,7 @@ const LanguageCommaned = {
                     }).catch(async (err) => {
                         console.log(err);
                         
-                        await interaction.reply({ content: `${langdata.error}`, ephemeral: true })
+                        await interaction.reply({ content: `${client.config.emojis.false} ${langdata.error}`, ephemeral: true })
                     })
                 
               

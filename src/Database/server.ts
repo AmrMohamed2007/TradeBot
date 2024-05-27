@@ -6,6 +6,10 @@ const ServerSchema = new Schema<any>({
         bool: Boolean,
         reason: String
     },
+    panel: {
+        bool:Boolean,
+        role:String
+    },
     reaction: {
         type: String,
         default: "<:6556:1243622173386608801>"

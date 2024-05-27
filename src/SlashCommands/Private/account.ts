@@ -43,7 +43,7 @@ const Ping = {
            await message.reply({ embeds: [embed] })
         }).catch(async (err) => {
        
-            await message.reply({ content: `${langdata.captcha[err.message]}` })
+            await message.reply({ content: `${client.config.emojis.false} ${langdata.captcha[err.message]}` })
         })
 
 

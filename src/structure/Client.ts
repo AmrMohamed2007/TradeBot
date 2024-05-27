@@ -47,7 +47,7 @@ process.on("unhandledRejection", async err => {
     
 })
 
-
+client.setMaxListeners(100)
 
 // Some Functions
 

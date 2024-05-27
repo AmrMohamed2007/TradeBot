@@ -12,7 +12,7 @@ const Event = {
 
 
                 const embed = await client.CreateEmbed({
-                    description: `${langdata.error}`,
+                    description: `${client.config.emojis.false} ${langdata.error}`,
                     color: client.config.wrongcolor,
                 })
                 interaction.reply({ embeds: [embed], ephemeral: true })
@@ -20,7 +20,7 @@ const Event = {
 
 
                 const embed = await client.CreateEmbed({
-                    description: `${langdata.error}`,
+                    description: `${client.config.emojis.false} ${langdata.error}`,
                     color: client.config.wrongcolor,
                 })
                 interaction.reply({ embeds: [embed], ephemeral: true })

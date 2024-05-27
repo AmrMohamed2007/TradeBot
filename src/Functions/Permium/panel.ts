@@ -23,6 +23,7 @@ async function SetupPanel(client: Client, type: string, langdata: any, message: 
             author: dataAuthor,
             footer: dataAuthor,
             color:client.config.maincolor,
+            image:client.config.info.panel,
             thumbnail: true
         })
         const row = await client.premium.ComponentsPanel(client, type, langdata, message.guild.id)

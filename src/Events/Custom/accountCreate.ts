@@ -6,11 +6,11 @@ const Event = {
     name: "createAccount",
     once: false,
     run: async (client: Client, interaction: any, langdata: any) => {
-        const Msg = await interaction.reply({ embeds: [await client.waitembed({ color: client.config.wrongcolor, thing: "processing...", description: `${langdata.captcha.waiting}` })], ephemeral: true })
+        const Msg = await interaction.reply({ embeds: [await client.waitembed({ color: client.config.wrongcolor, thing: "processing...", description: `${client.config.emojis.loading} ${langdata.captcha.waiting}` })], ephemeral: true })
         await client.functions.create.CreateUser(client.schema, { key: "userid", value: interaction.user.id }).then(async (res) => {
             await res.save();
             const embed = await client.CreateEmbed({
-                description: `${langdata.private.createdacc}`,
+                description: `${client.config.emojis.true} ${langdata.private.createdacc}`,
                 color: client.config.maincolor,
             })
             Msg.edit({ embeds: [embed], ephemeral: true })
@@ -19,7 +19,7 @@ const Event = {
 
         }).catch(async (err) => {
             const embed = await client.CreateEmbed({
-                description: `${langdata.private.errorhaveacc}`,
+                description: `${client.config.emojis.false} ${langdata.private.errorhaveacc}`,
                 color: client.config.wrongcolor,
             })
             Msg.edit({ embeds: [embed], ephemeral: true })

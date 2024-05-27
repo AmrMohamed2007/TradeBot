@@ -16,6 +16,7 @@ export async function CreateEmbd(data) {
     if (data.fields) {
         Embed.setFields(...data.fields)
     }
+    Embed.setImage(data.image ? data.image : null)
 
     return Embed;
 

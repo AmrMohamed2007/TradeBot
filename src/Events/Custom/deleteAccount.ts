@@ -14,7 +14,7 @@ const Event = {
 
 
                 const embed = await client.CreateEmbed({
-                    description: `${langdata.error}`,
+                    description: `${client.config.emojis.false} ${langdata.error}`,
                     color: client.config.wrongcolor,
                 })
                 Msg.edit({ embeds: [embed], ephemeral: true })
@@ -22,14 +22,14 @@ const Event = {
 
 
                 const embed = await client.CreateEmbed({
-                    description: `${langdata.error}`,
+                    description: `${client.config.emojis.false} ${langdata.error}`,
                     color: client.config.wrongcolor,
                 })
                 Msg.edit({ embeds: [embed], ephemeral: true })
             } else {
                 await client.schema.deleteOne({ userid: interaction.user.id })
                 const embed = await client.CreateEmbed({
-                    description: `${langdata.private.donedelete}`,
+                    description: `${client.config.emojis.true} ${langdata.private.donedelete}`,
                     color: client.config.maincolor,
                 })
                 Msg.edit({ embeds: [embed], ephemeral: true })
@@ -46,7 +46,7 @@ const Event = {
             console.log(err);
 
             const embed = await client.CreateEmbed({
-                description: `${langdata.captcha[err.message]}`,
+                description: `${client.config.emojis.false} ${langdata.captcha[err.message]}`,
                 color: client.config.wrongcolor,
             })
             Msg.edit({ embeds: [embed], ephemeral: true })

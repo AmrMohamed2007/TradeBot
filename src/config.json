@@ -8,6 +8,7 @@
     "channeljoin":"1243167031042375712",
     "channelleft":"1243167081407582319",
     "channellog":"1243167158071197717",
+    "channelscammers":"1244177103398895636",
     "mongoose":"mongodb+srv://amr123123:amr123123@cluster0.3g9m5dv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
     "emojis":{
         "passwordver":"<:Frame69:1240761657400229959>",
@@ -20,7 +21,8 @@
         "daily":"<:Frame72:1240761352306294840>",
         "giveaway":"<:Frame61:1240761330739449916>",
         "atm":"<:Frame59:1240761326805192795>",
-        "pnggiv":"<:6556:1243622173386608801>"
+        "pnggiv":"<:6556:1243622173386608801>",
+        "warning":"<:Frame65:1240761338314096701"
     },
     "langs":[
         {"label":"English","emoji":"🇺🇸","value":"en"},
@@ -31,6 +33,10 @@
     "time":[
         {"time":"1","price":500},
         {"time":"12","price":2500}
-    ]
+    ],
+    "info":{
+        "scammers":"https://media.discordapp.net/attachments/1226648030493806725/1243267926971121819/Frame_123.png?ex=66537dfc&is=66522c7c&hm=d0ac19a4198346bc768681334d5b7ead2fa9eb8cb58f4fec3d65cc12845fee99&=&format=webp&quality=lossless&width=960&height=349",
+        "panel":"https://media.discordapp.net/attachments/1226648030493806725/1243267926463746048/Frame_119.png?ex=66537dfc&is=66522c7c&hm=8c3ed69997fd546aa2ea12d671ab61e381c794f7f82b6b01cdeb0ffb9095d6f3&=&format=webp&quality=lossless&width=960&height=349"
+    }
 
 }

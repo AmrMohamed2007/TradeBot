@@ -12,7 +12,7 @@ const Event = {
              
                 
                 const embed = await client.CreateEmbed({
-                    description: `${langdata.error}`,
+                    description: `${client.config.emojis.false} ${langdata.error}`,
                     color: client.config.wrongcolor,
                 })
                 return interaction.reply({ embeds: [embed], ephemeral: true })
@@ -20,7 +20,7 @@ const Event = {
             
                 
                 const embed = await client.CreateEmbed({
-                    description: `${langdata.error}`,
+                    description: `${client.config.emojis.false} ${langdata.error}`,
                     color: client.config.wrongcolor,
                 })
                 return interaction.reply({ embeds: [embed], ephemeral: true })
@@ -28,7 +28,7 @@ const Event = {
            
             if (!res.premium || !res.premium.subscribed) {
                 const embed = await client.CreateEmbed({
-                    description: `${langdata.premium.nopre}`,
+                    description: `${client.config.emojis.false} ${langdata.premium.nopre}`,
                     color: client.config.wrongcolor,
                 })
                 return interaction.reply({ embeds: [embed], ephemeral: true })

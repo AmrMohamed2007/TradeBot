@@ -27,7 +27,7 @@ const Event = {
 
                 } else {
                     if (`${lastpassword}` !== `${res.password}`)
-                        return await interaction.reply({ content: `${langdata.errorr.passworderror}` })
+                        return await interaction.reply({ content: `${client.config.emojis.false} ${langdata.errorr.passworderror}`,ephemeral:false })
 
                     res.password = `${newpassword}`;
                     res.save();

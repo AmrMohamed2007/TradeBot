@@ -14,7 +14,7 @@ const Event = {
             const btntype = interaction.customId.split("_")[1]
             await client.functions.get.GetUser(client.schema, { status: "one", key: "userid", value: interaction.user.id }).then(async (res) => {
                 if (btntype.includes("create")) {
-                    return await Msg.edit({ content: `${langdata.error}`,embeds:[] })
+                    return await Msg.edit({ content: `${client.config.emojis.false} ${langdata.error}`,embeds:[] })
 
                 }
 
@@ -40,7 +40,7 @@ const Event = {
                     await client.captcha.CaptchaShape(client, Msg, langdata, "edit", false, btntype)
 
                 }else {
-                    await Msg.edit({content:`${langdata.captcha.errornoacc}`})
+                    await Msg.edit({content:`${client.config.emojis.false} ${langdata.captcha.errornoacc}`})
                 }
 
 

@@ -25,9 +25,9 @@ const Event = {
                     })
                     await client.schema.deleteOne({ userid: MainPerson.userid })
                     await createdData.save();
-                    await interaction.reply({ content: `${langdata.premium.donetransferacc}`, ephemeral: true })
+                    await interaction.reply({ content: `${client.config.emojis.true} ${langdata.premium.donetransferacc}`, ephemeral: true })
                 } else {
-                    await interaction.reply({ content: `${langdata.premium.haveacctransfer}`, ephemeral: true })
+                    await interaction.reply({ content: `${client.config.emojis.false} ${langdata.premium.haveacctransfer}`, ephemeral: true })
                 }
             })
         }

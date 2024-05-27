@@ -4,6 +4,7 @@ const UserSchema = new Schema<any>({
     userid: String,
     username: String,
     coins: { type: Number, default: 0 },
+    lastcoins: { type: Number, default: 0 },
     password: String,
     blacklisted: {
         bool: Boolean,
@@ -38,8 +39,8 @@ const UserSchema = new Schema<any>({
                 user: String, amount: String,
                 product: String,
                 time: Number
-                    
-                
+
+
             }
         ]
     }

@@ -8,14 +8,14 @@ const Event = {
     name: "dailyAccount",
     once: false,
     run: async (client: Client, interaction: any, langdata: any) => {
-        const Msg = await interaction.reply({ embeds: [await client.waitembed({ color: client.config.wrongcolor, thing: "processing...", description: `${langdata.captcha.waiting}` })], ephemeral: true })
+        const Msg = await interaction.reply({ embeds: [await client.waitembed({ color: client.config.wrongcolor, thing: "processing...", description: `${client.config.emojis.loading} ${langdata.captcha.waiting}` })], ephemeral: true })
         await client.functions.get.GetUser(client.schema, { status: "one", key: "userid", value: interaction.user.id }).then(async (res) => {
             const NumberOfCoins = Math.floor(Math.random() * 10 + 1);
             if (res && res.blacklisted.bool) {
 
 
                 const embed = await client.CreateEmbed({
-                    description: `${langdata.error}`,
+                    description: `${client.config.emojis.false} ${langdata.error}`,
                     color: client.config.wrongcolor,
                 })
                 Msg.edit({ embeds: [embed], ephemeral: true })
@@ -23,7 +23,7 @@ const Event = {
 
 
                 const embed = await client.CreateEmbed({
-                    description: `${langdata.error}`,
+                    description: `${client.config.emojis.false} ${langdata.error}`,
                     color: client.config.wrongcolor,
                 })
                 Msg.edit({ embeds: [embed], ephemeral: true })
@@ -32,7 +32,7 @@ const Event = {
                 if (!daily || !daily.taken) {
                     await setDaily(res, NumberOfCoins)
                     const embed = await client.CreateEmbed({
-                        description: `${langdata.private.dailytaken}`,
+                        description: `${client.config.emojis.daily} ${langdata.private.dailytaken.replace("<amount>",NumberOfCoins)}`,
                         color: client.config.maincolor,
                     })
                     Msg.edit({ embeds: [embed], ephemeral: true })
@@ -41,7 +41,7 @@ const Event = {
                 else if (daily.taken && (Date.now() - daily.takenAt) >= ms("24h")) {
                     await setDaily(res, NumberOfCoins);
                     const embed = await client.CreateEmbed({
-                        description: `${langdata.private.dailytaken}`,
+                        description: `${client.config.emojis.true} ${langdata.private.dailytaken.replace("<amount>",NumberOfCoins)}`,
                         color: client.config.maincolor,
                     })
                     Msg.edit({ embeds: [embed], ephemeral: true })
@@ -55,7 +55,7 @@ const Event = {
                         ))
 
                     const embed = await client.CreateEmbed({
-                        description: `${langdata.private.wait.replace("[time]", `${time}`)}`,
+                        description: `${client.config.emojis.false} ${langdata.private.wait.replace("[time]", `${time}`)}`,
                         color: client.config.wrongcolor,
                     })
                     Msg.edit({ embeds: [embed], ephemeral: true })

@@ -129,7 +129,7 @@ const Language = {
             "donetransferacc": "Account transferred successfully",
             "haveacctransfer": "The person must not have an account to transfer to.",
             "modaltransfertitle": "Transfer Data",
-            "labeltransfer": "Enter the recipient's ID",
+            "labeltransfer": "Enter the User's ID",
             "nopre": "You don't have a premium subscription to do that.",
             "createbtn": "Open Account",
             "deletebtn": "Close Account",
@@ -289,7 +289,7 @@ const Language = {
             "days": "الوقت المتبقي",
             "titleinfo": "معلومات الاشتراك"
         },
-        "done": "**نجاح [emoji]**",
+        "done": "**تم بنجاح [emoji]**",
         "error": "**حدث خطأ. يرجى المحاولة مرة أخرى لاحقًا.**",
         "setupdone": "**تم العملية بنجاح**",
         "donedeleted": "**تم الحذف بنجاح [emoji]**"

@@ -5,7 +5,7 @@ const GuildCreate = {
     run: async (client: Client, guild: Guild) => {
         await client.functions.get.GetUser(client.schemas, { status: "one", key: "guildid", value: guild.id, create: true })
             .then(async (res) => {
-                if (res.blacklisted) {
+                if (res.blacklisted.bool) {
                     await guild.leave();
                 } else {
                     var AuthorData = { name: guild.name, iconURL: guild.iconURL() }

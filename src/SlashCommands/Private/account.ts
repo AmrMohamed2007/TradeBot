@@ -9,6 +9,7 @@ const Ping = {
     ],
     cooldown:10000,
     databaseActions:["blacklist","scummer"],
+    botPerms:["AddReactions","SendMessages"],
     run: async (client: Client, message: CommandInteraction,  langdata: any) => {
         const args =  message.options.get("user") ? message.options.get("user")?.user : message.user
 

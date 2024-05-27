@@ -53,6 +53,7 @@ const panel = {
         },
     ],
     cooldown: 20000,
+    botPerms:["AddReactions","SendMessages"],
     run: async (client: Client, message: any, langdata: any) => {
         const userType = client.config.owners.includes(message.user.id) ? "owner" : "user";
         const subcommand = message.options.getSubcommand();

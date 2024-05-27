@@ -65,6 +65,7 @@ const LanguageCommaned = {
 
 
     ],
+    botPerms:["AddReactions","SendMessages"],
     userPerms: ["ManageGuild"],
     cooldown: 20000,
     run: async (client: Client, interaction: any, langdata: any) => {

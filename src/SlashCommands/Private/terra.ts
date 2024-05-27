@@ -21,6 +21,7 @@ const terra = {
     ],
     cooldown:10000,
     databaseActions:["blacklist","scummer"],
+    botPerms:["AddReactions","SendMessages"],
     run: async (client: Client, message: any, langdata: any) => {
 
         const sub = message.options.getSubcommand()

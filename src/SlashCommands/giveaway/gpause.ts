@@ -9,6 +9,7 @@ const gpause = {
     { name: "message_id", "description": "Enter MessageId of giveaway", type: ApplicationCommandOptionType.String, required: true }
   ],
   userPerms:["ManageGuild"],
+  botPerms:["AddReactions","SendMessages"],
   run: async (client: Client, interaction: any, langdata: any) => {
  
 

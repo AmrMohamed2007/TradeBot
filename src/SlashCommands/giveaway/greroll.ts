@@ -9,6 +9,7 @@ const grerorll = {
 
     ],
     userPerms:["ManageGuild"],
+    botPerms:["AddReactions","SendMessages"],
     run: async (client: Client, interaction: any, langdata: any) => {
 
         const messageId = interaction.options.getString('message_id');

@@ -33,7 +33,7 @@ const gstart = {
     },
   ],
   cooldown: 3000,
-  botPerms: ["SendMessages", "AddReactions"],
+  botPerms:["AddReactions","SendMessages"],
   userPerms: ["ManageGuild"],
   run: async (client: Client, interaction: any, langdata: any) => {
 

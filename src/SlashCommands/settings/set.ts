@@ -121,7 +121,7 @@ const LanguageCommaned = {
                             res[key] = Handled[key];
                         })
                         await res.save()
-                        await interaction.reply({ content: `**${client.config.emojis.true} ${langdata.setupdone}**` })
+                        await interaction.reply({ content: `${client.config.emojis.true} ${langdata.setupdone}` })
                     }).catch(async (err) => {
                         console.log(err);
                         

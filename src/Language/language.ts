@@ -6,10 +6,25 @@ const Language = {
         cooldown: {
             message: "**You should wait <duration> to use this command**"
         },
-        help:{
-            title:"Help List",
-            description:"**Let's explore the bot commands togther !**"
+
+        "help": {
+            "placeholderques": "You can find your question here",
+            "bank": "Bank",
+            "title": "Help List",
+            "description": "**Let's explore the bot commands together!**"
         },
+        "questions": {
+            "help": [
+                { "label": "What is the idea of the bot?", "value": "q1", "emoji": "<:Frame56:1240761318886346833>" },
+                { "label": "How can I increase my currency?", "value": "q2", "emoji": "<:Frame56:1240761318886346833>" },
+                { "label": "How not to lose the credits I have?", "value": "q3", "emoji": "<:Frame56:1240761318886346833>" },
+                { "label": "Where are the servers dealing with Tera?", "value": "q4", "emoji": "<:Frame56:1240761318886346833>" },
+                { "label": "Why should I convert my credits to Tera?", "value": "q5", "emoji": "<:Frame56:1240761318886346833>" },
+                { "label": "Is the bot only a currency?", "value": "q6", "emoji": "<:Frame56:1240761318886346833>" }
+            ]
+        },
+
+
         owner: {
             message: "**This Command For Bot CREW Only**"
         },
@@ -153,7 +168,26 @@ const Language = {
         "setupdone": "**Operation completed successfully**",
         "donedeleted": "**Successfully deleted [emoji]**"
     },
-    ar:{
+    ar: {
+
+        "help": {
+            "placeholderques": "يمكنك العثور على سؤالك هنا",
+            "bank": "البنك",
+            "title": "قائمة المساعدة",
+            "description": "**لنستكشف أوامر البوت معًا!**"
+        },
+        "questions": {
+            "help": [
+                { "label": "ماهي فكرة البوت؟", "value": "q1", "emoji": "<:Frame56:1240761318886346833>" },
+                { "label": "كيف أزيد من عملتي؟", "value": "q2", "emoji": "<:Frame56:1240761318886346833>" },
+                { "label": "كيف لا أخسر الكريدت الذي معي؟", "value": "q3", "emoji": "<:Frame56:1240761318886346833>" },
+                { "label": "أين الخوادم التي تتعامل بالتيرا؟", "value": "q4", "emoji": "<:Frame56:1240761318886346833>" },
+                { "label": "لماذا أقوم بتحويل الكريدت الخاص بي إلى تيرا؟", "value": "q5", "emoji": "<:Frame56:1240761318886346833>" },
+                { "label": "هل البوت عملة فقط؟", "value": "q6", "emoji": "<:Frame56:1240761318886346833>" }
+            ]
+        },
+
+
         "ping": {
             "message": "**[ping] MS**"
         },
@@ -167,7 +201,7 @@ const Language = {
             "jailtitle": "النصابين",
             "usertlabel": "الشخص الذي تم النصب عليه",
             "amountscummer": "المبلغ الذي تم النصب به",
-            "scammeridlabel": "أدخل هوية النصاب"
+            "scammeridlabel": "أدخل مًعرف النصاب"
         },
         "language": {
             "placeholder": "يرجى اختيار اللغة",
@@ -184,7 +218,7 @@ const Language = {
             "findScummer": "البحث عن النصاب",
             "deleteScummer": "رفع حظر النصاب",
             "title": "لوحة النصابين",
-            "desc": "**نحن نحمي عملتنا من أي محاولات احتيال. عند الإبلاغ، نفحص الأدلة بدقة ونعيد العدالة لمالكها، بينما نضع النصاب على قائمة السواد.**"
+            "desc": "**نحن نحمي عملتنا من أي محاولات احتيال. عند الإبلاغ، نفحص الأدلة بدقة ونعيد العدالة لمالكها، بينما نضع النصاب على قائمة السوداء.**"
         },
         "giveaway": {
             "lengtherror": "الحد الأقصى لعدد الهدايا هو 15",
@@ -228,7 +262,7 @@ const Language = {
             "donetransfersend": "**[emoji] <@[userr]>,** استلم **[amount] من التيرا(s)** من <@[usert]>",
             "donetransfer": "تم نقل الأموال بنجاح",
             "transfer": "[emoji] تحويل بنكي جديد\nالمستلم: **[receiver]**\nالمانح: **[giver]**\nالمبلغ: **[amount]**\nالوقت: **[time]**\nالسبب\n||`[reason]`||\n**شكرًا لاستخدام خدماتنا، نأمل أن تكون راضيًا عن خدماتنا [emoji2]**",
-            "transferterrauser": "هوية المستلم",
+            "transferterrauser": "مًعرف المستلم",
             "transferterraamount": "المبلغ",
             "transferterrareason": "سبب التحويل",
             "donereport": "تم الإبلاغ",
@@ -245,13 +279,13 @@ const Language = {
             "createdAt": "تم إنشاء الحساب في",
             "thx": "شكرًا لاستخدام خدماتنا",
             "donesecured": "تم تنشيط رؤية الرصيد المؤمن",
-            "blacklisted": "تمت الإضافة لقائمة السواد",
+            "blacklisted": "تمت الإضافة لقائمة السوداء",
             "yes": "نعم",
             "no": "لا",
             "unknown": "غير معروف",
             "premium": "بريميوم",
             "scammerd": "نصاب",
-            "blacklistedmsg": "تمت إضافتك إلى قائمة السواد بسبب سلوك غير لائق",
+            "blacklistedmsg": "تمت إضافتك إلى قائمة السوداء بسبب سلوك غير لائق",
             "scummermsg": "تمت إدراجك كنصاب بسبب سلوك غير لائق",
             "displayname": "اسم العرض"
         },
@@ -298,7 +332,26 @@ const Language = {
         "setupdone": "**تم العملية بنجاح**",
         "donedeleted": "**تم الحذف بنجاح [emoji]**"
     },
-    fr:{
+    fr: {
+
+        "help": {
+            "placeholderques": "Vous pouvez trouver votre question ici",
+            "bank": "Banque",
+            "title": "Liste d'aide",
+            "description": "**Explorons ensemble les commandes du bot !**"
+        },
+        "questions": {
+            "help": [
+                { "label": "Quelle est l'idée du bot ?", "value": "q1", "emoji": "<:Frame56:1240761318886346833>" },
+                { "label": "Comment puis-je augmenter ma monnaie ?", "value": "q2", "emoji": "<:Frame56:1240761318886346833>" },
+                { "label": "Comment ne pas perdre les crédits que j'ai ?", "value": "q3", "emoji": "<:Frame56:1240761318886346833>" },
+                { "label": "Où sont les serveurs traitant avec Tera ?", "value": "q4", "emoji": "<:Frame56:1240761318886346833>" },
+                { "label": "Pourquoi devrais-je convertir mes crédits en Tera ?", "value": "q5", "emoji": "<:Frame56:1240761318886346833>" },
+                { "label": "Le bot est-il seulement une monnaie ?", "value": "q6", "emoji": "<:Frame56:1240761318886346833>" }
+            ]
+        },
+
+
         "ping": {
             "message": "**[ping] MS**"
         },
@@ -363,7 +416,7 @@ const Language = {
         },
         "permissionme": "**Je n'ai pas `<permission>` pour utiliser cette commande.** ",
         "permission": "**Vous n'avez pas `<permission>` pour utiliser cette commande. **",
-    
+
         "private": {
             "premiumBuy": "[emoji] Abonnement acheté avec succès\nUtilisateur Premium : **[buyer]**\nJours : **[days]**\nCode : **[code]**\nHeure : **[time]**\nRaison\n||`[reason]`||\n**Merci d'utiliser nos services et d'acheter nos commandes premium, nous espérons que vous êtes satisfait de nos services [emoji2]**",
             "passworddoneset": "Mot de passe défini avec succès",
@@ -444,7 +497,26 @@ const Language = {
         "setupdone": "**Opération terminée avec succès**",
         "donedeleted": "**Supprimé avec succès [emoji]**"
     },
-    tr:{
+    tr: {
+
+        "help": {
+            "placeholderques": "Sorunuzu burada bulabilirsiniz",
+            "bank": "Banka",
+            "title": "Yardım Listesi",
+            "description": "**Bot komutlarını birlikte keşfedelim!**"
+        },
+        "questions": {
+            "help": [
+                { "label": "Botun fikri nedir?", "value": "q1", "emoji": "<:Frame56:1240761318886346833>" },
+                { "label": "Paramı nasıl artırabilirim?", "value": "q2", "emoji": "<:Frame56:1240761318886346833>" },
+                { "label": "Kredi kaybetmemek için ne yapmalıyım?", "value": "q3", "emoji": "<:Frame56:1240761318886346833>" },
+                { "label": "Tera ile çalışan sunucular nerede?", "value": "q4", "emoji": "<:Frame56:1240761318886346833>" },
+                { "label": "Neden kredimi Tera'ya çevirmeliyim?", "value": "q5", "emoji": "<:Frame56:1240761318886346833>" },
+                { "label": "Bot sadece bir para birimi mi?", "value": "q6", "emoji": "<:Frame56:1240761318886346833>" }
+            ]
+        },
+
+
         "ping": {
             "message": "**[ping] MS**"
         },
@@ -509,7 +581,7 @@ const Language = {
         },
         "permissionme": "**Bu komutu kullanmak için `<permission>` izniniz yok.** ",
         "permission": "**Bu komutu kullanmak için `<permission>` izniniz yok. **",
-    
+
         "private": {
             "premiumBuy": "[emoji] Abonelik başarıyla satın alındı\nPremium Kullanıcı: **[buyer]**\nGünler: **[days]**\nKod: **[code]**\nZaman: **[time]**\nNeden\n||`[reason]`||\n**Hizmetlerimizi kullanarak ve premium komutlarımızı satın alarak bizi tercih ettiğiniz için teşekkür ederiz, umarız hizmetlerimizden memnun kalırsınız [emoji2]**",
             "passworddoneset": "Şifre başarıyla ayarlandı",
@@ -591,9 +663,9 @@ const Language = {
         "donedeleted": "**Başarıyla silindi [emoji]**"
     }
 
-    
-    
-    
+
+
+
 
 
 }

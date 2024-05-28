@@ -1,7 +1,7 @@
 import { ApplicationCommandType, Client, ApplicationCommandOptionType } from 'discord.js'
 
 const gunpause = {
-  name: "gunpause",
+  name: "gresume",
   description: "Unpause Giveaway .",
   type: ApplicationCommandType.ChatInput,
   cooldown: 1000,

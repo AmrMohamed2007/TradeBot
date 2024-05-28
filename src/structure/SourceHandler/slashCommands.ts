@@ -7,7 +7,7 @@ import { Client, Routes } from "discord.js"
 
 
 async function LoadRoutes(token: string, botid: string, slashCommands: any) {
-
+   
     const rest = new REST({ version: "9" }).setToken(token)
    
     await rest.put(Routes.applicationCommands(botid), { body: slashCommands }).catch((err) => {

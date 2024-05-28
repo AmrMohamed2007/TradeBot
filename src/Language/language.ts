@@ -15,6 +15,7 @@ const Language = {
         },
         "questions": {
             "help": [
+                { "label": "How to open account", "value": "q1", "emoji": "<:Frame56:1240761318886346833>" },
                 { "label": "What is the idea of the bot?", "value": "q1", "emoji": "<:Frame56:1240761318886346833>" },
                 { "label": "How can I increase my currency?", "value": "q2", "emoji": "<:Frame56:1240761318886346833>" },
                 { "label": "How not to lose the credits I have?", "value": "q3", "emoji": "<:Frame56:1240761318886346833>" },
@@ -23,6 +24,7 @@ const Language = {
                 { "label": "Is the bot only a currency?", "value": "q6", "emoji": "<:Frame56:1240761318886346833>" }
             ]
         },
+
 
 
         owner: {

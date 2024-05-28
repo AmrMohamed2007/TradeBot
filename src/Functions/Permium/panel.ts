@@ -9,7 +9,7 @@ async function SetupPanel(client: Client, type: string, langdata: any, message: 
             author: dataAuthor,
             footer: dataAuthor,
             color:client.config.maincolor,
-            thumbnail: true
+            thumbnail: message.guild.iconURL()
         })
         const row = await client.premium.ComponentsPanel(client, type, langdata, message.guild.id)
         await message.reply({content:`${langdata.setupdone} ${client.config.emojis.true}`,ephemeral:true})
@@ -24,7 +24,7 @@ async function SetupPanel(client: Client, type: string, langdata: any, message: 
             footer: dataAuthor,
             color:client.config.maincolor,
             image:client.config.info.panel,
-            thumbnail: true
+            thumbnail: message.guild.iconURL()
         })
         const row = await client.premium.ComponentsPanel(client, type, langdata, message.guild.id)
         await message.reply({content:`${langdata.setupdone} ${client.config.emojis.true}`,ephemeral:true})

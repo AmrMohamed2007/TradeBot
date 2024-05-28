@@ -16,7 +16,7 @@ const Event = {
                     return await interaction.reply({ content: `${client.config.emojis.false} ${langdata.panel.nopanel}`,ephemeral:true });
                 }
                 if(!interaction.member.roles.cache.has(res.panel.role)) {
-                    return await interaction.reply({ content: `${client.config.emojis.false} ${langdata.panel.nopanel}`,ephemeral:true });
+                    return await interaction.reply({ content: `**${client.config.emojis.false} You should have <@&${res.panel.role}>**`,ephemeral:true });
                 }
                 
                 

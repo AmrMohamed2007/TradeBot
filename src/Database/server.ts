@@ -8,7 +8,7 @@ const ServerSchema = new Schema<any>({
     },
     panel: {
         bool:Boolean,
-        role:String
+        role:String,
     },
     reaction: {
         type: String,

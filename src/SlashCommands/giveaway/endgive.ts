@@ -30,10 +30,11 @@ const gend = {
       })
       .catch((err) => {
         interaction
-          .reply({
-            content: `${langdata.giveaway.error.replace("[emoji]", client.config.emojis.false)}\n${err.message}`,
+        interaction
+        .reply({
+            content: `${langdata.giveaway.error.replace("[emoji]", client.config.emojis.false)}`,
             ephemeral: true,
-          })
+        })
           .catch((err) => {
             err = 0;
           });

@@ -21,7 +21,7 @@ const grerorll = {
             .catch((err) => {
                 interaction
                     .reply({
-                        content: `${langdata.giveaway.error.replace("[emoji]", client.config.emojis.false)}\n${err.message}`,
+                        content: `${langdata.giveaway.error.replace("[emoji]", client.config.emojis.false)}`,
                         ephemeral: true,
                     })
             });

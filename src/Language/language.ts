@@ -13,16 +13,32 @@ const Language = {
             "title": "Help List",
             "description": "**Let's explore the bot commands together!**"
         },
-        "questions": {
-            "help": [
-                { "label": "What is the idea of the bot?", "value": "q1", "emoji": "<:Frame56:1240761318886346833>" },
-                { "label": "How can I increase my currency?", "value": "q2", "emoji": "<:Frame56:1240761318886346833>" },
-                { "label": "How not to lose the credits I have?", "value": "q3", "emoji": "<:Frame56:1240761318886346833>" },
-                { "label": "Where are the servers dealing with Tera?", "value": "q4", "emoji": "<:Frame56:1240761318886346833>" },
-                { "label": "Why should I convert my credits to Tera?", "value": "q5", "emoji": "<:Frame56:1240761318886346833>" },
-                { "label": "Is the bot only a currency?", "value": "q6", "emoji": "<:Frame56:1240761318886346833>" }
-            ]
-        },
+        
+            "questions": {
+                "help": [
+                    { "label": "How to make an account?", "value": "q0", "emoji": "<:Frame56:1240761318886346833>" },
+                    { "label": "What is the idea of the bot?", "value": "q1", "emoji": "<:Frame56:1240761318886346833>" },
+                    { "label": "How can I increase my currency?", "value": "q2", "emoji": "<:Frame56:1240761318886346833>" },
+                    { "label": "How not to lose the credits I have?", "value": "q3", "emoji": "<:Frame56:1240761318886346833>" },
+                    { "label": "Where are the servers dealing with Tera?", "value": "q4", "emoji": "<:Frame56:1240761318886346833>" },
+                    { "label": "Why should I convert my credits to Tera?", "value": "q5", "emoji": "<:Frame56:1240761318886346833>" },
+                    { "label": "Is the bot only a currency?", "value": "q6", "emoji": "<:Frame56:1240761318886346833>" }
+                ]
+            },
+            "answers": {
+                "help": [
+                    { "label": "Go to our server or a server that contains the control panel", "value": "q0" },
+                    { "label": "Our bot is a bot with a currency and a giveaway bot known as Giveaway Bot. Our bot is distinguished by its development.\nIn short, you can convert your credits to our currency or collect and trade with others in a protected environment from scammers.\nIf you are scammed, your rights will be returned and deducted from the scammer.\nIf you want to return the credits you have, they will be returned but with a 5% deduction.", "value": "q1" },
+                    { "label": "You receive the daily and you can also trade with confidence that your rights are not lost. We will soon provide a strong system.", "value": "q2" },
+                    { "label": "You convert your credits to Tera and deal with traders. If someone scams you, we will return your rights.", "value": "q3" },
+                    { "label": "You enter our server and find a room with people supporting the currency and dealing with it.", "value": "q4" },
+                    { "label": "You go to our server, the 'buy' room, open a ticket, and convert your credits to Tera.", "value": "q5" },
+                    { "label": "No, our bot also has a giveaway feature.", "value": "q6" }
+                ]
+            },
+        
+        
+
 
 
         owner: {
@@ -125,6 +141,7 @@ const Language = {
             "displayname": "Display Name"
         },
         captcha: {
+            transferterramodal:"Transfer Terra",
             "usershouldhaveacc": "The person you're transferring to must have an account.",
             "errorcoinsenough": "You don't have enough Terra for this.",
             "passwordtitle": "Verify Password",
@@ -169,24 +186,38 @@ const Language = {
         "donedeleted": "**Successfully deleted [emoji]**"
     },
     ar: {
-
+        
+            "questions": {
+                "help": [
+                    { "label": "كيف يمكنني إنشاء حساب؟", "value": "q0", "emoji": "<:Frame56:1240761318886346833>" },
+                    { "label": "ما هي فكرة البوت؟", "value": "q1", "emoji": "<:Frame56:1240761318886346833>" },
+                    { "label": "كيف يمكنني زيادة العملة الخاصة بي؟", "value": "q2", "emoji": "<:Frame56:1240761318886346833>" },
+                    { "label": "كيف لا أفقد الرصيد الذي لدي؟", "value": "q3", "emoji": "<:Frame56:1240761318886346833>" },
+                    { "label": "أين توجد الخوادم التي تتعامل مع تيرا؟", "value": "q4", "emoji": "<:Frame56:1240761318886346833>" },
+                    { "label": "لماذا يجب أن أحول رصيدي إلى تيرا؟", "value": "q5", "emoji": "<:Frame56:1240761318886346833>" },
+                    { "label": "هل البوت مجرد عملة؟", "value": "q6", "emoji": "<:Frame56:1240761318886346833>" }
+                ]
+            },
+            "answers": {
+                "help": [
+                    { "label": "الذهاب إلى خادمنا أو خادم يحتوي على لوحة التحكم", "value": "q0" },
+                    { "label": "البوت الخاص بنا هو بوت لديه عملة وبوت مسابقات المعروف بجيف اواي. بوتنا متميز بتطويره.\nباختصار، يمكنك تحويل الرصيد الخاص بك إلى عملتنا أو جمعه والتجارة مع الآخرين في بيئة محمية من النصابين.\nإذا تم النصب عليك، سيتم إعادة حقك وخصمه من النصاب.\nوإذا أردت إعادة الرصيد الذي لديك، سيتم إعادته مع خصم 5%.", "value": "q1" },
+                    { "label": "تحصل على الدخل اليومي ويمكنك أيضًا التجارة بثقة أن حقوقك ليست ضائعة. سنوفر قريبًا نظامًا قويًا.", "value": "q2" },
+                    { "label": "تحول رصيدك إلى تيرا وتتعامل مع التجار. إذا نصب عليك أحد، سنعيد لك حقوقك.", "value": "q3" },
+                    { "label": "تدخل خادمنا وتجد غرفة فيها الناس الذين يدعمون العملة ويتعاملون بها.", "value": "q4" },
+                    { "label": "تذهب إلى خادمنا وغرفة الشراء وتفتح تذكرة وتحول رصيدك إلى تيرا.", "value": "q5" },
+                    { "label": "لا، البوت الخاص بنا يحتوي أيضًا على ميزة المسابقات.", "value": "q6" }
+                ]
+            },
+        
+        
         "help": {
             "placeholderques": "يمكنك العثور على سؤالك هنا",
             "bank": "البنك",
             "title": "قائمة المساعدة",
             "description": "**لنستكشف أوامر البوت معًا!**"
         },
-        "questions": {
-            "help": [
-                { "label": "ماهي فكرة البوت؟", "value": "q1", "emoji": "<:Frame56:1240761318886346833>" },
-                { "label": "كيف أزيد من عملتي؟", "value": "q2", "emoji": "<:Frame56:1240761318886346833>" },
-                { "label": "كيف لا أخسر الكريدت الذي معي؟", "value": "q3", "emoji": "<:Frame56:1240761318886346833>" },
-                { "label": "أين الخوادم التي تتعامل بالتيرا؟", "value": "q4", "emoji": "<:Frame56:1240761318886346833>" },
-                { "label": "لماذا أقوم بتحويل الكريدت الخاص بي إلى تيرا؟", "value": "q5", "emoji": "<:Frame56:1240761318886346833>" },
-                { "label": "هل البوت عملة فقط؟", "value": "q6", "emoji": "<:Frame56:1240761318886346833>" }
-            ]
-        },
-
+     
 
         "ping": {
             "message": "**[ping] MS**"
@@ -290,6 +321,7 @@ const Language = {
             "displayname": "اسم العرض"
         },
         "captcha": {
+            transferterramodal:"تحويل تيرا",
             "usershouldhaveacc": "يجب أن يكون للشخص الذي تقوم بالتحويل إليه حساب.",
             "errorcoinsenough": "ليس لديك ما يكفي من التيرا لهذا.",
             "passwordtitle": "تحقق من كلمة المرور",
@@ -340,16 +372,31 @@ const Language = {
             "title": "Liste d'aide",
             "description": "**Explorons ensemble les commandes du bot !**"
         },
-        "questions": {
-            "help": [
-                { "label": "Quelle est l'idée du bot ?", "value": "q1", "emoji": "<:Frame56:1240761318886346833>" },
-                { "label": "Comment puis-je augmenter ma monnaie ?", "value": "q2", "emoji": "<:Frame56:1240761318886346833>" },
-                { "label": "Comment ne pas perdre les crédits que j'ai ?", "value": "q3", "emoji": "<:Frame56:1240761318886346833>" },
-                { "label": "Où sont les serveurs traitant avec Tera ?", "value": "q4", "emoji": "<:Frame56:1240761318886346833>" },
-                { "label": "Pourquoi devrais-je convertir mes crédits en Tera ?", "value": "q5", "emoji": "<:Frame56:1240761318886346833>" },
-                { "label": "Le bot est-il seulement une monnaie ?", "value": "q6", "emoji": "<:Frame56:1240761318886346833>" }
-            ]
-        },
+        
+            "questions": {
+                "help": [
+                    { "label": "Comment créer un compte ?", "value": "q0", "emoji": "<:Frame56:1240761318886346833>" },
+                    { "label": "Quelle est l'idée du bot ?", "value": "q1", "emoji": "<:Frame56:1240761318886346833>" },
+                    { "label": "Comment puis-je augmenter ma monnaie ?", "value": "q2", "emoji": "<:Frame56:1240761318886346833>" },
+                    { "label": "Comment ne pas perdre les crédits que j'ai ?", "value": "q3", "emoji": "<:Frame56:1240761318886346833>" },
+                    { "label": "Où sont les serveurs qui traitent avec Tera ?", "value": "q4", "emoji": "<:Frame56:1240761318886346833>" },
+                    { "label": "Pourquoi devrais-je convertir mes crédits en Tera ?", "value": "q5", "emoji": "<:Frame56:1240761318886346833>" },
+                    { "label": "Le bot est-il uniquement une monnaie ?", "value": "q6", "emoji": "<:Frame56:1240761318886346833>" }
+                ]
+            },
+            "answers": {
+                "help": [
+                    { "label": "Allez sur notre serveur ou un serveur contenant le tableau de bord", "value": "q0" },
+                    { "label": "Notre bot est un bot avec une monnaie et un bot de concours connu sous le nom de Giveaway Bot. Notre bot se distingue par son développement.\nEn bref, vous pouvez convertir vos crédits en notre monnaie ou collecter et échanger avec d'autres dans un environnement protégé des escrocs.\nSi vous êtes escroqué, vos droits seront retournés et déduits de l'escroc.\nSi vous souhaitez retourner les crédits que vous avez, ils seront retournés mais avec une déduction de 5%.", "value": "q1" },
+                    { "label": "Vous recevez le quotidien et vous pouvez également échanger en toute confiance que vos droits ne sont pas perdus. Nous fournirons bientôt un système fort.", "value": "q2" },
+                    { "label": "Vous convertissez vos crédits en Tera et traitez avec les commerçants. Si quelqu'un vous escroque, nous vous retournerons vos droits.", "value": "q3" },
+                    { "label": "Vous entrez sur notre serveur et trouvez une salle avec des personnes soutenant la monnaie et traitant avec elle.", "value": "q4" },
+                    { "label": "Vous allez sur notre serveur, la salle 'buy', ouvrez un ticket et convertissez vos crédits en Tera.", "value": "q5" },
+                    { "label": "Non, notre bot a également une fonctionnalité de concours.", "value": "q6" }
+                ]
+            },
+        
+        
 
 
         "ping": {
@@ -455,6 +502,7 @@ const Language = {
             "displayname": "Nom d'affichage"
         },
         "captcha": {
+            transferterramodal:"Transfert Terra",
             "usershouldhaveacc": "La personne à qui vous transférez doit avoir un compte.",
             "errorcoinsenough": "Vous n'avez pas assez de Terra pour cela.",
             "passwordtitle": "Vérifiez le mot de passe",
@@ -505,16 +553,31 @@ const Language = {
             "title": "Yardım Listesi",
             "description": "**Bot komutlarını birlikte keşfedelim!**"
         },
-        "questions": {
-            "help": [
-                { "label": "Botun fikri nedir?", "value": "q1", "emoji": "<:Frame56:1240761318886346833>" },
-                { "label": "Paramı nasıl artırabilirim?", "value": "q2", "emoji": "<:Frame56:1240761318886346833>" },
-                { "label": "Kredi kaybetmemek için ne yapmalıyım?", "value": "q3", "emoji": "<:Frame56:1240761318886346833>" },
-                { "label": "Tera ile çalışan sunucular nerede?", "value": "q4", "emoji": "<:Frame56:1240761318886346833>" },
-                { "label": "Neden kredimi Tera'ya çevirmeliyim?", "value": "q5", "emoji": "<:Frame56:1240761318886346833>" },
-                { "label": "Bot sadece bir para birimi mi?", "value": "q6", "emoji": "<:Frame56:1240761318886346833>" }
-            ]
-        },
+        
+            "questions": {
+                "help": [
+                    { "label": "Hesap nasıl oluşturulur?", "value": "q0", "emoji": "<:Frame56:1240761318886346833>" },
+                    { "label": "Botun fikri nedir?", "value": "q1", "emoji": "<:Frame56:1240761318886346833>" },
+                    { "label": "Para birimimi nasıl artırabilirim?", "value": "q2", "emoji": "<:Frame56:1240761318886346833>" },
+                    { "label": "Sahip olduğum kredileri nasıl kaybetmem?", "value": "q3", "emoji": "<:Frame56:1240761318886346833>" },
+                    { "label": "Tera ile işlem yapan sunucular nerede?", "value": "q4", "emoji": "<:Frame56:1240761318886346833>" },
+                    { "label": "Neden kredilerimi Tera'ya dönüştürmeliyim?", "value": "q5", "emoji": "<:Frame56:1240761318886346833>" },
+                    { "label": "Bot sadece bir para birimi mi?", "value": "q6", "emoji": "<:Frame56:1240761318886346833>" }
+                ]
+            },
+            "answers": {
+                "help": [
+                    { "label": "Sunucumuza veya kontrol panelini içeren bir sunucuya gidin", "value": "q0" },
+                    { "label": "Botumuz, bir para birimi ve çekiliş botu olarak bilinen Giveaway Bot'a sahip bir bottur. Botumuz gelişimi ile öne çıkıyor.\nKısacası, kredilerinizi para birimimize dönüştürebilir veya başkalarıyla korumalı bir ortamda toplayıp ticaret yapabilirsiniz.\nDolandırılırsanız, haklarınız iade edilecek ve dolandırıcıdan kesilecektir.\nElinizdeki kredileri geri almak isterseniz, %5 kesinti ile geri verilecektir.", "value": "q1" },
+                    { "label": "Günlüğü alıyorsunuz ve haklarınızın kaybolmayacağına güvenerek ticaret yapabilirsiniz. Yakında güçlü bir sistem sağlayacağız.", "value": "q2" },
+                    { "label": "Kredilerinizi Tera'ya dönüştürür ve tüccarlarla işlem yaparsınız. Biri sizi dolandırırsa, haklarınızı geri vereceğiz.", "value": "q3" },
+                    { "label": "Sunucumuza girip, para birimini destekleyen ve işlem yapan insanları bulabileceğiniz bir odaya giriyorsunuz.", "value": "q4" },
+                    { "label": "Sunucumuza, 'buy' odasına gidin, bir bilet açın ve kredilerinizi Tera'ya dönüştürün.", "value": "q5" },
+                    { "label": "Hayır, botumuzda ayrıca çekiliş özelliği de bulunmaktadır.", "value": "q6" }
+                ]
+            },
+        
+        
 
 
         "ping": {
@@ -620,6 +683,7 @@ const Language = {
             "displayname": "Görüntülenen Ad"
         },
         "captcha": {
+             transferterramodal:"Transfer Terra",
             "usershouldhaveacc": "Transfer ettiğiniz kişinin bir hesabı olmalı.",
             "errorcoinsenough": "Bunun için yeterli Terra'nız yok.",
             "passwordtitle": "Şifreyi Doğrula",

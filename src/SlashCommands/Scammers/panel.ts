@@ -51,9 +51,41 @@ const panel = {
             ]
 
         },
+        {
+            name: "roleadd",
+            description: "add role to add scammer ",
+            type: ApplicationCommandOptionType.Subcommand,
+            options: [
+                {
+                    name: "role",
+                    description: "id for role",
+                    required: true,
+                    type: ApplicationCommandOptionType.Role
+                }
+
+
+            ]
+
+        },
+        {
+            name: "server",
+            description: "add server to manage scammer ",
+            type: ApplicationCommandOptionType.Subcommand,
+            options: [
+                {
+                    name: "serverid",
+                    description: "serverid for scammer",
+                    required: true,
+                    type: ApplicationCommandOptionType.String
+                }
+
+
+            ]
+
+        },
     ],
     cooldown: 20000,
-    botPerms:["AddReactions","SendMessages"],
+    botPerms: ["AddReactions", "SendMessages"],
     run: async (client: Client, message: any, langdata: any) => {
         const userType = client.config.owners.includes(message.user.id) ? "owner" : "user";
         const subcommand = message.options.getSubcommand();
@@ -105,6 +137,8 @@ const panel = {
                 }
             }
             if (subcommand == "add") {
+                if (!client.config.owners.includes(message.user.id))
+                return await message.reply({ content: `${langdata.owner.message}`, ephemeral: true })
                 const ScammerId = message.options.getString("scammerid")
                 const usred = message.options.getString("user")
                 const count = message.options.getNumber("count")
@@ -123,6 +157,38 @@ const panel = {
                 await res.save()
                 await ress.save()
                 await message.reply({ content: `${langdata.scammer.doneAdded}`, ephemeral: true })
+            }
+            if (subcommand == "roleadd") {
+              
+                const role = message.options.getString("roleadd").id
+                const res = await client.functions.get.GetUser(client.schemas, { key: "guildid", value: message.guildId, status: "one" });
+
+                if (message.user.id !== message.guild.ownerId)
+                    return await message.reply({ content: `${client.config.emojis.false} ${langdata.error}`, ephemeral: true });
+
+                if (!res.panel && !res.panel.bool) {
+                    return await message.reply({ content: `${client.config.emojis.false} ${langdata.panel.nopanel}`, ephemeral: true });
+                }
+                res.panel.role = role
+                await res.save();
+                await message.reply({ content: `${client.config.emojis.true} ${langdata.scammer.doneAdded}`, ephemeral: true })
+            }
+
+            if (subcommand == "server") {
+                if (!client.config.owners.includes(message.user.id))
+                return await message.reply({ content: `${langdata.owner.message}`, ephemeral: true })
+                const role = message.options.getString("server")
+                const res = await client.functions.get.GetUser(client.schemas, { key: "guildid", value: role, status: "one", create: true });
+
+                if (message.user.id !== message.guild.ownerId)
+                    return await message.reply({ content: `${client.config.emojis.false} ${langdata.error}`, ephemeral: true });
+
+                if (res.panel && res.panel.bool) {
+                    return await message.reply({ content: `${client.config.emojis.false} ${langdata.error}`, ephemeral: true });
+                }
+                res.panel.bool = true
+                await res.save();
+                await message.reply({ content: `${client.config.emojis.true} ${langdata.scammer.doneAdded}`, ephemeral: true })
             }
         }
     }

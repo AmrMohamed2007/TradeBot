@@ -8,11 +8,7 @@ async function ComponentsPanel(client:Client,type:string,langdata:any,guildid:st
     .setLabel(`${langdata.premium.createbtn}`)
     .setEmoji(`${client.config.emojis.true}`)
 
-    const deleteAccount = new ButtonBuilder()
-    .setCustomId(`acc_deleteAccount_${type}`)
-    .setStyle(ButtonStyle.Secondary)
-    .setLabel(`${langdata.premium.deletebtn}`)
-    .setEmoji(`${client.config.emojis.false}`)
+ 
 
     const dailyAccount = new ButtonBuilder()
     .setCustomId(`acc_dailyAccount_${type}`)
@@ -33,11 +29,11 @@ async function ComponentsPanel(client:Client,type:string,langdata:any,guildid:st
     .setEmoji(`${client.config.emojis.report}`)
 
     function arrayRotate(arr) {
-        arr =  [deleteAccount,ReportAccount,transferAccount,dailyAccount,createAccount]
+        arr =  [ReportAccount,transferAccount,dailyAccount,createAccount]
         return arr
     }
   
-    var ArrayOfButtons = [createAccount,dailyAccount,transferAccount,ReportAccount,deleteAccount]
+    var ArrayOfButtons = [createAccount,dailyAccount,transferAccount,ReportAccount]
     
       
     if(type == "user") {

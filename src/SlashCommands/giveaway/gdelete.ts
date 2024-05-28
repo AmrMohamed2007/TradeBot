@@ -21,10 +21,10 @@ const gdelete = {
       })
       .catch((err) => {
         interaction
-          .reply({
-            content: `${langdata.giveaway.error.replace("[emoji]", client.config.emojis.false)}\n${err.message}`,
+        .reply({
+            content: `${langdata.giveaway.error.replace("[emoji]", client.config.emojis.false)}`,
             ephemeral: true,
-          })
+        })
       });
 
   }

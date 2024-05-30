@@ -20,12 +20,12 @@ const Event = {
          
                
                 if (type == "server" && res.blacklisted) {
-                    res.blacklisted = true
+                    res.blacklisted.bool = true
                     await res.save();
                     await Leave(client, interaction, 1)
                 }
                 if (type == "server" && !res.blacklisted) {
-                    res.blacklisted = true
+                    res.blacklisted.bool = true
                     await res.save();
                     await Leave(client, interaction, 1)
                 }
@@ -35,7 +35,7 @@ const Event = {
 
                 }
                 if (type == "user" && !res.blacklisted) {
-                    res.blacklisted = true
+                    res.blacklisted.bool = true
                     await res.save();
                     await Edit(interaction)
                 }

@@ -17,7 +17,17 @@ const terra = {
             name: "transfer",
             description: "transfer terra to user",
             type: ApplicationCommandOptionType.Subcommand,
-        }
+        },
+        {
+            name: "give",
+            description: "give terra to user",
+            type: ApplicationCommandOptionType.Subcommand,
+        },
+        {
+            name: "remove",
+            description: "transfer terra to user",
+            type: ApplicationCommandOptionType.Subcommand,
+        },
     ],
     cooldown: 10000,
     databaseActions: ["blacklist", "scummer"],

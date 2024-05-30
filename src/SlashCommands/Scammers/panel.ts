@@ -160,7 +160,7 @@ const panel = {
             }
             if (subcommand == "roleadd") {
               
-                const role = message.options.getString("roleadd").id
+                const role = message.options.getRole("roleadd").id
                 const res = await client.functions.get.GetUser(client.schemas, { key: "guildid", value: message.guildId, status: "one" });
 
                 if (message.user.id !== message.guild.ownerId)

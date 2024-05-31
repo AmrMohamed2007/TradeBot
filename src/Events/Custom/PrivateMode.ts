@@ -29,6 +29,9 @@ const Event = {
             await res.save();
             await interaction.reply({content:`${client.config.emojis.true} ${toggleStatus ? langdata.privatemode.enabled : langdata.privatemode.disabled}`})
             }
+        }).catch(async (err) => {
+            await interaction.reply({content:`${client.config.emojis.false} ${langdata.captcha.errornoacc}`})
+
         })
 
 

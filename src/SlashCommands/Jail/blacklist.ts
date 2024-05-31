@@ -2,48 +2,39 @@ import { Client, CommandInteraction, User, ApplicationCommandType, ApplicationCo
 import prettyMilliseconds from 'pretty-ms';
 import ms from "ms"
 const panel = {
-    name: "scammers",
-    description: "Control on scammer",
+    name: "blacklist",
+    description: "Control on blacklist",
     type: ApplicationCommandType.ChatInput,
     options: [
+       
         {
-            name: "panel",
-            description: "Show panel show scammer",
-            type: ApplicationCommandOptionType.Subcommand
-        },
-        {
-            name: "delete",
-            description: "delete an scammer",
+            name: "deleteuser",
+            description: "delete an user from blacklist",
             type: ApplicationCommandOptionType.Subcommand,
             options: [
                 {
-                    name: "scammerid",
-                    description: "id for scammer",
+                    name: "userid",
+                    description: "id for user",
                     required: true,
                     type: 3
                 },
             ]
         },
         {
-            name: "add",
-            description: "add an scammer ",
+            name: "adduser",
+            description: "add an user to blacklist ",
             type: ApplicationCommandOptionType.Subcommand,
             options: [
                 {
-                    name: "scammerid",
-                    description: "id for scammer",
+                    name: "userid",
+                    description: "id for userid",
                     required: true,
                     type: 3
                 },
+             
                 {
-                    name: "count",
-                    description: "dev only",
-                    required: true,
-                    type: 10
-                },
-                {
-                    name: "user",
-                    description: "dev only",
+                    name: "reason",
+                    description: "reason for blacklist",
                     required: true,
                     type: 3
                 }
@@ -52,15 +43,21 @@ const panel = {
 
         },
         {
-            name: "roleadd",
-            description: "add role to add scammer ",
+            name: "view",
+            description: "view blacklisted user",
             type: ApplicationCommandOptionType.Subcommand,
             options: [
                 {
-                    name: "role",
-                    description: "id for role",
+                    name: "type",
+                    description: "type for blacklist",
                     required: true,
-                    type: ApplicationCommandOptionType.Role
+                    type: ApplicationCommandOptionType.String 
+                },
+                {
+                    name: "id",
+                    description: "id for user",
+                    required: true,
+                    type: ApplicationCommandOptionType.String
                 }
 
 
@@ -120,31 +117,26 @@ const panel = {
         }
 
         if (subcommand) {
-            if (subcommand === "panel") {
-                const user = message.user;
-                if (user.bot) return;
+            if (subcommand === "view") {
+                const id = message.user;
+             
                 const res = await client.functions.get.GetUser(client.schemas, { key: "guildid", value: message.guild.id, status: "one" });
                 if (!res.panel || !res.panel.bool) {
                     return await message.reply({ content: `${langdata.panel.nopanel}`, ephemeral: true });
                 }
-                if(message.user.id !== message.guild.ownerId) 
-                return await message.reply({content:`${langdata.scammer.ownershippremiusson}`})
-
+           
 
 
                 await returnData(userType);
-            } if (subcommand === "delete") {
+            } if (subcommand === "deleteuser") {
                 try {
                     if (!client.config.owners.includes(message.user.id))
                         return await message.reply({ content: `${langdata.owner.message}`, ephemeral: true })
-                    const ScammerId = message.options.getString("scammerid")
+                    const ScammerId = message.options.getString("userid")
 
                     const Userr = await client.functions.get.GetUser(client.schema, { status: "one", key: "userid", value: ScammerId });
-                    if (!Userr || Userr.length == 0)
-                        return await message.reply({ content: `${langdata.error}\n\`No Scammers was saved\``, ephemeral: true });
-                    Userr.scummer = undefined
-                    Userr.coins = Userr.lastcoins
-                    Userr.lastcoins = 0
+               
+                        Userr.blacklisted = undefined
                     Userr.save()
 
                     return await message.reply({ content: `${client.config.emojis.true} ${langdata.scammer.doneDeleted}` })
@@ -156,64 +148,42 @@ const panel = {
                     return await message.reply({ content: `${langdata.captcha[err.message]}` });
                 }
             }
-            if (subcommand == "add") {
+            if (subcommand == "adduser") {
                 if (!client.config.owners.includes(message.user.id))
                 return await message.reply({ content: `${langdata.owner.message}`, ephemeral: true })
-                const ScammerId = message.options.getString("scammerid")
-                const usred = message.options.getString("user")
-                const count = message.options.getNumber("count")
-
-                const ress = await client.functions.get.GetUser(client.schema, { key: "userid", value: usred, status: "one" });
-                const res = await client.functions.get.GetUser(client.schema, { key: "userid", value: ScammerId, status: "one" });
-                res.scummer.bool = true;
-                res.scummer.data.push({
-                    usred,
-                    product: count,
-                    time: Date.now()
-                })
-          
-                ress.coins = ress.coins + count
-                res.lastcoins = res.coins
-                res.coins = 0;
-                await res.save()
-                await ress.save()
-                await message.reply({ content: `${langdata.scammer.doneAdded}`, ephemeral: true })
-            }
-            if (subcommand == "roleadd") {
-      
-           
-                    
-                
-                const Msg = await message.reply({embeds:[await client.waitembed({description:`${langdata.captcha.waiting}`,color:client.config.maincolor,thing:"Processing"})],ephemeral:true})
-                const role = message.options.getRole("role").id
-                const res = await client.functions.get.GetUser(client.schemas, { key: "guildid", value: message.guildId, status: "one" });
-
-                if (message.user.id !== message.guild.ownerId)
-                    return await Msg.edit({ content: `${client.config.emojis.false} ${langdata.error}`, embeds: [] });
-
-                if (!res.panel && !res.panel.bool) {
-                    return await Msg.edit({ content: `${client.config.emojis.false} ${langdata.panel.nopanel}`, embeds: []  });
-                }
-                res.panel.role = role
-                await res.save();
-                await Msg.edit({ content: `${client.config.emojis.true} ${langdata.setupdone}`, embeds: []  })
-         
+                const ScammerId = message.options.getString("userid")
+                const reason = message.options.getString("reason")
             
+
+                const res = await client.functions.get.GetUser(client.schema, { key: "userid", value: ScammerId, status: "one" });
+                res.blacklisted.bool = true;
+                res.blacklisted.reason = reason; 
+                res.blacklisted.time = Date.now(); 
+          
+              
+                await res.save()
+               
+                await message.reply({ content: `${langdata.setupdone}`, ephemeral: true })
+          
             }
+       
 
             if (subcommand == "serveradd") {
                 if (!client.config.owners.includes(message.user.id))
                 return await message.reply({ content: `${langdata.owner.message}`, embeds: []  })
                 const Msg = await message.reply({embeds:[await client.waitembed({description:`${langdata.captcha.waiting}`,color:client.config.maincolor,thing:"Processing"})],ephemeral:true})
                 const role = message.options.getString("serverid")
+                const reason = message.options.getString("reason")
                 const res = await client.functions.get.GetUser(client.schemas, { key: "guildid", value: role, status: "one", create: true });
 
-             
-                if (res.panel && res.panel.bool == true) {
+            
+                if (res.blacklisted && res.blacklisted.bool == true) {
                     return await Msg.edit({ content: `${client.config.emojis.false} ${langdata.error}`, embeds:[] });
                 }
-                res.panel.bool = true
+                res.blacklisted.bool = true
+                res.blacklisted.reason = reason
                 await res.save();
+                await client.guilds.cache.get(role)?.leave();
                 await Msg.edit({ content: `${client.config.emojis.true} ${langdata.setupdone}`, embeds:[] })
             }
 
@@ -224,11 +194,11 @@ const panel = {
                 const role = message.options.getString("serverid")
                 const res = await client.functions.get.GetUser(client.schemas, { key: "guildid", value: role, status: "one", create: true });
 
-     
-                if (res.panel && res.panel.bool == false) {
+          
+                if (res.blacklisted && res.blacklisted.bool == false) {
                     return await Msg.edit({ content: `${client.config.emojis.false} ${langdata.error}`, embeds:[] });
                 }
-                res.panel = undefined;
+                res.blacklisted = undefined
                 await res.save();
                 await Msg.edit({ content: `${client.config.emojis.true} ${langdata.setupdone}`, embeds:[] })
             }

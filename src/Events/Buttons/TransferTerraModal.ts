@@ -21,7 +21,7 @@ const Event = {
                     const MainUser = res.find((m) => m.userid == interaction.user.id)
                     const SecondUser = res.find((m) => m.userid == user)
 
-
+               
                     if (!MainUser.password)
                         return await Msg.edit({ embeds: [], content: `${client.config.emojis.false} ${langdata.captcha.nopassword}` });
 
@@ -35,6 +35,15 @@ const Event = {
 
                     if (MainUser.coins < TransferdAmount)
                         return await Msg.edit({ embeds: [], content: `${client.config.emojis.false} ${langdata.captcha.errorcoinsenough}` })
+
+                        if(MainUser.blacklisted.bool || MainUser.scummer.bool) {
+                            return await Msg.edit({content:`${client.config.emojis.false} ${langdata.private.blacklistedmsg}`})
+                        }
+
+                        if(SecondUser.blacklisted.bool || SecondUser.scummer.bool) {
+                            return await Msg.edit({content:`${client.config.emojis.false} ${langdata.error}`})
+                        }
+
 
 
                     const data = {

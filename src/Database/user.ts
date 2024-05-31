@@ -20,6 +20,7 @@ const UserSchema = new Schema<any>({
     createdAt: { type: Number, default: Date.now() },
     log: [
         {
+            amount:Number,
             msg: String,
             userr: String,
             usert: String,

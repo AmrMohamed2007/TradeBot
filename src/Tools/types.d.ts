@@ -42,7 +42,8 @@ declare module "discord.js" {
     WrongEmbed:function
     schemaGiveaway:any
     giveawaysManager:any,
-    giveawayPackge:any
+    giveawayPackge:any,
+    loge:any
   }
 
 }

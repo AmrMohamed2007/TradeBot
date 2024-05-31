@@ -68,8 +68,24 @@ const panel = {
 
         },
         {
-            name: "server",
+            name: "serveradd",
             description: "add server to manage scammer ",
+            type: ApplicationCommandOptionType.Subcommand,
+            options: [
+                {
+                    name: "serverid",
+                    description: "serverid for scammer",
+                    required: true,
+                    type: ApplicationCommandOptionType.String
+                }
+
+
+            ]
+
+        },
+        {
+            name: "serverremove",
+            description: "remove server from servers scammer ",
             type: ApplicationCommandOptionType.Subcommand,
             options: [
                 {
@@ -111,6 +127,10 @@ const panel = {
                 if (!res.panel || !res.panel.bool) {
                     return await message.reply({ content: `${langdata.panel.nopanel}`, ephemeral: true });
                 }
+                if(message.user.id !== message.guild.ownerId) 
+                return await message.reply({content:`${langdata.scammer.ownershippremiusson}`})
+
+
 
                 await returnData(userType);
             } if (subcommand === "delete") {
@@ -151,6 +171,7 @@ const panel = {
                     product: count,
                     time: Date.now()
                 })
+          
                 ress.coins = ress.coins + count
                 res.lastcoins = res.coins
                 res.coins = 0;
@@ -159,36 +180,61 @@ const panel = {
                 await message.reply({ content: `${langdata.scammer.doneAdded}`, ephemeral: true })
             }
             if (subcommand == "roleadd") {
-              
-                const role = message.options.getRole("roleadd").id
+      
+           
+                    
+                
+                const Msg = await message.reply({embeds:[await client.waitembed({description:`${langdata.captcha.waiting}`,color:client.config.maincolor,thing:"Processing"})],ephemeral:true})
+                const role = message.options.getRole("role").id
                 const res = await client.functions.get.GetUser(client.schemas, { key: "guildid", value: message.guildId, status: "one" });
 
                 if (message.user.id !== message.guild.ownerId)
-                    return await message.reply({ content: `${client.config.emojis.false} ${langdata.error}`, ephemeral: true });
+                    return await Msg.edit({ content: `${client.config.emojis.false} ${langdata.error}`, embeds: [] });
 
                 if (!res.panel && !res.panel.bool) {
-                    return await message.reply({ content: `${client.config.emojis.false} ${langdata.panel.nopanel}`, ephemeral: true });
+                    return await Msg.edit({ content: `${client.config.emojis.false} ${langdata.panel.nopanel}`, embeds: []  });
                 }
                 res.panel.role = role
                 await res.save();
-                await message.reply({ content: `${client.config.emojis.true} ${langdata.scammer.doneAdded}`, ephemeral: true })
+                await Msg.edit({ content: `${client.config.emojis.true} ${langdata.setupdone}`, embeds: []  })
+         
+            
             }
 
-            if (subcommand == "server") {
+            if (subcommand == "serveradd") {
                 if (!client.config.owners.includes(message.user.id))
-                return await message.reply({ content: `${langdata.owner.message}`, ephemeral: true })
+                return await message.reply({ content: `${langdata.owner.message}`, embeds: []  })
+                const Msg = await message.reply({embeds:[await client.waitembed({description:`${langdata.captcha.waiting}`,color:client.config.maincolor,thing:"Processing"})],ephemeral:true})
                 const role = message.options.getString("server")
                 const res = await client.functions.get.GetUser(client.schemas, { key: "guildid", value: role, status: "one", create: true });
 
                 if (message.user.id !== message.guild.ownerId)
-                    return await message.reply({ content: `${client.config.emojis.false} ${langdata.error}`, ephemeral: true });
+                    return await Msg.edit({ content: `${client.config.emojis.false} ${langdata.error}`, embeds:[] });
 
-                if (res.panel && res.panel.bool) {
-                    return await message.reply({ content: `${client.config.emojis.false} ${langdata.error}`, ephemeral: true });
+                if (res.panel && res.panel.bool == true) {
+                    return await Msg.edit({ content: `${client.config.emojis.false} ${langdata.error}`, embeds:[] });
                 }
                 res.panel.bool = true
                 await res.save();
-                await message.reply({ content: `${client.config.emojis.true} ${langdata.scammer.doneAdded}`, ephemeral: true })
+                await Msg.edit({ content: `${client.config.emojis.true} ${langdata.setupdone}`, embeds:[] })
+            }
+
+            if (subcommand == "serverremove") {
+                if (!client.config.owners.includes(message.user.id))
+                return await message.reply({ content: `${langdata.owner.message}`, embeds: []  })
+                const Msg = await message.reply({embeds:[await client.waitembed({description:`${langdata.captcha.waiting}`,color:client.config.maincolor,thing:"Processing"})],ephemeral:true})
+                const role = message.options.getString("server")
+                const res = await client.functions.get.GetUser(client.schemas, { key: "guildid", value: role, status: "one", create: true });
+
+                if (message.user.id !== message.guild.ownerId)
+                    return await Msg.edit({ content: `${client.config.emojis.false} ${langdata.error}`, embeds:[] });
+
+                if (res.panel && res.panel.bool == false) {
+                    return await Msg.edit({ content: `${client.config.emojis.false} ${langdata.error}`, embeds:[] });
+                }
+                res.panel.bool = false
+                await res.save();
+                await Msg.edit({ content: `${client.config.emojis.true} ${langdata.setupdone}`, embeds:[] })
             }
         }
     }

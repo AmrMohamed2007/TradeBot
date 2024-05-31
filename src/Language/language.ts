@@ -66,6 +66,7 @@ const Language = {
             findScummer: "Find Scammer",
             deleteScummer: "Unban Scammer",
             title: "Scammers Panel",
+            ownershippremiusson:"You Should be ownership for server", //
             desc: "**We protect our currency from any scam attempts. When reported, we thoroughly examine the evidence and restore justice to its owner, while blacklisting the scammer.**"
         },
 

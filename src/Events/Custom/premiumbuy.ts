@@ -11,7 +11,15 @@ const Event = {
             if (res.blacklisted.bool || res.scummer.bool)
                 return await Msg.edit({ content: `${langdata.error}`, embeds: [] })
 
-            if (res.premium.bool)
+                if(res && !res.verified) {
+                    const embed = await client.CreateEmbed({
+                        description: `${client.config.emojis.false} ${langdata.captcha.errornoacc}`,
+                        color: client.config.wrongcolor,
+                    })
+                    return await interaction.reply({ embeds: [embed], ephemeral: true })
+                }
+         
+                if (res.premium.bool)
                 await Msg.edit({ content: `${langdata.premium.errorhavepremium}`, embeds: [] })
             const Data = { name: interaction.guild.name, iconURL: interaction.guild.iconURL() }
             const embed = await client.CreateEmbed({

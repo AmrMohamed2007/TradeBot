@@ -191,6 +191,11 @@ discord.js@^14.15.2:
     tslib "2.6.2"
     undici "6.13.0"
 
+email@^0.2.6:
+  version "0.2.6"
+  resolved "https://registry.npmjs.org/email/-/email-0.2.6.tgz"
+  integrity sha512-SwN1r7cKBBOQMHHM5Poc81Ke/1cWVoSRdE5ineUXIHi+o2zZ68Q/9dsZf+CQuROb1IZIPmWSR2AKhyYZr+Jw9Q==
+
 emoji-regex@^10.3.0:
   version "10.3.0"
   resolved "https://registry.npmjs.org/emoji-regex/-/emoji-regex-10.3.0.tgz"
@@ -292,6 +297,11 @@ ms@2.1.2:
   version "2.1.2"
   resolved "https://registry.npmjs.org/ms/-/ms-2.1.2.tgz"
   integrity sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==
+
+nodemailer@^6.9.13:
+  version "6.9.13"
+  resolved "https://registry.npmjs.org/nodemailer/-/nodemailer-6.9.13.tgz"
+  integrity sha512-7o38Yogx6krdoBf3jCAqnIN4oSQFx+fMa0I7dK1D+me9kBxx12D+/33wSb+fhOCtIxvYJ+4x4IMEhmhCKfAiOA==
 
 parse-ms@^2.1.0:
   version "2.1.0"

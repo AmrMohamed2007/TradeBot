@@ -1,6 +1,7 @@
 import { Client } from "discord.js"
 import * as fs from "fs"
 import chalk from "chalk"
+import nodemailer from 'nodemailer'
 
 async function LoadFunctions(client: Client) {
     // Load Database Functions
@@ -49,8 +50,8 @@ async function LoadFunctions(client: Client) {
         })
     })
 
-       // Load Components Functions
-       fs.readdirSync(`${process.cwd()}/dist/Functions/Public/`).forEach((file) => {
+    // Load Components Functions
+    fs.readdirSync(`${process.cwd()}/dist/Functions/Public/`).forEach((file) => {
         const Functionm = require(`${process.cwd()}/dist/Functions/Public/${file}`)?.default;
         const data = Object.entries(Functionm)
         data.forEach((md) => {
@@ -61,7 +62,7 @@ async function LoadFunctions(client: Client) {
     console.log(chalk.green("[BOT] All Components Functions Loaded"));
 
     // Load Log
-    const {Log} = require("../Tools/Log")
+    const { Log } = require("../Tools/Log")
     client.Log = new Log(client)
     // Channels Load
     await client.Log.setLog("channeljoin")
@@ -70,8 +71,18 @@ async function LoadFunctions(client: Client) {
     await client.Log.setLog("channelreport")
 
     console.log(chalk.green("[BOT] All Log Functions Loaded"));
-   
-  
-  client.giveawaysManager = await client.functions.manger(client)
+
+
+    client.giveawaysManager = await client.functions.manger(client)
+
+
+    client.transporter = await nodemailer.createTransport({
+        "host": "discordtradebot@gmail.com",
+        service: 'gmail',
+        auth: {
+            user: "discordtradebot@gmail.com", 
+            pass: "mduievsnduakocia" 
+        }
+    });
 }
 export { LoadFunctions };

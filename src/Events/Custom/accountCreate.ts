@@ -5,7 +5,7 @@ import { Client } from "discord.js"
 const Event = {
     name: "createAccount",
     once: false,
-    run: async (client: Client, interaction: ButtonInteraction, langdata: any) => {
+    run: async (client: Client, interaction: ModalSubmitInteraction, langdata: any) => {
         const Msg = await interaction.reply({ embeds: [await client.waitembed({ color: client.config.wrongcolor, thing: "processing...", description: `${client.config.emojis.loading} ${langdata.captcha.waiting}` })], ephemeral: true })
 
         const accountCreationDate = interaction.user.createdAt;

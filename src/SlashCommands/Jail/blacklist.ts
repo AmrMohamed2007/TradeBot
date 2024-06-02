@@ -74,7 +74,13 @@ const panel = {
                     description: "serverid for scammer",
                     required: true,
                     type: ApplicationCommandOptionType.String
-                }
+                },
+                {
+                    name: "reason",
+                    description: "serverid for scammer",
+                    required: true,
+                    type: ApplicationCommandOptionType.String
+                },
 
 
             ]
@@ -100,34 +106,56 @@ const panel = {
     cooldown: 20000,
     botPerms: ["AddReactions", "SendMessages"],
     run: async (client: Client, message: any, langdata: any) => {
-        const userType = client.config.owners.includes(message.user.id) ? "owner" : "user";
+        const type = message.options.getString("type");
+     
         const subcommand = message.options.getSubcommand();
 
-        async function returnData(type: string) {
-            if (type === "owner") {
-                await client.premium.SetupScummer(client, type, langdata, message);
-            } else {
-                try {
+        async function returnData(type: string,id: string) {
+       
+        if(type == "server") {
+            const res = await client.functions.get.GetUser(client.schemas, { key: "guildid", value: id, status: "one",create:true });
+            const embed = await client.CreateEmbed({
+                title:"Server Info",
+                color:client.config.maincolor,
+                fields:[
+                    {name:`ServerId`,value:res.guildid,inline:false},
+                    {name:"Blacklisted",value:res.blacklisted.bool ? "Yes" : "No",inline:false},
+                    {name:"Reason",value:res.blacklisted.reason ? res.blacklisted.reason : "No Reason"}
+                ]
+            })
 
-                    await client.premium.SetupScummer(client, type, langdata, message);
-                } catch (err) {
-                    return await message.reply({ content: `${langdata.captcha[err.message]}` });
-                }
+            await message.reply({embeds:[embed],ephemeral:true})
+        }
+        if(type == "user") {
+            const res = await client.functions.get.GetUser(client.schema, { key: "userid", value: id, status: "one",create:true });
+            if(res) {
+                const embed = await client.CreateEmbed({
+                    title:"User Info",
+                    color:client.config.maincolor,
+                    fields:[
+                        {name:`Userid`,value:res.userid,inline:false},
+                        {name:"Blacklisted",value:res.blacklisted.bool ? "Yes" : "No",inline:false},
+                        {name:"Reason",value:res.blacklisted.reason ? res.blacklisted.reason : "No Reason",inline:false}
+                    ]
+                })
+    
+                await message.reply({embeds:[embed],ephemeral:true})
+            }else {
+                return await message.reply({content:`**${client.config.emojis.false} ${langdata.error}**`,ephemeral:true})
             }
+          
+        }
         }
 
         if (subcommand) {
             if (subcommand === "view") {
-                const id = message.user;
+              
              
-                const res = await client.functions.get.GetUser(client.schemas, { key: "guildid", value: message.guild.id, status: "one" });
-                if (!res.panel || !res.panel.bool) {
-                    return await message.reply({ content: `${langdata.panel.nopanel}`, ephemeral: true });
-                }
            
+           
+                const id = message.options.getString("id");
 
-
-                await returnData(userType);
+                await returnData(type,id);
             } if (subcommand === "deleteuser") {
                 try {
                     if (!client.config.owners.includes(message.user.id))
@@ -139,7 +167,7 @@ const panel = {
                         Userr.blacklisted = undefined
                     Userr.save()
 
-                    return await message.reply({ content: `${client.config.emojis.true} ${langdata.scammer.doneDeleted}` })
+                    return await message.reply({ content: `${client.config.emojis.true} ${langdata.setupdone}` })
 
 
                 } catch (err) {
@@ -163,7 +191,7 @@ const panel = {
               
                 await res.save()
                
-                await message.reply({ content: `${langdata.setupdone}`, ephemeral: true })
+                await message.reply({ content: `${client.config.emojis.true} ${langdata.setupdone}`, ephemeral: true })
           
             }
        

@@ -6,6 +6,9 @@ const UserSchema = new Schema<any>({
     coins: { type: Number, default: 0 },
     lastcoins: { type: Number, default: 0 },
     password: String,
+    email:String,
+    firstname:String,
+    lastname:String,
     blacklisted: {
         bool: Boolean,
         reason: String,
@@ -44,7 +47,10 @@ const UserSchema = new Schema<any>({
 
             }
         ]
-    }
+    },
+    sendAt:Number,
+    code:Number,
+    verified:{type:Boolean,default:false}
 })
 
 

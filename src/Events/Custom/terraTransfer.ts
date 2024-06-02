@@ -7,6 +7,15 @@ const Event = {
     once: false,
     run: async (client: Client, interaction: any, langdata: any) => {
         await client.functions.get.GetUser(client.schema, { status: "one", key: "userid", value: interaction.user.id }).then(async (res) => {
+            if(res && !res.verified) {
+                const embed = await client.CreateEmbed({
+                    description: `${client.config.emojis.false} ${langdata.captcha.errornoacc}`,
+                    color: client.config.wrongcolor,
+                })
+                return await interaction.reply({ embeds: [embed], ephemeral: true })
+            }
+          
+          
             if (!res.password)
                 return await interaction.reply({ content: `${client.config.emojis.false} ${langdata.captcha.nopassword}`, ephemeral: true })
 

@@ -6,7 +6,7 @@ const TypesLog = {
     BlacklistAccount: 4,
     DailyAccount:5,
     CardCreate:6,
-    
+    CreateNewAccount:7,
 
 
 }

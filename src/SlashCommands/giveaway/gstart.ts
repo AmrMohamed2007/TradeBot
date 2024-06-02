@@ -47,10 +47,10 @@ const gstart = {
       return interaction.reply({content:`${langdata.giveaway.counterror}`,ephemeral:true});
 
     if(!ms(duration))
-      return interaction.reply({content:`${langdata.giveaway.counterror}`,ephemeral:true});
+      return interaction.reply({content:`${langdata.giveaway.timeerror}`,ephemeral:true});
 
-    if(ms(duration) > ms("14d"))
-      return interaction.reply({content:`${langdata.giveaway.counterror}`,ephemeral:true});
+    if(ms(duration) > ms("20d"))
+      return interaction.reply({content:`${langdata.error}\n\`\`\`Max Days : 20\`\`\``,ephemeral:true});
 
 
     const ss = client.giveawaysManager.giveaways.filter((g) => g.guildId === interaction.guild.id);

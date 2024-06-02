@@ -43,7 +43,8 @@ declare module "discord.js" {
     schemaGiveaway:any
     giveawaysManager:any,
     giveawayPackge:any,
-    loge:any
+    loge:any,
+    transporter;any
   }
 
 }

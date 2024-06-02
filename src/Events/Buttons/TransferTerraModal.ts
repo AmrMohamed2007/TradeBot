@@ -12,6 +12,11 @@ const Event = {
             const user = interaction.fields.getTextInputValue("transfertmodaluser")
             const amount = interaction.fields.getTextInputValue("transfertmodalamount")
             const reason = interaction.fields.getTextInputValue("transfertmodalreason")
+
+
+            if(user == interaction.user.id)
+            return await interaction.reply({content:`${client.config.emojis.false} ${langdata.error}`,ephemeral:true})
+
             const Msg = await interaction.reply({ embeds: [await client.waitembed({ color: client.config.wrongcolor, description: `> ${client.config.emojis.loading} ${langdata.captcha.waiting}`, thing: "Processing.." })], ephemeral: true })
 
             await client.functions.get.GetUser(client.schema, { status: "all" }).then(async (res) => {

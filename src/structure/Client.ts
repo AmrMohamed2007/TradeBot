@@ -56,24 +56,5 @@ client.shapes = AllShapes;
 client.public = {};
 client.functions.manger = GiveawayStartup;
 
-// Export Client
-client.on("interactionCreate" , async Interaction => {
-   
-  
-  
-    const botid = "1080816952789962802"
-    const bankid = "283091738069958660"
-    const collector =  Interaction.channel.createMessageCollector({
-        filter: m => m.author.id == botid && m.content.includes(Interaction.user.id) && m.content.includes(bankid) && m.content.startsWith(`**<:Frame50:1240761305313574992> <@${bankid}>`),
-        max: 1,
-        time: 1000 * 60 * 2,
-        
-    });
 
-    collector.on("collect" , async col => {
-        await collector.stop("Stopped")
-        await col.channel.send({content:"so sexy"})
-    })
-    
-})
 export default client;

@@ -36,6 +36,24 @@ const terra = {
                 { name: "count", description: "count of terra", required: true, type: 10 }
             ]
         },
+        {
+            name: "givecard",
+            description: "give terra to user",
+            type: ApplicationCommandOptionType.Subcommand,
+            options: [
+                { name: "userid", description: "type userid", required: true, type: 3 },
+                { name: "count", description: "count of terra", required: true, type: 10 }
+            ]
+        },
+        {
+            name: "removecard",
+            description: "remove terra from user",
+            type: ApplicationCommandOptionType.Subcommand,
+            options: [
+                { name: "userid", description: "type userid", required: true, type: 3 },
+                { name: "count", description: "count of terra", required: true, type: 10 }
+            ]
+        },
     ],
     cooldown: 10000,
     databaseActions: ["blacklist", "scummer"],

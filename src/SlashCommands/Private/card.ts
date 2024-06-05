@@ -32,50 +32,12 @@ const terra = {
                 key: "userid",
                 value: interaction.user.id
             }).then(async (res) => {
+                if (!res.card.cardNumber)
+                    return await interaction.followUp({ content: langdata.card.errorhavecard, ephemeral: true })
 
 
-                const imagePath = `${process.cwd()}/dist/assets/images/card.png`;
-                const fontPath = `${process.cwd()}/dist/assets/fonts/digital.ttf`;
-                const fontPathP = `${process.cwd()}/dist/assets/fonts/Poppins.ttf`;
-                const fontPathPp = `${process.cwd()}/dist/assets/fonts/poppins.extralight.ttf`;
-                const { createCanvas, loadImage } = canvass
-                const canvas = createCanvas(349.92, 221.51)
-                const ctx = canvas.getContext('2d')
-                const number = `123456789123`.split("").join(" ")
-                const cvv = `123`
-                const firstname = "Sex"
-                const lastname = " sad"
-
-                const image = await loadImage(imagePath);
-
-                await ctx.drawImage(image, 0, 0, canvas.width, canvas.height)
-                await registerFont(fontPath, { family: 'digital' });
-                await registerFont(fontPathPp, { family: 'Poppins' });
-
-                // Card Number
-                ctx.font = `25px digital`
-                ctx.fillStyle = `#ffffff`
-                ctx.fillText(number, 55, 99)
-                // End
-
-                // Holder Name
-                ctx.font = `12px Poppins`
-                ctx.fillStyle = `#ffffff`
-                ctx.fillText(firstname.concat(lastname), 30, 180, 90)
-                // End
-
-                // CVV
-                ctx.font = `12px digital`
-                ctx.fillStyle = `#ffffff`
-                ctx.fillText(cvv, 295, 185)
-
-
-
-                await ctx.save();
-
-                const Card = new AttachmentBuilder(canvas.toBuffer(), { "name": "Card" })
-
-                await interaction.followUp({ content: undefined, files: [Card.attachment] })
+                
+                await interaction.followUp({ content: undefined, files: [(await LoadCard({first:res.firstname,last:res.lastname,CardNumber:res.card.cardNumber,cvv:res.card.cvv})).attachment] })
             }).catch(async (err) => {
                 console.log(err);
                 await interaction.followUp({ content: langdata.captcha.errornoacc })
@@ -127,7 +89,7 @@ async function LoadCard(data) {
     const canvas = createCanvas(349.92, 221.51)
     const ctx = canvas.getContext('2d')
     const number = data.CardNumber.split("").join(" ")
-    const cvv = data.cvv
+    const cvv = data.cvv.split("").join(" ")
     const firstname = data.first
     const lastname = ` ${data.last}`
 

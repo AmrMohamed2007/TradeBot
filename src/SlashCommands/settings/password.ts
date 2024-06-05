@@ -10,6 +10,12 @@ const LanguageCommaned = {
             type:ApplicationCommandOptionType.Subcommand,
             options:[]
         },
+        {
+            name:"forget",
+            description:"reset your password from here",
+            type:ApplicationCommandOptionType.Subcommand,
+            options:[]
+        },
      
      
   

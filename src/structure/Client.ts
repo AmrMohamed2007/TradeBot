@@ -47,7 +47,7 @@ process.on("unhandledRejection", async err => {
 
 client.setMaxListeners(100)
 
-// Some Functions
+// Some Functionsdate({"content":"asd"})
 
 client.functions = {};
 client.captcha = {};
@@ -56,5 +56,22 @@ client.shapes = AllShapes;
 client.public = {};
 client.functions.manger = GiveawayStartup;
 
-
+client.on("interactionCreate", async interaction  => {
+    if(interaction.isButton()) {
+   
+    
+      interaction.channel.awaitMessages({
+        "errors":["time"],
+        "max":1,
+       filter: u=> u.author.id == interaction.user.id
+    }).then(async (s) => {
+        await interaction.channel.send({content:"a7a"})
+    }).catch((err) => {
+        console.log(err);
+        
+    })
+        
+    } 
+  
+})
 export default client;

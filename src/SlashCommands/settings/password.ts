@@ -12,7 +12,7 @@ const LanguageCommaned = {
         },
         {
             name:"forget",
-            description:"reset your password from here",
+            description:"reset password for your account",
             type:ApplicationCommandOptionType.Subcommand,
             options:[]
         },
@@ -28,6 +28,9 @@ const LanguageCommaned = {
      
         if(subcommand == "set") {
             client.emit("passwordUpdate",interaction,langdata)
+        }
+        if(subcommand == "forget") {
+            client.emit("passwordforget",interaction,langdata)
         }
       
 

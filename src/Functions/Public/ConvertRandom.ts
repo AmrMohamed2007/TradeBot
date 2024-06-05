@@ -1,6 +1,6 @@
 
-async function generateRandomCode() {
-    const length = 12; 
+async function generateRandomCode(num) {
+    const length = num ? num : 12; 
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let result = '';
     const charactersLength = characters.length;

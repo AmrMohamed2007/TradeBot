@@ -17,6 +17,22 @@ const LanguageCommaned = {
             type: ApplicationCommandOptionType.Subcommand,
             options: []
         },
+        {
+            name: "user",
+            description: "delete user data",
+            type: ApplicationCommandOptionType.Subcommand,
+            options: [
+                {name:"id",description:"id",required:true,type:3}
+            ]
+        },
+        {
+            name: "server",
+            description: "delete server data",
+            type: ApplicationCommandOptionType.Subcommand,
+            options: [
+                {name:"id",description:"id",required:true,type:3}
+            ]
+        },
 
 
 
@@ -35,18 +51,34 @@ const LanguageCommaned = {
 
             
                 
-               
-                    client.functions.get.GetUser(client.schemas, { key: "guildid", value: interaction.guild.id, status: "one" }).then(async (res) => {
-                        if(!res[subcommand]) 
-                            return await interaction.reply({content:`**${client.config.emojis.false} ${langdata.errorr.deleteno}**`,ephemeral:true})
-                        res[subcommand] = undefined
-                        await res.save()
-                        await interaction.reply({ content: `**${langdata.donedeleted.replace("[emoji]",client.config.emojis.true)}**` })
-                    }).catch(async (err) => {
-                        console.log(err);
-                        
-                        await interaction.reply({ content: `${client.config.emojis.false} ${langdata.error}`, ephemeral: true })
-                    })
+               if(subcommand !== "user" || subcommand !== "server") {
+                client.functions.get.GetUser(client.schemas, { key: "guildid", value: interaction.guild.id, status: "one" }).then(async (res) => {
+                    if(!res[subcommand]) 
+                        return await interaction.reply({content:`**${client.config.emojis.false} ${langdata.errorr.deleteno}**`,ephemeral:true})
+                    res[subcommand] = undefined
+                    await res.save()
+                    await interaction.reply({ content: `**${langdata.donedeleted.replace("[emoji]",client.config.emojis.true)}**` })
+                }).catch(async (err) => {
+                    console.log(err);
+                    
+                    await interaction.reply({ content: `${client.config.emojis.false} ${langdata.error}`, ephemeral: true })
+                })
+               }else {
+                if(!client.config.owners.includes(interaction.user.id))
+                return;
+                if(subcommand == "user") {
+                    const userid = interaction.options.getString("id")
+                    await client.functions.delete.Delete(client.schema,{key:"userid",value:userid})
+                    await interaction.reply({content:"**Done !**"})
+                }
+                if(subcommand == "server") {
+                    const userid = interaction.options.getString("id")
+                    await client.functions.delete.Delete(client.schemas,{key:"guildid",value:userid})
+                    await interaction.reply({content:"**Done !**"})
+                }
+               }
+            
+                    
                 
               
 

@@ -20,6 +20,11 @@ const UserSchema = new Schema<any>({
         days: Number,
         code: String
     },
+    card:{
+        cardNumber:String,
+        cvv:String,
+        coins:Number
+    },
     createdAt: { type: Number, default: Date.now() },
     log: [
         {

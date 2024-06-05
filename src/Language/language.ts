@@ -1,5 +1,10 @@
 const Language = {
     en: {
+    card:{
+        errorhavecard:"You have already card",
+        erronohavecard:"You Dont have card to do this",
+        donecard:"Done Created Your Card"
+    },
         components: {
             createAccount: {
                 verified:"Your Account already verified",
@@ -160,6 +165,7 @@ const Language = {
             "displayname": "Display Name"
         },
         captcha: {
+            
             transferterramodal: "Transfer Terra",
             "usershouldhaveacc": "The person you're transferring to must have an account.",
             "errorcoinsenough": "You don't have enough Terra for this.",
@@ -205,7 +211,11 @@ const Language = {
         "donedeleted": "**Successfully deleted [emoji]**"
     },
     ar: {
-
+        card: {
+            errorhavecard: "لديك بطاقة بالفعل",
+            erronohavecard: "ليس لديك بطاقة للقيام بذلك",
+            donecard: "تم إنشاء بطاقتك"
+        },
       
             components: {
                 createAccount: {
@@ -406,6 +416,11 @@ const Language = {
         "donedeleted": "**تم الحذف بنجاح [emoji]**"
     },
     fr: {
+        card: {
+            errorhavecard: "Vous avez déjà une carte",
+            erronohavecard: "Vous n'avez pas de carte pour faire cela",
+            donecard: "Carte créée avec succès"
+        },
         components: {
             createAccount: {
                 verified: "Votre compte est déjà vérifié",
@@ -609,7 +624,11 @@ const Language = {
         "donedeleted": "**Supprimé avec succès [emoji]**"
     },
     tr: {
-
+        card: {
+            errorhavecard: "Zaten bir kartınız var",
+            erronohavecard: "Bunu yapmak için kartınız yok",
+            donecard: "Kartınız oluşturuldu"
+        },
       
             components: {
                 createAccount: {

@@ -27,6 +27,23 @@ async function SendMail(client:Client,to:string,langdata:any,res,data,type) {
             resolve("done")
         })
     }
+    if(type == client.types.ForgetPasswrod) {
+        const code = await client.public.generateRandomGmail(16);
+        const mailOptions = {
+            from: "discordtradebot@gmail.com",
+            to, 
+            subject: 'New Password Generator !',
+            text: `The password has been successfully reset.\n The New password is : ${code}`
+        };
+ 
+        res.password = code;
+        await res.save();
+        client.transporter.sendMail(mailOptions, async (error, info) => {
+            if(error) 
+            return reject(error.message);
+            resolve("done")
+        })
+    }
 
     })  
 }

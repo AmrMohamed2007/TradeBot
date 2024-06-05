@@ -44,7 +44,8 @@ declare module "discord.js" {
     giveawaysManager:any,
     giveawayPackge:any,
     loge:any,
-    transporter;any
+    transporter:any,
+    cupon:Model
   }
 
 }

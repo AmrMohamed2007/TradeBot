@@ -90,15 +90,17 @@ class Log {
         const user = guild.members.cache.get(data.user);
         const code = data.code;
         const days = data.days;
-        const Time = Math.floor(Date.now() / 1000);
+        const Time = Math.floor(data.createdAt / 1000);
+
 
 
         await user?.send?.({
-            content: `${langdata.private.premiumbuy
+            content: `${langdata.private.premiumBuy
                 .replace("[buyer]", `${user}`)
-                .replace("[days]", `${days}`)
+                .replace("[days]", `<t:${days / 1000}:R>`)
                 .replace("[time]", `<t:${Time}:R>`)
                 .replace("[code]", `${code}`)
+                .replace("[reason]", `${data.reason}`)
                 .replace("[emoji]", `${this.client.config.emojis.premium}`)
                 .replace("[emoji2]", `${this.client.config.emojis.giveaway}`)
                 }`
@@ -112,8 +114,9 @@ class Log {
                 title: "New Premium Subscription",
                 description: `Code : **${code}**\n
 User: ${user}\n
-Days: ${days} Day\n
-Time: <t:${Time}:R>`
+Days: ${days}\n
+Time: <t:${Time}:R>`,
+color:client.config.maincolor
             })]
         })
 

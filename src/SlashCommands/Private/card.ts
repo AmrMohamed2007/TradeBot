@@ -21,12 +21,30 @@ const terra = {
             type: ApplicationCommandOptionType.Subcommand,
 
         },
+        {
+            name: "balance",
+            description: "show your card balance",
+            type: ApplicationCommandOptionType.Subcommand,
+
+        },
+        {
+            name: "transfer",
+            description: "transfer from card to another card",
+            type: ApplicationCommandOptionType.Subcommand,
+            options:[
+                {name:"yourcvv",description:"type your cvv",required:true,type:10},
+                {name:"cardnumber",description:"type card number for seller",required:true,type:10},
+                {name:"amount",description:"amount of transfer",required:true,type:10}
+
+            ],
+
+        },
     ],
     run: async (client: Client, interaction: any, langdata: any) => {
         const Subcommand = interaction.options.getSubcommand()
 
         if (Subcommand == "view") {
-            await interaction.deferReply()
+            await interaction.deferReply({ephemeral:true})
             client.functions.get.GetUser(client.schema, {
                 status: "one",
                 key: "userid",
@@ -44,10 +62,72 @@ const terra = {
             })
 
         }
+        if(Subcommand == "balance") {
+            await interaction.deferReply({ephemeral:true})
+            client.functions.get.GetUser(client.schema, {
+                status: "one",
+                key: "userid",
+                value: interaction.user.id
+            }).then(async (res) => {
+                if (!res.card.cardNumber)
+                    return await interaction.followUp({ content: langdata.card.errorhavecard, ephemeral: true })
+
+
+                
+                await interaction.followUp({ content: `**${langdata.card.balance.replace("[amount]",`${res.card.coins}`).replace("[emoji]",client.config.emojis.atm)}**` })
+            }).catch(async (err) => {
+                console.log(err);
+                await interaction.followUp({ content: langdata.captcha.errornoacc })
+            })
+        }
+
+        if(Subcommand == "transfer") {
+            const count = interaction.options.getNumber("amount").toFixed(1)
+
+            const yourcvv = interaction.options.getNumber("yourcvv")
+            const cardnumber = interaction.options.getNumber("cardnumber")
+            await interaction.deferReply({ephemeral:true})
+            client.functions.get.GetUser(client.schema, {
+                status: "one",
+                key: "userid",
+                value: interaction.user.id
+            }).then(async (res) => {
+                if (!res.card.cardNumber)
+                    return await interaction.followUp({ content: langdata.card.errorhavecard, ephemeral: true })
+                if(res.card.cvv !== yourcvv) {
+                    return await interaction.followUp({content:`${client.config.emojis.false} ${langdata.card.cvverror}`})
+                } 
+                if(res.card.coins < count) {
+                    return await interaction.followUp({content:`${client.config.emojis.false} ${langdata.card.coinserror}`})
+                }
+               
+               
+                    client.functions.get.GetUser(client.schema,{
+                    status:"one",
+                    key:"card.cardNumber",
+                    value:cardnumber
+                }).then(async (ress) => {
+                    ress.card.coins = ress.card.coins + count;
+                    res.card.coins = res.card.coins - count
+                    await ress.save();
+                    await res.save();
+                    await interaction.followUp({content:`${client.config.emojis.true} ${langdata.card.donetransfer}`})
+                }).catch(async (err) => {
+                    await interaction.followUp({content:`**${client.config.emojis.false} ${langdata.card.userdoesnthave} or ${langdata.card.cardnumbererror}**`})
+                })
+
+
+                
+            }).catch(async (err) => {
+                console.log(err);
+                await interaction.followUp({ content: langdata.captcha.errornoacc })
+            })
+        }
         if (Subcommand == "create") {
+            await interaction.deferReply({ephemeral:true})
             const CardNumber = interaction.user.id.slice(0, 4).concat(await client.public.generateRandomGmail(8));
             const cvv = await client.public.generateRandomGmail(3);
-            console.log(CardNumber, cvv);
+     
 
             client.functions.get.GetUser(client.schema, {
                 status: "one",
@@ -55,20 +135,21 @@ const terra = {
                 value: interaction.user.id
             }).then(async (res) => {
                 if (!res.verified || !res)
-                    return await interaction.reply({ content: langdata.captcha.errornoacc, ephemeral: true })
+                    return await interaction.followUp({ content: langdata.captcha.errornoacc, ephemeral: true })
 
                 if (res.card.cardNumber)
-                    return await interaction.reply({ content: langdata.card.errorhavecard, ephemeral: true })
+                    return await interaction.followUp({ content: langdata.card.errorhavecard, ephemeral: true })
 
                 res.card.cardNumber = CardNumber;
                 res.card.cvv = cvv;
+                res.card.coins = 0;
                 await res.save();
-                await interaction.reply({ content:langdata.card.donecard,files:[(await LoadCard({first:res.firstname,last:res.lastname,CardNumber,cvv})).attachment]})
+                await interaction.followUp({ content:langdata.card.donecard,files:[(await LoadCard({first:res.firstname,last:res.lastname,CardNumber,cvv})).attachment]})
 
             }).catch(async (err) => {
                 console.log(err);
                 
-                return await interaction.reply({ content: langdata.captcha.errornoacc, ephemeral: true })
+                return await interaction.followUp({ content: langdata.captcha.errornoacc, ephemeral: true })
 
             })
 

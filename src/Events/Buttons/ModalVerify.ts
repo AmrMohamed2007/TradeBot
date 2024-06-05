@@ -17,10 +17,10 @@ const Event = {
                     if(res.verified) {
                         await Msg.edit({embeds:[],content:`${client.config.emojis.false} ${langdata.components.createAccount.verified}`})
                     }else {
-                        if(String(res.code) == String(code)) {
+                        if( String(res.code) == String(code)) {
                             if((Date.now() - res.sendAt) >= ms('1h')) {
                                 await client.schema.deleteOne({userid:interaction.user.id});
-                                await interaction.message.delete()
+                               
                                 await Msg.edit({embeds:[],content:`${client.config.emojis.false} ${langdata.components.createAccount.errtime}`})
     
                             }else {
@@ -28,7 +28,6 @@ const Event = {
                                 res.code = undefined
                                 res.sendAt = undefined
                                 await res.save();
-                                await interaction.message.delete()
                                 await Msg.edit({embeds:[],content:`${client.config.emojis.true} ${langdata.private.createdacc}`})
                          
                             }
@@ -44,7 +43,8 @@ const Event = {
 
 
                 } catch (error) {
-                
+                    console.log(error);
+                    
 
                     await Msg.edit({ content: `${client.config.emojis.false} ${langdata.error}\n\`\`\`${error.message}\`\`\``, embeds: [] })
 

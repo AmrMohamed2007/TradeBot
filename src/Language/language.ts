@@ -1,6 +1,12 @@
 const Language = {
     en: {
     card:{
+        donetransfer:"Done Transfered Successfully",
+        cardnumbererror:"Card Number is inCorrect",
+        coinserror:"You don't have enough coins",
+        cvverror:"Your Cvv incorrect",
+        userdoesnthave:"User doesn't has a card",
+        balance:"Your balance is : [amount] [emoji]",
         errorhavecard:"You have already card",
         erronohavecard:"You Dont have card to do this",
         donecard:"Done Created Your Card"
@@ -79,6 +85,7 @@ const Language = {
             nopanel: "**Sorry, your server is not one of our servers **"
         },
         scammer: {
+            reason:"What is the reason",
             doneSearch: "Searched Successfully",
             doneAdded: "**Done Added Scammer Successfully**",
             doneDeleted: "**The scammer has been successfully unbanned. **",
@@ -212,6 +219,12 @@ const Language = {
     },
     ar: {
         card: {
+            donetransfer: "تم التحويل بنجاح",
+            cardnumbererror: "رقم البطاقة غير صحيح",
+            coinserror: "ليس لديك ما يكفي من العملات",
+            cvverror: "رمز التحقق (CVV) غير صحيح",
+            userdoesnthave: "المستخدم ليس لديه بطاقة",
+            balance: "رصيدك هو: [amount] [emoji]",
             errorhavecard: "لديك بطاقة بالفعل",
             erronohavecard: "ليس لديك بطاقة للقيام بذلك",
             donecard: "تم إنشاء بطاقتك"
@@ -291,16 +304,17 @@ const Language = {
         "panel": {
             "nopanel": "**عذرًا، خادمك ليس واحدًا من خوادمنا**"
         },
-        "scammer": {
-            "ownershippremiusson": "يجب أن تكون مالك الخادم",
-            "doneSearch": "تم البحث بنجاح",
-            "doneAdded": "**تمت إضافة النصاب بنجاح**",
-            "doneDeleted": "**تم إلغاء حظر النصاب بنجاح**",
-            "labeladd": "الإبلاغ عن النصاب",
-            "findScummer": "البحث عن النصاب",
-            "deleteScummer": "رفع حظر النصاب",
-            "title": "لوحة النصابين",
-            "desc": "**نحن نحمي عملتنا من أي محاولات احتيال. عند الإبلاغ، نفحص الأدلة بدقة ونعيد العدالة لمالكها، بينما نضع النصاب على قائمة السوداء.**"
+        scammer: {
+            reason: "ما هو السبب",
+            doneSearch: "تم البحث بنجاح",
+            doneAdded: "**تمت إضافة المحتال بنجاح**",
+            doneDeleted: "**تم إلغاء حظر المحتال بنجاح**",
+            labeladd: "الإبلاغ عن محتال",
+            findScummer: "البحث عن محتال",
+            deleteScummer: "إلغاء حظر محتال",
+            title: "لوحة المحتالين",
+            ownershippremiusson: "يجب أن تكون مالك السيرفر",
+            desc: "**نحن نحمي عملتنا من أي محاولات احتيال. عند الإبلاغ، نفحص الأدلة بدقة ونعيد العدالة إلى صاحبها، بينما نضيف المحتال إلى القائمة السوداء.**"
         },
         "giveaway": {
             "lengtherror": "الحد الأقصى لعدد الهدايا هو 15",
@@ -417,6 +431,12 @@ const Language = {
     },
     fr: {
         card: {
+            donetransfer: "Transfert réussi",
+            cardnumbererror: "Le numéro de carte est incorrect",
+            coinserror: "Vous n'avez pas assez de pièces",
+            cvverror: "Votre CVV est incorrect",
+            userdoesnthave: "L'utilisateur n'a pas de carte",
+            balance: "Votre solde est : [amount] [emoji]",
             errorhavecard: "Vous avez déjà une carte",
             erronohavecard: "Vous n'avez pas de carte pour faire cela",
             donecard: "Carte créée avec succès"
@@ -498,16 +518,17 @@ const Language = {
         "panel": {
             "nopanel": "**Désolé, votre serveur ne fait pas partie de nos serveurs **"
         },
-        "scammer": {
-            "ownershippremiusson": "Vous devez être le propriétaire du serveur",
-            "doneSearch": "Recherche effectuée avec succès",
-            "doneAdded": "**Escroc ajouté avec succès**",
-            "doneDeleted": "**L'escroc a été supprimé avec succès. **",
-            "labeladd": "Signaler un escroc",
-            "findScummer": "Trouver l'escroc",
-            "deleteScummer": "Débannir l'escroc",
-            "title": "Panneau des escrocs",
-            "desc": "**Nous protégeons notre monnaie contre toute tentative d'escroquerie. Lorsqu'un signalement est effectué, nous examinons attentivement les preuves et rendons justice à son propriétaire, tout en mettant l'escroc sur liste noire.**"
+        scammer: {
+            reason: "Quelle est la raison",
+            doneSearch: "Recherche réussie",
+            doneAdded: "**Escroc ajouté avec succès**",
+            doneDeleted: "**L'escroc a été débanni avec succès**",
+            labeladd: "Signaler un escroc",
+            findScummer: "Trouver un escroc",
+            deleteScummer: "Débannir un escroc",
+            title: "Panneau des escrocs",
+            ownershippremiusson: "Vous devez être propriétaire du serveur",
+            desc: "**Nous protégeons notre monnaie contre toute tentative d'escroquerie. Lorsqu'un signalement est fait, nous examinons les preuves minutieusement et rétablissons la justice à son propriétaire, tout en ajoutant l'escroc à la liste noire.**"
         },
         "giveaway": {
             "lengtherror": "Le nombre maximum de cadeaux est de 15",
@@ -625,6 +646,12 @@ const Language = {
     },
     tr: {
         card: {
+            donetransfer: "Transfer başarıyla gerçekleştirildi",
+            cardnumbererror: "Kart numarası yanlış",
+            coinserror: "Yeterli madeni paranız yok",
+            cvverror: "CVV kodunuz yanlış",
+            userdoesnthave: "Kullanıcının kartı yok",
+            balance: "Bakiyeniz: [amount] [emoji]",
             errorhavecard: "Zaten bir kartınız var",
             erronohavecard: "Bunu yapmak için kartınız yok",
             donecard: "Kartınız oluşturuldu"
@@ -706,16 +733,17 @@ const Language = {
         "panel": {
             "nopanel": "**Üzgünüz, sunucunuz bizim sunucularımızdan biri değil**"
         },
-        "scammer": {
-            "ownershippremiusson": "Sunucunun sahibi olmalısınız",
-            "doneSearch": "Başarıyla Arandı",
-            "doneAdded": "**Başarıyla Dolandırıcı Eklendi**",
-            "doneDeleted": "**Dolandırıcı başarıyla Engellendi. **",
-            "labeladd": "Dolandırıcıyı Bildir",
-            "findScummer": "Dolandırıcıyı Bul",
-            "deleteScummer": "Dolandırıcı Engelle",
-            "title": "Dolandırıcılar Paneli",
-            "desc": "**Para birimimizi her türlü dolandırıcılık girişiminden koruyoruz. Bildirildiğinde, delilleri dikkatlice inceliyoruz ve sahibine adalete geri dönüyoruz, dolandırıcıyı ise kara listeye alıyoruz.**"
+        scammer: {
+            reason: "Sebep nedir",
+            doneSearch: "Başarıyla arandı",
+            doneAdded: "**Sahtekar başarıyla eklendi**",
+            doneDeleted: "**Sahtekarın yasağı başarıyla kaldırıldı**",
+            labeladd: "Sahtekarı Bildir",
+            findScummer: "Sahtekarı Bul",
+            deleteScummer: "Sahtekarın Yasağını Kaldır",
+            title: "Sahtekarlar Paneli",
+            ownershippremiusson: "Sunucu sahibi olmalısınız",
+            desc: "**Para birimimizi her türlü dolandırıcılık girişiminden koruyoruz. Bildirildiğinde, kanıtları titizlikle inceleriz ve adaleti sahibine geri veririz, sahtekarı kara listeye ekleriz.**"
         },
         "giveaway": {
             "lengtherror": "Maksimum çekiliş sayısı 15'tir",

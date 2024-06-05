@@ -13,7 +13,7 @@ async function SendMail(client:Client,to:string,langdata:any,res,data,type) {
         res.email = data.gmail
         res.firstname = data.firstname
         res.lastname = data.lastname
-        await res.save();
+     
        const mailOptions = {
             from: "discordtradebot@gmail.com",
             to, 
@@ -24,9 +24,11 @@ async function SendMail(client:Client,to:string,langdata:any,res,data,type) {
         client.transporter.sendMail(mailOptions, async (error, info) => {
             if(error) 
             return reject(error.message);
+            await res.save();
             resolve("done")
         })
     }
+    
     if(type == client.types.ForgetPasswrod) {
         const code = await client.public.generateRandomGmail(16);
         const mailOptions = {

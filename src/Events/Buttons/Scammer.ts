@@ -12,21 +12,26 @@ const Event = {
             const scammerid = interaction.fields.getTextInputValue("scammerid")
             const amount = interaction.fields.getTextInputValue("amountscummer")
             const usert = interaction.fields.getTextInputValue("usertid")
+            const reason = interaction.fields.getTextInputValue("reason")
+
             const ch = client.channels.cache.get(client.config.channelscammers) as TextChannel
+           
             if (!ch) return;
 
-            await ch.send({ content: `New Scammer\nScammerId : **${scammerid}**\nAmount : **${amount}**\nUserT : **${usert}**\nFrom : **${interaction.guild.name}**` })
+            await ch.send({ content: `New Scammer\nScammerId : **${scammerid}**\nAmount : **${amount}**\nUserT : **${usert}**\n${reason}\nFrom : **${interaction.guild.name}**` })
+            await ch.send({content:`\`\`\`-\`\`\``})
             await interaction.reply({content:`${langdata.done.replace("[emoji]",client.config.emojis.true)}`,ephemeral:true})
 
         }
 
         if (interaction.customId == "deletescammermodal") {
             const scammerid = interaction.fields.getTextInputValue("scammerid")
+            const reason = interaction.fields.getTextInputValue("reason")
 
             const ch = client.channels.cache.get(client.config.channelscammers) as TextChannel
             if (!ch) return;
-            await ch.send({ content: `Delete Scammer\nScammerId : **${scammerid}**\nFrom : **${interaction.guild.name}**` })
-
+            await ch.send({ content: `Delete Scammer\nScammerId : **${scammerid}**\nReason: ${reason}\nFrom : **${interaction.guild.name}**` })
+            await ch.send({content:`\`\`\`-\`\`\``})
             await interaction.reply({content:`${langdata.done.replace("[emoji]",client.config.emojis.true)}`,ephemeral:true})
 
 

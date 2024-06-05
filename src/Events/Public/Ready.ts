@@ -12,7 +12,20 @@ const ReadyEvent = {
             ]
 
         })
-
+     
+        // await client.schema.find({}).then((s) => {
+        //     s.forEach(async (res) => {
+        //         res.email = undefined
+        //         res.code = undefined
+        //         res.sendAt = undefined
+        //         res.verified = false
+        //         res.password = undefined
+        //         await res.save()
+        //         console.log(res.userid);
+                
+        //     })
+        // })
+      
 
 
     }

@@ -8,6 +8,8 @@ const Event = {
     run: async (client: Client, interaction: ModalSubmitInteraction) => {
         if (interaction.isModalSubmit() && interaction.customId.startsWith("createAccountmodal_")) {
             const type = interaction.customId.split("_")[1]
+       
+            
             const langdata = await client.GetLang(client, interaction.guild.id)
             const password = type == "password" ? interaction.fields.getTextInputValue("transfertmodalpassword") : null
             const lastname = interaction.fields.getTextInputValue("textlastname")
@@ -23,14 +25,14 @@ const Event = {
 
          
             await client.functions.get.GetUser(client.schema, { status: "one", key: "userid", value: interaction.user.id, create: true }).then(async (res) => {
-                try {
+             
                     if(res.verified) {
                         await Msg.edit({embeds:[],content:`${client.config.emojis.false} ${langdata.components.createAccount.verified}`})
 
                     }else {
                         
                 
-                    if (res.password) {
+                    if (type == "password") {
                         if (res.password !== password) {
                             await Msg.edit({ content: `${client.config.emojis.false} ${langdata.captcha.errorpassword}` })
                         } else {
@@ -38,7 +40,8 @@ const Event = {
                                 await Msg.edit({ content: `**${client.config.emojis.true} ${langdata.components.createAccount.senddone}**`, embeds: [], components: [await client.public.ButtonVerfy(client, langdata)] })
                             }).catch(async (err) => {
                              
-
+                             
+                                
                                 await Msg.edit({ content: `${client.config.emojis.false} ${err}`, embeds: [] })
 
                             })
@@ -50,7 +53,8 @@ const Event = {
                             await Msg.edit({ content: `**${client.config.emojis.true} ${langdata.components.createAccount.senddone}**`, embeds: [], components: [await client.public.ButtonVerfy(client, langdata)] })
                         }).catch(async (err) => {
                         
-
+                          
+                            
                             await Msg.edit({ content: `${client.config.emojis.false} ${err}`, embeds: [] })
 
                         })
@@ -60,16 +64,11 @@ const Event = {
 
                 }
 
-                } catch (error) {
-                
-                    console.log(error);
-                    
-                    await Msg.edit({ content: `${client.config.emojis.false} ${langdata.error}\n\`\`\`${error.message}\`\`\``, embeds: [] })
-
-                }
+           
             }).catch(async (err) => {
         
-
+                
+                
                 await Msg.edit({ content: `${client.config.emojis.false} ${langdata.captcha[err.message]}`, embeds: [] })
 
 

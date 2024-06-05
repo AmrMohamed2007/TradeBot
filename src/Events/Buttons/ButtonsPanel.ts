@@ -13,40 +13,54 @@ const Event = {
             const btntype = interaction.customId.split("_")[1]
             await client.functions.get.GetUser(client.schema, { status: "one", key: "userid", value: interaction.user.id }).then(async (res) => {
                 if (btntype.includes("create")) {
-                    if(res.verified) {
-                        return await interaction.reply({ content: `${client.config.emojis.false} ${langdata.components.createAccount.verified}`,embeds:[],ephemeral:true })
+                  
+                    
+                    if (res.verified) {
+                        return await interaction.reply({ content: `${client.config.emojis.false} ${langdata.components.createAccount.verified}`, embeds: [], ephemeral: true })
 
-                    }else {
-                        await interaction.showModal(await client.public.ModalCreateAcc(res.password ? "password" : "nopassword",langdata))
+                    } else {
+                        await interaction.showModal(await client.public.ModalCreateAcc(res.password ? "password" : "nopassword", langdata))
                     }
 
                 }
 
 
-                else if (btntype.includes("transfer")) {
 
+                else if (btntype.includes("report") || btntype.includes("transfer") ) {
+                    if (res.verified) {
+                        await client.captcha.CaptchaShape(client, interaction, langdata, "reply", true, btntype)
 
-                    await client.captcha.CaptchaShape(client, interaction, langdata, "reply", false, btntype)
+                    } else {
+                        return await interaction.reply({ content: `${client.config.emojis.false} ${langdata.captcha.errornoacc}`, embeds: [], ephemeral: true })
+
+                    }
 
                 }
-                else if (btntype.includes("report")) {
-                    await client.captcha.CaptchaShape(client, interaction, langdata, "reply", false, btntype)
+                else if( btntype.includes("daily")) {
+                    if (res.verified) {
+                        await client.captcha.CaptchaShape(client, interaction, langdata, "reply", false, btntype)
 
+                    } else {
+                        return await interaction.reply({ content: `${client.config.emojis.false} ${langdata.captcha.errornoacc}`, embeds: [], ephemeral: true })
+
+                    }
                 }
+
                 else {
                     await client.captcha.CaptchaShape(client, interaction, langdata, "reply", true, btntype)
 
                 }
 
             }).catch(async (err) => {
-
+                console.log(err);
+                
                 if (btntype.includes("create")) {
 
 
-                    await interaction.showModal(await client.public.ModalCreateAcc("nopassword",langdata))
+                    await interaction.showModal(await client.public.ModalCreateAcc("nopassword", langdata))
 
-                }else {
-                    await interaction.reply({content:`${client.config.emojis.false} ${langdata.captcha.errornoacc}`})
+                } else {
+                    await interaction.reply({ content: `${client.config.emojis.false} ${langdata.captcha.errornoacc}`, embeds:[]  ,ephemeral: true })
                 }
 
 

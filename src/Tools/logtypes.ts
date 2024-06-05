@@ -7,6 +7,7 @@ const TypesLog = {
     DailyAccount:5,
     CardCreate:6,
     CreateNewAccount:7,
+    ForgetPasswrod:8
 
 
 }

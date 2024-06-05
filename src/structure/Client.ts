@@ -3,9 +3,11 @@ import * as Discord from "discord.js"
 import * as config from "../config.json"
 import User from "../Database/user";
 import Server from "../Database/server";
+import Cupon from "../Database/cupon";
 import AllShapes from "../security"
 import { giveawayModel } from "../Database/giveaway"
 import { GiveawayStartup } from "./Giveaway";
+
 const client = new Discord.Client({
     intents: [
         Discord.GatewayIntentBits.Guilds,
@@ -20,7 +22,7 @@ client.config = config;
 client.prefix = config.prefix;
 
 // Collections
-
+client.cupon = Cupon;
 client.schema = User;
 client.schemas = Server;
 client.schemaGiveaway = giveawayModel;
@@ -30,6 +32,7 @@ client.events = new Discord.Collection();
 client.aliases = new Discord.Collection();
 client.cooldown = new Discord.Collection();
 client.langdata = new Discord.Collection();
+
 
 
 process.on("uncaughtException" , err => {

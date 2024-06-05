@@ -22,11 +22,19 @@ const terra = {
             name: "give",
             description: "give terra to user",
             type: ApplicationCommandOptionType.Subcommand,
+            options: [
+                { name: "userid", description: "type userid", required: true, type: 3 },
+                { name: "count", description: "count of terra", required: true, type: 10 }
+            ]
         },
         {
             name: "remove",
-            description: "transfer terra to user",
+            description: "remove terra from user",
             type: ApplicationCommandOptionType.Subcommand,
+            options: [
+                { name: "userid", description: "type userid", required: true, type: 3 },
+                { name: "count", description: "count of terra", required: true, type: 10 }
+            ]
         },
     ],
     cooldown: 10000,
@@ -54,25 +62,10 @@ const terra = {
                 })
                 message.reply({ embeds: [embed], ephemeral: true })
 
-
-
-
-
-
-
-
-
-
             }).catch(async (err) => {
-
-
-
                 await message.reply({ content: `${client.config.emojis.false} ${langdata.captcha[err.message]}` })
             })
-
-
         }
-
         if (sub == "balance") {
             if (args) {
 
@@ -85,11 +78,37 @@ const terra = {
         }
         if (sub == "transfer") {
             await client.captcha.CaptchaShape(client, message, langdata, "reply", false, "terraTransfer")
+        }
 
-
+        if (sub == "give") {
+            if(!client.config.owners.includes(message.user.id)) return;
+            const userid = message.options.getString("userid")
+            const count = message.options.getNumber("count")
+            client.functions.get.GetUser(client.schema, { status: "one", key: "userid", value: userid })
+                .then(async (res) => {
+                    res.coins = res.coins + count
+                    await res.save()
+                    await message.reply({content:`**Done Added to ${message.user.id}\nCount : ${count == 0 || count > res.coins ? "all" : count}**`,ephemeral:true})
+                }).catch((err) => {
+                    message.reply({ content: "User doesn't have a account",ephemeral:true })
+                })
 
         }
 
+        if (sub == "remove") {
+            if(!client.config.owners.includes(message.user.id)) return;
+            const userid = message.options.getString("userid")
+            const count = message.options.getNumber("count")
+            client.functions.get.GetUser(client.schema, { status: "one", key: "userid", value: userid })
+                .then(async (res) => {
+                    res.coins = res.coins < count || count == 0 ? 0 : res.coins - count;
+                    await res.save()
+                    await message.reply({content:`**Done Removed from ${message.user.id}\nCount : ${count == 0 || count > res.coins ? "all" : count}**`,ephemeral:true})
+                }).catch((err) => {
+                    message.reply({ content: "User doesn't have a account",ephemeral:true })
+                })
+
+        }
     }
 }
 

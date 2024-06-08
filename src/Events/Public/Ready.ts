@@ -7,28 +7,28 @@ const ReadyEvent = {
     run: async (client: Client) => {
         console.log(chalk.green(`[BOT] - ${client.user.username} Ready`));
         client.user.setPresence({
-            status: "online",
+            status: "idle",
             activities: [
-                { name: "/help (Beta)", type: ActivityType.Playing },
+                { name: "/help", type: ActivityType.Playing },
             ]
 
         })
      
-        await client.schema.find({}).then((s) => {
-            s.forEach(async (res) => {
-                res.email = undefined
-                res.code = undefined
-                res.sendAt = undefined
-                res.verified = true
-                if(res.premium.subscribed) {
-                    res.premium.createdAt = Date.now()
-                    res.premium.days = ms("365d")
-                }
-                await res.save()
+        // await client.schema.find({}).then((s) => {
+        //     s.forEach(async (res) => {
+        //         res.email = undefined
+        //         res.code = undefined
+        //         res.sendAt = undefined
+        //         res.verified = true
+        //         if(res.premium.subscribed) {
+        //             res.premium.createdAt = Date.now()
+        //             res.premium.days = ms("365d")
+        //         }
+        //         await res.save()
               
                 
-            })
-        })
+        //     })
+        // })
       
 
 

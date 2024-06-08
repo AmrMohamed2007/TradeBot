@@ -23,7 +23,7 @@ const ReadyEvent = {
         client.user.setPresence({
             status: "online",
             activities: [
-                { name: "/help (Beta)", type: discord_js_1.ActivityType.Playing },
+                { name: "/help", type: discord_js_1.ActivityType.Playing },
             ]
         });
         yield client.schema.find({}).then((s) => {

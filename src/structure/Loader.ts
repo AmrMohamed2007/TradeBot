@@ -77,11 +77,12 @@ async function LoadFunctions(client: Client) {
 
 
     client.transporter = await nodemailer.createTransport({
-        "host": "discordtradebot@gmail.com",
-        service: 'gmail',
+
+        service: 'hotmail',
+        
         auth: {
-            user: "discordtradebot@gmail.com", 
-            pass: "mduievsnduakocia" 
+            user: "tradebotdiscord@hotmail.com", 
+            pass: "kgdyymfxwqaxqenu" 
         }
     });
 }

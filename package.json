@@ -24,6 +24,7 @@
     "nodemailer": "^6.9.13",
     "pretty-ms": "^7.0.1",
     "serialize-javascript": "^6.0.2",
+    "telnet": "^0.0.1",
     "tsc-node": "^0.0.3",
     "typescript": "^5.4.5"
   }

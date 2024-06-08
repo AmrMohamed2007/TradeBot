@@ -19,6 +19,12 @@ const terra = {
             name: "create",
             description: "create your card data",
             type: ApplicationCommandOptionType.Subcommand,
+            options:[
+                {name:"firstname",description:"type your first name",required:true,type:3},
+                {name:"lastname",description:"type your lastname",required:true,type:3},
+          
+
+            ],
 
         },
         {
@@ -94,6 +100,8 @@ const terra = {
             }).then(async (res) => {
                 if (!res.card.cardNumber)
                     return await interaction.followUp({ content: langdata.card.errorhavecard, ephemeral: true })
+               
+               
                 if(res.card.cvv !== yourcvv) {
                     return await interaction.followUp({content:`${client.config.emojis.false} ${langdata.card.cvverror}`})
                 } 
@@ -127,7 +135,8 @@ const terra = {
             await interaction.deferReply({ephemeral:true})
             const CardNumber = interaction.user.id.slice(0, 4).concat(await client.public.generateRandomGmail(8));
             const cvv = await client.public.generateRandomGmail(3);
-     
+            const firstname = interaction.options.getString("firstname")
+            const lastname = interaction.options.getString("lastname")
 
             client.functions.get.GetUser(client.schema, {
                 status: "one",
@@ -139,7 +148,8 @@ const terra = {
 
                 if (res.card.cardNumber)
                     return await interaction.followUp({ content: langdata.card.errorhavecard, ephemeral: true })
-
+                res.firstname = firstname
+                res.lastname = lastname
                 res.card.cardNumber = CardNumber;
                 res.card.cvv = cvv;
                 res.card.coins = 0;

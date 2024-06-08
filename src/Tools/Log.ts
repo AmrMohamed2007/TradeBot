@@ -97,7 +97,7 @@ class Log {
         await user?.send?.({
             content: `${langdata.private.premiumBuy
                 .replace("[buyer]", `${user}`)
-                .replace("[days]", `<t:${days / 1000}:R>`)
+                .replace("[days]", `<t:${days}:R>`)
                 .replace("[time]", `<t:${Time}:R>`)
                 .replace("[code]", `${code}`)
                 .replace("[reason]", `${data.reason}`)
@@ -114,7 +114,7 @@ class Log {
                 title: "New Premium Subscription",
                 description: `Code : **${code}**\n
 User: ${user}\n
-Days: ${days}\n
+Days: <t:${days}:R>\n
 Time: <t:${Time}:R>`,
 color:client.config.maincolor
             })]

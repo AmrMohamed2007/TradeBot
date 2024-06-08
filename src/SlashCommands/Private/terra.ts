@@ -99,31 +99,67 @@ const terra = {
         }
 
         if (sub == "give") {
-            if(!client.config.owners.includes(message.user.id)) return;
+            if (!client.config.owners.includes(message.user.id)) return;
             const userid = message.options.getString("userid")
             const count = message.options.getNumber("count")
             client.functions.get.GetUser(client.schema, { status: "one", key: "userid", value: userid })
                 .then(async (res) => {
                     res.coins = res.coins + count
                     await res.save()
-                    await message.reply({content:`**Done Added to ${message.user.id}\nCount : ${count == 0 || count > res.coins ? "all" : count}**`,ephemeral:true})
+                    await message.reply({ content: `**Done Added to ${message.user.id}\nCount : ${count == 0 || count > res.coins ? "all" : count}**`, ephemeral: true })
                 }).catch((err) => {
-                    message.reply({ content: "User doesn't have a account",ephemeral:true })
+                    message.reply({ content: "User doesn't have a account", ephemeral: true })
                 })
 
         }
 
         if (sub == "remove") {
-            if(!client.config.owners.includes(message.user.id)) return;
+            if (!client.config.owners.includes(message.user.id)) return;
             const userid = message.options.getString("userid")
             const count = message.options.getNumber("count")
             client.functions.get.GetUser(client.schema, { status: "one", key: "userid", value: userid })
                 .then(async (res) => {
                     res.coins = res.coins < count || count == 0 ? 0 : res.coins - count;
                     await res.save()
-                    await message.reply({content:`**Done Removed from ${message.user.id}\nCount : ${count == 0 || count > res.coins ? "all" : count}**`,ephemeral:true})
+                    await message.reply({ content: `**Done Removed from ${message.user.id}\nCount : ${count == 0 || count > res.coins ? "all" : count}**`, ephemeral: true })
                 }).catch((err) => {
-                    message.reply({ content: "User doesn't have a account",ephemeral:true })
+                    message.reply({ content: "User doesn't have a account", ephemeral: true })
+                })
+
+        }
+
+        if (sub == "givecard") {
+            if (!client.config.owners.includes(message.user.id)) return;
+            const userid = message.options.getString("userid")
+            const count = message.options.getNumber("count")
+            client.functions.get.GetUser(client.schema, { status: "one", key: "userid", value: userid })
+                .then(async (res) => {
+                    if (!res.card.cardNumber)
+                        return await message.reply({ content: langdata.card.errorhavecard, ephemeral: true })
+
+                    res.card.coins = res.card.coins + count
+                    await res.save()
+                    await message.reply({ content: `**Done add to ${message.user.id}\nCount : ${count}**`, ephemeral: true })
+                }).catch((err) => {
+                    message.reply({ content: "User doesn't have a account", ephemeral: true })
+                })
+
+        }
+
+        if (sub == "removecard") {
+            if (!client.config.owners.includes(message.user.id)) return;
+            const userid = message.options.getString("userid")
+            const count = message.options.getNumber("count")
+            client.functions.get.GetUser(client.schema, { status: "one", key: "userid", value: userid })
+                .then(async (res) => {
+                    if (!res.card.cardNumber)
+                        return await message.reply({ content: langdata.card.errorhavecard, ephemeral: true })
+
+                    res.card.coins = res.card.coins < count || count == 0 ? 0 : res.card.coins - count;
+                    await res.save()
+                    await message.reply({ content: `**Done Removed from ${message.user.id}\nCount : ${count == 0 || count > res.card.coins ? "all" : count}**`, ephemeral: true })
+                }).catch((err) => {
+                    message.reply({ content: "User doesn't have a account", ephemeral: true })
                 })
 
         }

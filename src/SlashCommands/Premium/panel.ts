@@ -88,7 +88,7 @@ const panel = {
                 if (!res.premium || !res.premium.subscribed) {
                     return await message.reply({ content: `${client.config.emojis.false} ${langdata.premium.nopre}`, ephemeral: true });
                 }
-                if ((Date.now() - res.premium.createdAt) >= ms(`${res.days}`)) {
+                if ((Date.now() - res.premium.createdAt) >= res.premium.days) {
 
                     res.premium = undefined;
                     await res.save()
@@ -102,7 +102,7 @@ const panel = {
                     if (!res.premium || !res.premium.subscribed) {
                         return await message.reply({ content: `${client.config.emojis.false} ${langdata.premium.nopre}` });
                     }
-                    if ((Date.now() - res.premium.createdAt) >= ms(`${res.days}`)) {
+                    if ((Date.now() - res.premium.createdAt) >= res.premium.days) {
 
                         res.premium = undefined;
                         await res.save()
@@ -113,8 +113,8 @@ const panel = {
                         fields: [
                             { name: langdata.private.userid, value: `${message.user.id}`, inline: false },
                             { name: langdata.premium.createdAt, value: `${new Date(res.premium.createdAt).toDateString()}`, inline: false },
-                            { name: langdata.premium.endsAt, value: `${new Date(Date.now() + ms(`${res.premium.days}d`)).toDateString()}`, inline: false },
-                            { name: langdata.premium.days, value: `${prettyMilliseconds((res.createdAt + ms(`${res.premium.days}d`)) - Date.now())}`, inline: false }
+                            { name: langdata.premium.endsAt, value: `${new Date(Date.now() + res.premium.days).toDateString()}`, inline: false },
+                            { name: langdata.premium.days, value: `${prettyMilliseconds((res.premium.createdAt + res.premium.days) - Date.now())}`, inline: false }
 
                         ],
                         color: client.config.maincolor,
@@ -135,7 +135,7 @@ const panel = {
 
                     const res = await client.functions.get.GetUser(client.schema, { key: "userid", value: message.user.id, status: "one" });
 
-                    if (res.premium.subscribed && (Date.now() - res.premium.createdAt) >= ms(`${res.days}`)) {
+                    if (res.premium.subscribed && (Date.now() - res.premium.createdAt) >= res.premium.days) {
 
                         res.premium = undefined;
                         await res.save()
@@ -230,13 +230,16 @@ const panel = {
                         key: "userid",
                         value: message.user.id
                     }).then(async (ress) => {
-
-
-                        ress.premium = ress.premium.subscribed ? ress.premium.days + PremiumData.days : PremiumData;
+                        const codep = ress.premium.subscribed ? ress.premium.code : PremiumData.code
+                        if(ress.premium.subscribed) {
+                            ress.premium.days + PremiumData.days
+                        }else {
+                            ress.premium = PremiumData;
+                        }
 
                         await client.Log.LogPremiumUser({
                             days: res.duration,
-                            code: await client.public.generateRandomCode(),
+                            code: codep,
                             guildid: message.guild.id,
                             user: message.user.id,
                             reason: "Cupon Code"

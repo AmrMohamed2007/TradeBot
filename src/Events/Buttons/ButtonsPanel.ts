@@ -14,13 +14,10 @@ const Event = {
             await client.functions.get.GetUser(client.schema, { status: "one", key: "userid", value: interaction.user.id }).then(async (res) => {
                 if (btntype.includes("create")) {
                   
-                    
-                    if (res.verified) {
+                 
                         return await interaction.reply({ content: `${client.config.emojis.false} ${langdata.components.createAccount.verified}`, embeds: [], ephemeral: true })
 
-                    } else {
-                        await interaction.showModal(await client.public.ModalCreateAcc(res.password ? "password" : "nopassword", langdata))
-                    }
+                  
 
                 }
 
@@ -56,11 +53,8 @@ const Event = {
                 
                 if (btntype.includes("create")) {
 
+                    await client.captcha.CaptchaShape(client, interaction, langdata, "reply", false, btntype)
 
-                    await interaction.showModal(await client.public.ModalCreateAcc("nopassword", langdata))
-
-                } else {
-                    await interaction.reply({ content: `${client.config.emojis.false} ${langdata.captcha.errornoacc}`, embeds:[]  ,ephemeral: true })
                 }
 
 

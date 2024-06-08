@@ -1,0 +1,46 @@
+{
+    "owners": ["1067376627610292245", "283091738069958660"],
+    "token": "MTIzODYyMDQ1ODMyMDkyMDU3Ng.Gsf05p.3kF3ZR4_azsOg_Hxl6Ox8_q_BwyR2pNh9QrfNY",
+    "prefix": "#",
+    "maincolor": "#00FF75",
+    "wrongcolor": "Red",
+    "channelreport": "1243167130380271707",
+    "channeljoin": "1243167031042375712",
+    "channelleft": "1243167081407582319",
+    "channellog": "1246229046665150514",
+    "channelpremium": "1244650389341732885",
+    "channelscammers": "1244177103398895636",
+    "serverURL": "https://discord.gg/tradebot",
+    "mongoose": "mongodb+srv://amr123123:amr123123@cluster0.3g9m5dv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+    "emojis": {
+        "passwordver": "<:Frame69:1240761657400229959>",
+        "true": "<:Frame50:1240761305313574992>",
+        "false": "<:Frame51:1240761306894700554>",
+        "report": "<:Frame65:1240761338314096701>",
+        "loading": "<:Frame73:1240761354525085819>",
+        "transfer": "<:Frame66:1240761341048918016>",
+        "logo": "<:Frame75:1240761358274789449>",
+        "daily": "<:Frame72:1240761352306294840>",
+        "giveaway": "<:Frame61:1240761330739449916>",
+        "atm": "<:Frame59:1240761326805192795>",
+        "pnggiv": "<:6556:1243622173386608801>",
+        "warning": "<:Frame65:1240761338314096701",
+        "premium": "<:Frame53:1240761310099013673>",
+        "settings": "<:Frame70:1240761348582015106>",
+        "support": "<:Frame56:1240761318886346833>"
+    },
+    "langs": [
+        { "label": "English", "emoji": "🇺🇸", "value": "en" },
+        { "label": "Arbic", "emoji": "🇵🇸", "value": "ar" },
+        { "label": "Turkish", "emoji": "🇹🇷", "value": "tr" },
+        { "label": "French", "emoji": "🇫🇷", "value": "fr" }
+    ],
+    "time": [
+        { "time": "1", "price": 500 },
+        { "time": "12", "price": 2500 }
+    ],
+    "info": {
+        "scammers": "https://media.discordapp.net/attachments/1226648030493806725/1243267926971121819/Frame_123.png?ex=66537dfc&is=66522c7c&hm=d0ac19a4198346bc768681334d5b7ead2fa9eb8cb58f4fec3d65cc12845fee99&=&format=webp&quality=lossless&width=960&height=349",
+        "panel": "https://media.discordapp.net/attachments/1226648030493806725/1243267926463746048/Frame_119.png?ex=66537dfc&is=66522c7c&hm=8c3ed69997fd546aa2ea12d671ab61e381c794f7f82b6b01cdeb0ffb9095d6f3&=&format=webp&quality=lossless&width=960&height=349"
+    }
+}

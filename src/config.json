@@ -31,7 +31,7 @@
     },
     "langs": [
         { "label": "English", "emoji": "🇺🇸", "value": "en" },
-        { "label": "Arbic", "emoji": "🇵🇸", "value": "ar" },
+        { "label": "Arabic", "emoji": "🇵🇸", "value": "ar" },
         { "label": "Turkish", "emoji": "🇹🇷", "value": "tr" },
         { "label": "French", "emoji": "🇫🇷", "value": "fr" }
     ],

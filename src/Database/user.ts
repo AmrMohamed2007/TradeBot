@@ -55,6 +55,9 @@ const UserSchema = new Schema<any>({
     },
     sendAt:Number,
     code:Number,
+
+  
+
     verified:{type:Boolean,default:false}
 })
 

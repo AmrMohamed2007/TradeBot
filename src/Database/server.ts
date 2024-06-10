@@ -23,9 +23,15 @@ const ServerSchema = new Schema<any>({
         type: String,
         default: "Red" // WRONG Color
     },
-    thumbnail: String
+    thumbnail: String,
 
-
+    react_comp:String,
+    image_comp:String,
+    thumbnail_comp:String,
+    title_comp:String,
+    desc_comp:String,
+    comp_channel_joiners:String,
+    comp_channel_mosabka:String
 
 
 

@@ -1,5 +1,13 @@
 const Language = {
     en: {
+    comp:{
+        panel:{
+            title:"Competition",
+            description:"Welcome to Competition , Let's Join it and win !"
+            ,joinbtn:"Join",
+            leftbtn:"Leave"
+        }
+    },
     card:{
         donetransfer:"Done Transfered Successfully",
         cardnumbererror:"Card Number is inCorrect",

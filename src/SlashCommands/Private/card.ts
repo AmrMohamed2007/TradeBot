@@ -102,7 +102,7 @@ const terra = {
                     return await interaction.followUp({ content: langdata.card.errorhavecard, ephemeral: true })
                
                
-                if(res.card.cvv !== yourcvv) {
+                if(String(res.card.cvv) !== String(yourcvv)) {
                     return await interaction.followUp({content:`${client.config.emojis.false} ${langdata.card.cvverror}`})
                 } 
                 if(res.card.coins < count) {

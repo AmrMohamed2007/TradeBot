@@ -7,7 +7,8 @@ import Cupon from "../Database/cupon";
 import AllShapes from "../security"
 import { giveawayModel } from "../Database/giveaway"
 import { GiveawayStartup } from "./Giveaway";
-
+import comp from "../Database/comp"
+import voters from "../Database/votes"
 const client = new Discord.Client({
     intents: [
         Discord.GatewayIntentBits.Guilds,
@@ -58,6 +59,8 @@ client.premium = {};
 client.shapes = AllShapes;
 client.public = {};
 client.functions.manger = GiveawayStartup;
+client.comp = comp
+client.votes = voters
 
 client.on("interactionCreate", async interaction  => {
     if(interaction.isButton()) {

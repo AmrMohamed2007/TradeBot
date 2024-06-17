@@ -6,12 +6,20 @@ const UserSchema = new Schema<any>({
     createdAt: Number,
     endAt: Number,
     users: [
-        { userid: String, image: String, messageId:String }
+        {
+            userid: String,
+            image: String,
+            messageId: String,
+            votes:Array,
+            winner:Boolean
+        }
     ],
-    messageId:String,
-    ended:{type:Boolean,default:false},
-    comptype:String, // images or titles
-    compstatus:String,
+    messageId: String,
+    ended: { type: Boolean, default: false },
+    comptype: String, // images or text
+    compstatus: String, // running | paused | unpaused | ended | deleted
+    guildid: String,
+    channel: String,
 
 })
 

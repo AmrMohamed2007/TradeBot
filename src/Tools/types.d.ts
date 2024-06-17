@@ -10,6 +10,8 @@ import * as config from "../config.json"
 import { Model } from "mongoose";
 import { Log } from "./Log";
 import {TypesLog} from "./logtypes"
+import comp from "../Database/comp"
+import voters from "../Database/votes"
 type Config = typeof config
 type typeslog = typeof TypesLog
 declare module "discord.js" {
@@ -45,7 +47,9 @@ declare module "discord.js" {
     giveawayPackge:any,
     loge:any,
     transporter:any,
-    cupon:Model
+    cupon:Model,
+    comp:comp,
+    votes:voters
   }
 
 }

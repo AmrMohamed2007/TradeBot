@@ -2,10 +2,12 @@ const Language = {
     en: {
     comp:{
         panel:{
+            errorchannels:"Channels was not set",
             title:"Competition",
             description:"Welcome to Competition , Let's Join it and win !"
             ,joinbtn:"Join",
-            leftbtn:"Leave"
+            leftbtn:"Leave",
+            compalready:"Competition is already running now !"
         }
     },
     card:{

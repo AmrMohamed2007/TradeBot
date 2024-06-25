@@ -1,7 +1,22 @@
 const Language = {
     en: {
     comp:{
+        setup:{
+            titleembed:"Comp Settings",
+            descembed:"Here is you can edit Comp's Settings",
+            channelJoiners:"Voter's Channel",
+            channelMosabka:"Comp's Channel",
+            title:"Comp's Title",
+            desc:"Comp's Description",
+            react:"Comp's React",
+            image:"Comp's Image URL",
+            thumbnail:"Comp's Thumbnail",
+            channelplaceholder:"Choose Comp's Channel",
+            channelvplaceholder:"Choose Voter's Channel"
+        },
         panel:{
+            placeholder:"Admin Controller",
+            status:"Status",
             errorchannels:"Channels was not set",
             title:"Competition",
             description:"Welcome to Competition , Let's Join it and win !"

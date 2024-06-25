@@ -13,6 +13,9 @@
     "serverURL": "https://discord.gg/tradebot",
     "mongoose": "mongodb+srv://amr123123:amr123123@cluster0.3g9m5dv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
     "emojis": {
+        "comp":{
+            
+        },
         "passwordver": "<:Frame69:1240761657400229959>",
         "true": "<:Frame50:1240761305313574992>",
         "false": "<:Frame51:1240761306894700554>",

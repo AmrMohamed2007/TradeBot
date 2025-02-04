@@ -1,6 +1,6 @@
 {
     "owners": ["1067376627610292245","283091738069958660"],
-    "token": "MTA4MDgxNjk1Mjc4OTk2MjgwMg.GEa--o.9PPqfnfhyfcUyuSwyVPA1U0d5Zbz_r1yyZ7uhU",
+    "token": "",
     "prefix": "#",
     "maincolor": "#00FF75",
     "wrongcolor": "Red",
@@ -11,7 +11,7 @@
     "channelpremium": "1244650389341732885",
     "channelscammers": "1244177103398895636",
     "serverURL": "https://discord.gg/tradebot",
-    "mongoose": "mongodb+srv://amr123123:amr123123@cluster0.3g9m5dv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+    "mongoose": "",
     "emojis": {
         "comp":{
             
